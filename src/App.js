@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState, useEffect} from 'react';
 import './App.css';
 import firebase from 'firebase';
 import {connect} from 'react-redux';
@@ -7,11 +7,28 @@ import {ActionCreatorData} from './redux/data/dataAction.js';
 import {OperationData} from './redux/data/dataReducer.js';
 
 export const App = ({comments, comment, onChangeCommentPlace, onSubmitReview})  => {
+  const [com, setCom] = useState(null)
   let commentsValues = [];
+  console.log(com);
 
-  if(comments !== null) {
-    commentsValues = Object.values(comments); 
+  if(com !== null) {
+    commentsValues = Object.values(com); 
   }
+
+  useEffect(() => {
+    setTimeout(() => {
+      const dataBase = firebase.database();
+      const refComments = dataBase.ref('comments');
+
+      refComments.once('value')
+      .then((snapshot) => {
+        if (com !== snapshot.val()) {
+          setCom(snapshot.val());  
+        }
+      });
+    }, 2000);
+  }, [com])
+
   return (
     <div className="App">
 
