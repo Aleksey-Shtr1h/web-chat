@@ -33,45 +33,53 @@ export const App = ({comments, comment, onChangeCommentPlace, onSubmitReview})  
 
   return (
     <div className="App">
+      <h1 className="title-site">Web-Chat</h1>
 
-      {commentsValues.map((commentChat, id) => {
-        return (
-          <p key={commentChat.comment + id}>{commentChat.comment}</p>
-        )
-      })}
+      <div className="container">
+        <ul className="reviews__list">
+        {commentsValues.map((commentChat, id) => {
+          return (
+            <li 
+              className="reviews__item"
+              key={commentChat.comment + id}
+            >
+              {commentChat.comment}
+            </li>
+          )
+        })}
+        </ul>
 
-      <form 
-        className="reviews__form"
-        action="#"
-        method="post"
-        disabled="disabled"
-        onSubmit={(evt) => {
-          evt.preventDefault();
-          onSubmitReview(comment);
-        }}
-
-      >
-
-        <textarea
-          className="reviews__textarea"
-          id="review"
-          name="review"
-          placeholder="Add"
-          onChange={(evt) => {
-            onChangeCommentPlace(evt.target.value);
+        <form 
+          className="reviews__form"
+          action="#"
+          method="post"
+          disabled="disabled"
+          onSubmit={(evt) => {
+            evt.preventDefault();
+            onSubmitReview(comment);
           }}
-          required
-      >
-      </textarea>
+        >
 
-      <button
-        className="reviews__submit"
-        type="submit"
-      >
-        Submit
-      </button>
+          <textarea
+            className="reviews__textarea"
+            id="review"
+            name="review"
+            onChange={(evt) => {
+              onChangeCommentPlace(evt.target.value);
+            }}
+            required
+        >
+        </textarea>
 
-      </form>
+        <button
+          className="reviews__submit"
+          type="submit"
+        >
+          Submit
+        </button>
+
+        </form>
+      </div>
     </div>
   );
 }
