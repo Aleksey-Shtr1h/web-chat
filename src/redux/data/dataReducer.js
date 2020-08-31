@@ -54,6 +54,9 @@ export const dataReducer = (state = initialState, action) => {
       return Object.assign({}, state, {
         comment: action.payload,
       });
+
+    default:
+      break;
   }
 
   return state;

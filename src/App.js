@@ -7,7 +7,7 @@ import {ActionCreatorData} from './redux/data/dataAction.js';
 import {OperationData} from './redux/data/dataReducer.js';
 
 export const App = ({comments, comment, onChangeCommentPlace, onSubmitReview})  => {
-  const [com, setCom] = useState(null)
+  const [com, setCom] = useState(false)
   let commentsValues = [];
   console.log(com);
 
@@ -24,6 +24,8 @@ export const App = ({comments, comment, onChangeCommentPlace, onSubmitReview})  
       .then((snapshot) => {
         if (com !== snapshot.val()) {
           setCom(snapshot.val());  
+        } else {
+          setCom(!com);
         }
       });
     }, 2000);
