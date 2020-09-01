@@ -6,10 +6,9 @@ import {connect} from 'react-redux';
 import {ActionCreatorData} from './redux/data/dataAction.js';
 import {OperationData} from './redux/data/dataReducer.js';
 
-export const App = ({comments, comment, onChangeCommentPlace, onSubmitReview})  => {
+export const App = ({comment, onChangeCommentPlace, onSubmitReview})  => {
   const [com, setCom] = useState(false)
   let commentsValues = [];
-  console.log(com);
 
   if(com !== null) {
     commentsValues = Object.values(com); 
