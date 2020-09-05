@@ -1,43 +1,43 @@
 import {ActionCreatorData, ActionTypeData} from './dataAction.js';
 import firebase from 'firebase';
 
-const initialState = {
-  comments: {},
+import {adapterComment} from '../../adapter/comment.js';
+
+export const initialState = {
+  comments: [],
   comment: ``,
 };
 
 export const OperationData = {
 
   loadComments: () => (dispatch, getState, api) => {
-    const dataBase = firebase.database();
-    const refComments = dataBase.ref('comments');
+    const dataBase = firebase.firestore();
+    dataBase.collection(`comments`)
+    .onSnapshot((snapshot) => {
+      const usersCommets = snapshot.docs;
+      const newUsersComments = adapterComment(
+      usersCommets.map((userCommet) => ({
+        ...userCommet.data(),
+      })));
 
-    refComments.once('value')
-    .then((snapshot) => {
-      return snapshot.val();
+      dispatch(ActionCreatorData.getComments(newUsersComments));
     })
-    .then((response) => {
-      dispatch(ActionCreatorData.getComments(response));
-    });
   },
 
-  postComments: (comment) => (dispatch, getState, api) => {
-    const lengthComments = getState().DATA.comments;
+  postComments: (description) => (dispatch, getState, api) => {
+    const dateNow = new Date();
 
-    const dataBase = firebase.database()
-    const refComments = dataBase.ref('comments');
-    const autiId = refComments.push().key;
+    const dataBase = firebase.firestore()
+    const refComments = dataBase.collection(`comments`);
 
-    const refOparationChange = lengthComments !== null ? refComments.child(autiId) : dataBase.ref('/comments/' + autiId);
-
-    refOparationChange.set({
-      comment: comment,
+    refComments.add({
+      description,
       id: 1,
       name: 'Alex',
-    })
-    .then((response) => {
-      dispatch(OperationData.loadComments());
+      date: dateNow.toISOString(),
     });
+
+    dispatch(ActionCreatorData.actionEraseCommentForm());
   }
 
 };
@@ -51,6 +51,11 @@ export const dataReducer = (state = initialState, action) => {
       });
 
     case ActionTypeData.CHANGE_COMMENT_PLACE:
+      return Object.assign({}, state, {
+        comment: action.payload,
+      });
+
+    case ActionTypeData.ERASE_COMMENT_FORM:
       return Object.assign({}, state, {
         comment: action.payload,
       });
