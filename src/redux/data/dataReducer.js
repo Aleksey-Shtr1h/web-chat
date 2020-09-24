@@ -3,6 +3,10 @@ import firebase from 'firebase';
 
 import {adapterComment} from '../../adapter/comment.js';
 
+const randomNumber = () => {
+  return Math.random();
+}
+
 export const initialState = {
   comments: [],
   comment: ``,
@@ -32,14 +36,27 @@ export const OperationData = {
 
     refComments.add({
       description,
-      id: 1,
+      id: randomNumber(),
       name: 'Alex',
       date: dateNow.toISOString(),
     });
 
     dispatch(ActionCreatorData.actionEraseCommentForm());
-  }
+  },
 
+  deletePost: (commentId) => (dispatch, getState, api) => {
+    const dataBase = firebase.firestore()
+    const refComments = dataBase.collection(`comments`);
+
+    refComments.onSnapshot((snapshot) => {
+      const usersCommets = snapshot.docs;
+      usersCommets.map((userCommet) => {
+        if (commentId === userCommet.data().id) {
+          refComments.doc(userCommet.id).delete();
+        }
+      });
+    })
+  }
 };
 
 export const dataReducer = (state = initialState, action) => {

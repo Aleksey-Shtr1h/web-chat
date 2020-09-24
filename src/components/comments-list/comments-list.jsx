@@ -1,8 +1,12 @@
 import React from 'react';
-import {useSelector} from 'react-redux';
+import {useDispatch, useSelector} from 'react-redux';
+
+import {OperationData} from '../../redux/data/dataReducer.js';
 
 export const CommentsList = () => {
   const comments = useSelector((state) => state.DATA.comments);
+
+  const dispatch = useDispatch();
 
   return (
     <ul className="comments__list">
@@ -12,9 +16,16 @@ export const CommentsList = () => {
         return (
           <li 
             className="comments__item"
+
             key={commentChat.description + id}
-          >
-            {commentChat.description}
+          > 
+            <p className="comments__text">{commentChat.description}</p>
+            <button
+              className="comments__btn-close"
+              onClick={() => {
+                dispatch(OperationData.deletePost(commentChat.id))
+              }}
+            />
           </li>
         )
       })}
