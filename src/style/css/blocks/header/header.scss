@@ -3,6 +3,8 @@
 
   background-color: #25272A;
 
+  border-radius: 5px;
+
   z-index: 100;
 }
 
@@ -18,6 +20,12 @@
   align-self: center;
 }
 
+.logo-link {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
 .logo__title {
   font-family: $sansFont;
   font-size: adaptiveSizePx(20, 24, 768, 1440);
@@ -25,6 +33,15 @@
   color: #fff;
 
   padding-bottom: 7px;
+}
+
+.logo-link__text {
+  display: flex;
+  justify-content: center;
+}
+
+.logo-link__icon {
+
 }
 
 .user-profile {

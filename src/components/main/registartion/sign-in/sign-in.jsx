@@ -20,45 +20,41 @@ export const SignIn = () => {
             dispatch(OperationUser.userAuth(email, password));
           }} 
         >
-          <fieldset className="form-sign-in__fieldset">
-            <legend className="form-sign-in__legend">Sign In</legend>
 
-            <div className="wrap-sign-form">
-              <ul className="sign-in-data">
+          <div className="wrap-sign-form">
+            <ul className="sign-in-data">
 
-                <li className="sign-in-data__item">
-                  <label className="sign-in-data__text" htmlFor="email">Email</label>
-                  <input 
-                    className="sign-in-data__input" 
-                    type="email" 
-                    id="email" 
-                    placeholder="email@gmail.com"
-                    onChange={(evt) => setEmail(evt.target.value)}
-                  />
-                </li>
+              <li className="sign-in-data__item">
+                <label className="sign-in-data__text" htmlFor="email">Email</label>
+                <input 
+                  className="sign-in-data__input" 
+                  type="email" 
+                  id="email" 
+                  placeholder="email@gmail.com"
+                  onChange={(evt) => setEmail(evt.target.value)}
+                />
+              </li>
 
-                <li className="sign-in-data__item">
-                  <label className="sign-in-data__text" htmlFor="password">Password</label>
-                  <input 
-                    className="sign-in-data__input" 
-                    type="password" 
-                    id="password" 
-                    placeholder="*********"
-                    onChange={(evt) => setPassword(evt.target.value)}
-                  />
-                </li>
+              <li className="sign-in-data__item">
+                <label className="sign-in-data__text" htmlFor="password">Password</label>
+                <input 
+                  className="sign-in-data__input" 
+                  type="password" 
+                  id="password" 
+                  placeholder="*********"
+                  onChange={(evt) => setPassword(evt.target.value)}
+                />
+              </li>
 
-              </ul>
+            </ul>
 
-              <div className="sign-in-data__remember">
-                <input className="sign-in-data__remember-checkbox" type="checkbox" id="remember"/>
-                 <label className="sign-in-data__remember-text" htmlFor="remember">Remember Me</label>
-              </div>
-
-              <button className="sign-in-btn-submit" type="submit">Login</button>
+            <div className="sign-in-data__remember">
+              <input className="sign-in-data__remember-checkbox" type="checkbox" id="remember"/>
+               <label className="sign-in-data__remember-text" htmlFor="remember">Remember Me</label>
             </div>
 
-          </fieldset>
+            <button className="sign-in-btn-submit" type="submit">Sign In</button>
+          </div>
 
         </form>
       </div>
