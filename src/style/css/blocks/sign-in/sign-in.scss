@@ -1,0 +1,113 @@
+.main-login {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+
+  width: 100%;
+  height: 70vh;
+
+  // background-color: #000;
+  z-index: 1;
+}
+
+.login-box {
+
+  // padding-top: 10%;
+}
+
+.form-sign-in {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+
+  width: 40%;
+  margin: 0 auto;
+}
+
+.form-sign-in__fieldset {
+  border: 2px solid #000;
+  border-radius: 5px;
+}
+
+.form-sign-in__legend {
+  font-size: 25px;
+  font-weight: 600;
+  line-height: 30px;
+}
+
+.wrap-sign-form {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+
+  margin: 0 auto;
+
+  width: 60%;
+}
+
+.sign-in-data {
+
+}
+
+.sign-in-data__item {
+  position: relative;
+
+  display: flex;
+  flex-direction: column;
+
+  padding-bottom: 6%;
+}
+
+.error-valid-item::after {
+  content: "x";
+
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 20px;
+  height: 20px;
+
+  text-align: center;
+  color: red;
+
+  cursor: pointer;
+}
+
+.sign-in-data__text {
+  position: relative;
+
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 25px;
+}
+
+.sign-in-data__input {
+  padding-top: 2%;
+  padding-bottom: 2%;
+
+  border: 1px solid #00000085;
+
+  border-radius: 5px;
+
+  background-color: #F4F5F4;
+}
+
+.sign-in-data__remember {
+  padding-bottom: 8%;
+}
+
+.sign-in-btn-submit {
+  font-size: 25px;
+  font-weight: 600;
+  line-height: 25px;
+
+  padding-top: 3%;
+  padding-bottom: 3%;
+
+  margin-bottom: 5%;
+}
+
+.error-valid-password {
+  position: relative;
+  border: 1px solid red;
+}

@@ -1,0 +1,139 @@
+.header {
+  padding-left: 7%;
+
+  background-color: #25272A;
+
+  z-index: 100;
+}
+
+.container-header {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+
+  height: 100px;
+}
+
+.logo {
+  align-self: center;
+}
+
+.logo__title {
+  font-family: $sansFont;
+  font-size: adaptiveSizePx(20, 24, 768, 1440);
+
+  color: #fff;
+
+  padding-bottom: 7px;
+}
+
+.user-profile {
+  display: flex;
+  flex-direction: row;
+
+  padding-right: 2%;
+
+}
+
+.wrapper-link-menu {
+  position: relative;
+
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
+
+.response-menu {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+}
+
+.sign-link {
+  font-family: $sansFont;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  align-self: center;
+
+  margin-left: adaptiveSizePx(5, 50, $_smPhoneWidth, $_maxDesktopWidth);
+  padding-top: adaptiveSizePx(7, 10, $_tableWidth, $_maxDesktopWidth);
+  padding-bottom: adaptiveSizePx(7, 10, $_tableWidth, $_maxDesktopWidth);
+
+  width: adaptiveSizePx(80, 100, 768, 1440);
+
+  border-radius: 5px;
+  border: 2px solid #25272A;
+
+  font-size: adaptiveSizePx(15, 18, $_phoneWidth, $_maxDesktopWidth);
+  font-weight: 600;
+
+  color: #fff;
+
+  &:hover {
+    border: none;
+    background-color: #000;
+    color: #fff; 
+  }
+}
+
+.sign-link--active, .sign-link--active:hover {
+  background-color: #000;
+  color: #fff; 
+
+  border: 2px solid #fff;
+}
+
+@import './menu-icon.scss';
+
+@media screen and (max-width: $tableWidth) {
+  .user-profile {
+    padding-right: 0;
+    flex-direction: row-reverse;
+  }
+
+  .wrapper-icon-menu {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+
+    margin-right: 2vw;
+  }
+
+  .wrapper-link-menu {
+    width: 0;
+    transition: width 0.3s linear;
+  }
+
+  .wrapper-link-menu-open {
+    width: 30vw;
+    transition: width 0.3s linear;
+  }
+
+  .response-menu {
+    display: none;
+  }
+
+  .response-menu-burger {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+
+    width: 100%;
+    height: 100vh;
+
+    padding-top: 4vh;
+
+    background-color: #25272A;
+
+    z-index: 10;
+  }
+
+  .sign-link {
+    margin-left: 0;
+    margin-bottom: 5%;
+  }
+
+}
