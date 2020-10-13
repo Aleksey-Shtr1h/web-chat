@@ -44,6 +44,7 @@ export const SignUp = () => {
                   type="email" 
                   id="email" 
                   placeholder="email@gmail.com"
+                  value={email}
                   onChange={(evt) => setEmail(evt.target.value)}
                 />
               </li>
@@ -55,7 +56,8 @@ export const SignUp = () => {
                   type="password" 
                   id="password"
                   placeholder="*********"
-                  value={password} 
+                  value={password}
+                  autoComplete="off"
                   onChange={(evt) => setPassword(evt.target.value)}
                 />
               </li>
@@ -68,6 +70,7 @@ export const SignUp = () => {
                   id="confirm_password" 
                   placeholder="*********"
                   value={confirmPassword} 
+                  autoComplete="off"
                   onChange={(evt) => setConfirmPassword(evt.target.value)}
                 />
               </li>

@@ -3,8 +3,8 @@ import {useDispatch} from 'react-redux';
 import {useSelector} from 'react-redux';
 import {BrowserRouter as Router, Switch, Route} from 'react-router-dom';
 
-import {Header} from '../header/header-main/header.jsx';
-import {MainPage} from '../main/main-page/main-page.jsx';
+import {Header} from '../header/header.jsx';
+import {MainPage} from '../main/main-page.jsx';
 import {RegistrationMain} from '../main/registartion/registration-main/registartion-main.jsx';
 
 import {PageType} from '../../constant.js';

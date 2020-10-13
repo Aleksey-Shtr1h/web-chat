@@ -1,7 +1,7 @@
 import React from 'react';
 
-import {HeaderLogo} from '../header-logo/header-logo.jsx';
-import {HeaderUserProfile} from '../header-user-profile/header-user-profile.jsx';
+import {HeaderLogo} from './header-logo/header-logo.jsx';
+import {HeaderUserProfile} from './header-user-profile/header-user-profile.jsx';
 
 export const Header = ({pageType, children}) => {
 

@@ -1,0 +1,8 @@
+.slick-prev::before {
+  left: 0;
+  background-image: url('../../../image/caret-left.svg');
+}
+
+.slick-next::before {
+  background-image: url('../../../image/caret-right.svg');
+}

@@ -8,6 +8,7 @@ import {OperationUser} from '../../../redux/user/userReducer.js';
 
 export const HeaderUserLink = ({dispatch, isOnline, signMenu}) => {
   const {userId} = useSelector((state) => state.USER);
+  const {isBurgerBtn} = useSelector((state) => state.APP);
   let match = useRouteMatch();
 
   return (
@@ -19,6 +20,7 @@ export const HeaderUserLink = ({dispatch, isOnline, signMenu}) => {
           if(isOnline) {
             dispatch(OperationUser.userExit(userId));
           }
+          dispatch(ActionCreatorApp.changeBurgerBtn(!isBurgerBtn));
         }}
       >
         {signMenu.name}

@@ -43,7 +43,10 @@ export const HeaderUserProfile = () => {
           className="checkbox3 visuallyHidden" 
           type="checkbox" 
           id="checkbox3" 
-          onChange={() => {dispatch(ActionCreatorApp.changeBurgerBtn(!isBurgerBtn))}}
+          onChange={() => {
+            dispatch(ActionCreatorApp.changeBurgerBtn(!isBurgerBtn));
+          }}
+          checked={isBurgerBtn ? 'checked' : ''}
         />
         <label htmlFor="checkbox3">
           <div className="hamburger hamburger3">

@@ -1,6 +1,11 @@
-@import './style/css/fonts.scss';
-@import './style/css/mixins.scss';
-@import './style/css/variables.scss';
-@import './style/css/global.scss';
-@import './style/css/blocks/header/header.scss';
-@import './style/css/blocks/sign-in/sign-in.scss';
+@import '~slick-carousel/slick/slick.scss'; 
+@import '~slick-carousel/slick/slick-theme.scss';
+
+@import './assets/css/fonts.scss';
+@import './assets/css/mixins.scss';
+@import './assets/css/variables.scss';
+@import './assets/css/global.scss';
+@import './assets/css/blocks/header/header.scss';
+@import './assets/css/blocks/sign-in/sign-in.scss';
+@import './assets/css/blocks/background-img/slider-img.css';
+@import './assets/css/blocks/main/no-auth-page/main-no-auth-page.scss';

@@ -29,8 +29,9 @@ export const SignIn = () => {
                 <input 
                   className="sign-in-data__input" 
                   type="email" 
-                  id="email" 
+                  id="email"
                   placeholder="email@gmail.com"
+                  value={email} 
                   onChange={(evt) => setEmail(evt.target.value)}
                 />
               </li>
@@ -42,6 +43,8 @@ export const SignIn = () => {
                   type="password" 
                   id="password" 
                   placeholder="*********"
+                  autoComplete="on"
+                  value={password}
                   onChange={(evt) => setPassword(evt.target.value)}
                 />
               </li>
