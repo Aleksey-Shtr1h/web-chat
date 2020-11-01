@@ -1,9 +1,7 @@
 .main-login {
   display: flex;
   flex-direction: column;
-  justify-content: center;
 
-  // height: 100%;
   z-index: 1;
 }
 
@@ -137,11 +135,18 @@
 
 .error-valid-password {
   position: relative;
-  border: 1px solid red;
+  border: 3px solid #ff00007d;
 }
 
 @media screen and (max-width: $phoneWidth) {
+
   .form-sign-in {
     width: 100%;
-  }  
+  } 
+
+  .sign-in-data__input {
+    padding-top: 0.8%;
+    padding-bottom: 0.8%;
+    padding-left: 1%;
+  } 
 }

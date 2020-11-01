@@ -21,7 +21,7 @@ const init = () => {
   );
 
   store.dispatch(OperationUser.userAuthCheck());
-
+    
   ReactDOM.render(
     <Provider store={store}>
       <App />

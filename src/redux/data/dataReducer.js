@@ -10,9 +10,23 @@ const randomNumber = () => {
 export const initialState = {
   comments: [],
   comment: ``,
+
+  users: [],
 };
 
 export const OperationData = {
+
+  loadUsers: () => (dispatch, getState, api) => {
+    const dataBase = firebase.database().ref(`users`);
+    dataBase.on(`value`, async (snapshot) => {
+      const users = [];
+      await snapshot.forEach((user) => {
+        users.push(user.val());
+      });
+
+      dispatch(ActionCreatorData.getUsers(users));
+    });
+  },
 
   loadComments: () => (dispatch, getState, api) => {
     const dataBase = firebase.firestore();
@@ -61,6 +75,12 @@ export const OperationData = {
 
 export const dataReducer = (state = initialState, action) => {
   switch (action.type) {
+
+    case ActionTypeData.GET_USERS:
+      return {
+        ...state, 
+        users: action.payload,
+      };
 
     case ActionTypeData.GET_COMMENTAS:
       return Object.assign({}, state, {

@@ -4,12 +4,15 @@ import {useDispatch} from 'react-redux'
 import {OperationUser} from '../../../../redux/user/userReducer.js';
 
 export const SignUp = () => {
+  const [name, setName] = useState(``);
   const [email, setEmail] = useState(``);
   const [password, setPassword] = useState(``);
   const [confirmPassword, setConfirmPassword] = useState(``);
   const dispatch = useDispatch();
 
-  const validPassword = password === confirmPassword ? true : false;
+  const validPassword = password !== `` ? (password === confirmPassword ? true : false) : false;
+  const validEmail = email !== `` ? true : false;
+  const validName = name !== `` ? true : false;
 
   return (
     <main className="main-login">
@@ -21,23 +24,30 @@ export const SignUp = () => {
           onSubmit={(evt) => {
             evt.preventDefault();
 
-            if(!validPassword) {
+            if(!validPassword || !validName || !validEmail) {
               return;
             }
 
-            dispatch(OperationUser.userRegistration(email, password));
+            dispatch(OperationUser.userRegistration(name, email, password));
           }}
         >
 
           <div className="wrap-sign-form">
             <ul className="sign-in-data">
 
-              <li className="sign-in-data__item">
+              <li className={`sign-in-data__item ${validName ? '' : 'error-valid-item'}`}>
                 <label className="sign-in-data__text" htmlFor="login-name">Name</label>
-                <input className="sign-in-data__input" type="text" id="login-name" placeholder="Jhon Anderson"/>
+                <input 
+                  className="sign-in-data__input" 
+                  type="text" 
+                  id="login-name" 
+                  placeholder="Jhon Anderson"
+                  value={name}
+                  onChange={(evt) => setName(evt.target.value)}
+                />
               </li>
 
-              <li className="sign-in-data__item">
+              <li className={`sign-in-data__item ${validEmail ? '' : 'error-valid-item'}`}>
                 <label className="sign-in-data__text" htmlFor="email">Email</label>
                 <input 
                   className="sign-in-data__input" 

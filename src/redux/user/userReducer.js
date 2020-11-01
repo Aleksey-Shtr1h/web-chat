@@ -10,12 +10,23 @@ export const initialState = {
 
 export const OperationUser = {
 
-  userRegistration: (email, password) => (dispatch, getState) => {
+  userRegistration: (name, email, password) => (dispatch, getState) => {
     dispatch(ActionCreatorUser.getStateOnlineUser(null));
     firebase.auth().createUserWithEmailAndPassword(email, password)
     .then(() => {
       checkOnlineFirebase();
       dispatch(ActionCreatorUser.getStateOnlineUser(true));
+      return firebase.auth().currentUser.uid;
+    })
+    .then((userId) => {
+      const db = firebase.database().ref('/users/' + userId + '/info');
+
+      db.set({
+        name,
+      });
+
+      console.log(userId);
+
     })
     .catch((error) => {
       dispatch(ActionCreatorUser.getStateOnlineUser(false));
