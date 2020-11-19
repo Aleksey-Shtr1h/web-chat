@@ -8,7 +8,7 @@ import {AppRoute} from '../../../constant.js';
 export const HeaderLogo = () => {
   return (
     <section className="logo">
-      <Link className="logo-link" to={AppRoute.HOME}>
+      <Link className="logo-link" to={AppRoute.MAIN}>
         <p className="logo-link__text">
           <img className="logo-link__icon" src={logo} width="50" height="50" alt="logo" />
         </p>

@@ -70,6 +70,7 @@
   position: relative;
   display: flex;
   flex-direction: row;
+  justify-content: space-between;
 }
 
 .friends__link {
@@ -94,6 +95,20 @@
   &--offline::after {
     background-color: grey;
   }
+
+  &:hover {
+    color: red;
+  }
+
+  &--active {
+    color: red;
+  }
+}
+
+.friends__visible-block {
+  width: 2px;
+  height: inherit;
+  background-color: #fff;
 }
 
 // .user-desktop {

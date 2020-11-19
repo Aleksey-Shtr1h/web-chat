@@ -27,7 +27,7 @@ export const sliderOptions = [
 ];
 
 export const PageType = {
-  HOME: `home-type`,
+  MAIN: `home-type`,
   LOGIN: `login-type`,
 }
 
@@ -53,6 +53,18 @@ export const SignMenu = {
 };
 
 export const AppRoute = {
-  HOME: `/`,
+  MAIN: `/main/:id`,
+
+  MAIN_ID: {
+    EMPTY: '/main/',
+    WELLCOME: '/main/wellcome',
+    USER_DESKTOP: '/main/user-desktop/:id',
+
+    USER_DESKTOP_ID: {
+      START_TABLE: '/main/user-desktop/start-table',
+      FRIENDS: '/main/user-desktop/friends/:id',
+    }
+  },
+
   LOGIN: `/login/:id`,
 };

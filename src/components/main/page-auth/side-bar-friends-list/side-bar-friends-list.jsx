@@ -5,17 +5,22 @@ import {SideBarFriendsItem} from '../side-bar-friends-item/side-bar-friends-item
 
 import {OperationData} from '../../../../redux/data/dataReducer.js';
 
-const useComments = () => {
+export const SideBarFriendsList = () => {
+  const users = useSelector((state) => state.DATA.users);
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(OperationData.loadUsers());
   }, []);
-};
 
-export const SideBarFriendsList = () => {
-  useComments();
 
-  const users = useSelector((state) => state.DATA.users);
+  if(!users) {
+    return (
+      <div className="friends-header">
+        <p className="friends-header__text">friends</p>
+        <span className="friends-header__count" style={{color: "#ffffff"}}>Loading...</span>
+      </div>
+    )
+  };
 
   return (
     <React.Fragment>
@@ -28,6 +33,7 @@ export const SideBarFriendsList = () => {
       
       <ul className="friends__list">
 
+
         {users.map((user, index) => {
           return (
             <SideBarFriendsItem
@@ -37,7 +43,7 @@ export const SideBarFriendsList = () => {
             />
           )
         })}
-
+        
       </ul>
 
     </React.Fragment>

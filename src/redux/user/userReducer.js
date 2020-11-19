@@ -19,14 +19,16 @@ export const OperationUser = {
       return firebase.auth().currentUser.uid;
     })
     .then((userId) => {
-      const db = firebase.database().ref('/users/' + userId + '/info');
+      const db = firebase.database().ref('/users/' + userId);
 
       db.set({
-        name,
+        info: {
+          name,
+        },
+        status: {
+          state: 'offline',
+        }
       });
-
-      console.log(userId);
-
     })
     .catch((error) => {
       dispatch(ActionCreatorUser.getStateOnlineUser(false));

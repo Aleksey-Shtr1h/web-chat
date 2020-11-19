@@ -11,7 +11,7 @@ export const initialState = {
   comments: [],
   comment: ``,
 
-  users: [],
+  users: null,
 };
 
 export const OperationData = {
@@ -22,6 +22,13 @@ export const OperationData = {
       const users = [];
       await snapshot.forEach((user) => {
         users.push(user.val());
+      });
+      
+      users.sort((a, b) => {
+        const u1 = a.status.state === 'online' ? 1 : 0;
+        const u2 = b.status.state === 'online' ? 1 : 0;
+
+        return u2 - u1;
       });
 
       dispatch(ActionCreatorData.getUsers(users));
