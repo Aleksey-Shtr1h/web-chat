@@ -1,8 +1,12 @@
-import {ActionTypeApp} from './appAction.js';
+import { ActionTypeApp } from './appAction.js';
 
 export const initialState = {
+  isPreloadUsers: true,
+  isPreloadChannels: true,
   isBurgerBtn: false,
+  isModalChannelAdd: false,
   friendsActiveName: '',
+  idChannel: null,
 };
 
 export const OperationApp = {
@@ -13,10 +17,22 @@ export const appReducer = (state = initialState, action) => {
   switch (action.type) {
 
     case ActionTypeApp.IS_BURGER_BTN:
-      return { ...state, isBurgerBtn: action.payload}
+      return { ...state, isBurgerBtn: action.payload }
 
     case ActionTypeApp.FRIENDS_ACTIVE_NAME:
-      return { ...state, friendsActiveName: action.payload}
+      return { ...state, friendsActiveName: action.payload }
+
+    case ActionTypeApp.PRELOAD_USERS:
+      return { ...state, isPreloadUsers: action.payload }
+
+    case ActionTypeApp.PRELOAD_CHANNEL:
+      return { ...state, isPreloadChannels: action.payload }
+
+    case ActionTypeApp.CHANNEL_ID_MOUSE_ENTER:
+      return { ...state, idChannel: action.payload }
+
+    case ActionTypeApp.IS_MODAL_ADD_CHANNEL:
+      return { ...state, isModalChannelAdd: action.payload }
 
     default:
       break;

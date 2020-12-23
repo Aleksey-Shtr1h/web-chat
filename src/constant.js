@@ -13,7 +13,7 @@ export const sliderOptions = [
     text: `Lorem ipsum dolor sit amet consectetur adipisicing elit. Debitis doloremque obcaecati cumque eius sed sequi architecto iste recusandae, facilis est`,
     color: `#194c63a6`,
     colorText: `#fff`,
-    icon: `fa-comment-alt`, 
+    icon: `fa-comment-alt`,
   },
 
   {
@@ -23,7 +23,7 @@ export const sliderOptions = [
     colorText: `#fff`,
     icon: `fa-users`,
   },
-   
+
 ];
 
 export const PageType = {
@@ -47,22 +47,38 @@ export const SignMenu = {
   auth: [
     {
       name: `Sign Out`,
-      link: `/login/sign-in`,
+      link: `/main/wellcome`,
     },
   ],
 };
 
+export const TypeSideBarNameBlock = {
+  FRIENDS: {
+    nameText: `friends`,
+    blockClass: `friends-header`,
+    textClass: `friends-header__text`,
+    spanClass: `friends-header__count`,
+  },
+
+  CHANNELS: {
+    nameText: `channels`,
+    blockClass: `channels-header`,
+    textClass: `channels-header__text`,
+    spanClass: `channels-header__count`,
+  }
+};
+
 export const AppRoute = {
-  MAIN: `/main/:id`,
+  MAIN: `/main/:id?`,
 
   MAIN_ID: {
-    EMPTY: '/main/',
     WELLCOME: '/main/wellcome',
-    USER_DESKTOP: '/main/user-desktop/:id',
+    USER_DESKTOP: '/main/user-desktop/:id?',
 
     USER_DESKTOP_ID: {
       START_TABLE: '/main/user-desktop/start-table',
       FRIENDS: '/main/user-desktop/friends/:id',
+      ROOM: '/main/user-desktop/room/:id',
     }
   },
 

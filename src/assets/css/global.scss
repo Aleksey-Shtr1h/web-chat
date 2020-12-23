@@ -62,3 +62,17 @@ body {
   width: 1px;
   overflow: hidden;
 }
+
+.center-margin-auto {
+  margin: 0 auto;
+} 
+
+.container-flex-row {
+  display: flex;
+  flex-direction: row;
+}
+
+.container-flex-column {
+  display: flex;
+  flex-direction: column;
+}

@@ -5,39 +5,9 @@
   z-index: 1;
 }
 
-.form-sign-in {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-
+.form-sign {
   width: adaptiveSizePx(400, 600, $_phoneWidth, $_maxDesktopWidth);
   margin: 5% auto 0;
-
-  background-color: #383B3F;
-  border-radius: 10px;
-}
-
-.wrap-sign-form {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-
-  margin: 0 auto;
-
-  width: 80%;
-}
-
-.sign-in-data {
-  padding-top: 10%;
-}
-
-.sign-in-data__item {
-  position: relative;
-
-  display: flex;
-  flex-direction: column;
-
-  padding-bottom: 6%;
 }
 
 .error-valid-item::after {
@@ -55,45 +25,17 @@
   cursor: pointer;
 }
 
-.sign-in-data__text {
-  position: relative;
-
-  align-self: flex-start;
-
-  padding-left: 3%;
-  padding-bottom: 3%;
-
+.form-login-list__text {
   font-size: adaptiveSizePx(12, 20, $_smPhoneWidth, $_maxDesktopWidth);
-  font-weight: 500;
   line-height: 25px;
-
-  color: #fff;
 }
 
-.sign-in-data__input {
-  padding-top: 2%;
-  padding-bottom: 2%;
-  padding-left: 2%;
-
-  border: 3px solid #fff;
-
-  border-radius: 5px;
-
-  background-color: #F4F5F4;
-
-  outline: none;
-
+.form-login-list__input {
   font-size: 20px;
-
-  &:focus  {
-    border: 3px solid #ff000070;
-  }
 
   &::placeholder {
     font-size: adaptiveSizePx(12, 18, $_smPhoneWidth, $_maxDesktopWidth);
-    font-weight: 400;
   }
-
 }
 
 .sign-in-data__remember {
@@ -107,30 +49,9 @@
   color: #fff;
 }
 
-.sign-in-btn-submit {
+.form-login-btn-submit {
   font-size: 25px;
-  font-weight: 600;
   line-height: 25px;
-
-  padding-top: 3%;
-  padding-bottom: 3%;
-
-  margin-bottom: 5%;
-
-  background-color: #03a9f4;
-
-  color: #000000ab;
-
-  border: none;
-  border-radius: 5px;
-  outline: none;
-
-  &:hover {
-    background-color: #00bcd4;
-    color: #fffffff0;
-
-    cursor: pointer;
-  }
 }
 
 .error-valid-password {
@@ -139,14 +60,13 @@
 }
 
 @media screen and (max-width: $phoneWidth) {
-
   .form-sign-in {
     width: 100%;
-  } 
+  }
 
-  .sign-in-data__input {
+  .form-login-list__input {
     padding-top: 0.8%;
     padding-bottom: 0.8%;
     padding-left: 1%;
-  } 
+  }
 }

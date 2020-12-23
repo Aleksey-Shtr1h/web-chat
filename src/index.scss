@@ -1,12 +1,15 @@
-@import '~slick-carousel/slick/slick.scss'; 
-@import '~slick-carousel/slick/slick-theme.scss';
+@import "~slick-carousel/slick/slick.scss";
+@import "~slick-carousel/slick/slick-theme.scss";
 
-@import './assets/css/fonts.scss';
-@import './assets/css/mixins.scss';
-@import './assets/css/variables.scss';
-@import './assets/css/global.scss';
-@import './assets/css/blocks/header/header.scss';
-@import './assets/css/blocks/sign-in/sign-in.scss';
-@import './assets/css/blocks/background-img/slider-img.css';
-@import './assets/css/blocks/main/no-auth-page/main-no-auth-page.scss';
-@import './assets/css/blocks/main/auth-page/main-desktop.scss';
+@import "./assets/css/fonts.scss";
+@import "./assets/css/mixins.scss";
+@import "./assets/css/variables.scss";
+@import "./assets/css/global.scss";
+@import "./assets/css/blocks/form/form-main.scss";
+@import "./assets/css/blocks/header/header.scss";
+@import "./assets/css/blocks/sign-in/sign-in.scss";
+@import "./assets/css/blocks/background-img/slider-img.css";
+@import "./assets/css/blocks/main/no-auth-page/main-no-auth-page.scss";
+@import "./assets/css/blocks/main/auth-page/main-desktop.scss";
+@import "./assets/css/blocks/main/auth-page/side-bar/side-bar.scss";
+@import "./assets/css/blocks/main/auth-page/add-channel/add-channel.scss";

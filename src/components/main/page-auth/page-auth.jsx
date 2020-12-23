@@ -1,77 +1,60 @@
-import React from 'react';
-import {Switch, Route, Redirect} from 'react-router-dom';
+import React from "react";
+import { Switch, Route, Redirect } from "react-router-dom";
 
-import {SideBarFriendsList} from './side-bar-friends-list/side-bar-friends-list.jsx';
+import { SideBar } from "./side-bar/side-bar.jsx";
+import { SideBarBlock } from "./side-bar-block/side-bar-block.jsx";
+import { SideBarFriendsBlock } from "./side-bar-block/side-bar-friends-block/side-bar-friends-block.jsx";
+import { SideBarChannelBlock } from "./side-bar-block/side-bar-channel-block/side-bar-channel-block.jsx";
+import { NewChannelForm } from "./new-channel-form/new-channel-form.jsx";
 
-import {AppRoute} from '../../../constant.js';
+import { AppRoute } from "../../../constant.js";
 
 export const PageAuth = () => {
-
   return (
+    <main className="main-content">
+      <div className="container-content">
+        <Switch>
+          <>
+            <Redirect exact to={AppRoute.MAIN_ID.USER_DESKTOP_ID.START_TABLE} />
+            <Route exact path={[AppRoute.MAIN_ID.USER_DESKTOP_ID.START_TABLE]}>
+              <SideBar>
+                <SideBarBlock>
+                  <SideBarChannelBlock />
+                </SideBarBlock>
+              </SideBar>
 
-    <Switch>
-      <React.Fragment>
-        <Redirect exact to={AppRoute.MAIN_ID.USER_DESKTOP_ID.START_TABLE} />
-        <Route 
-          exact 
-          path={[
-            AppRoute.MAIN_ID.USER_DESKTOP_ID.START_TABLE, 
-            AppRoute.MAIN_ID.USER_DESKTOP_ID.FRIENDS
-          ]}
-        >
+              <section className="user-desktop">BLOCK DESKTOP</section>
 
-          <main className="main-content">
-            <div className="container-content">
+              <section className="user-info">BLOCK USER INFO</section>
+            </Route>
 
-              <section className="side-bar">
-                <div className="side-bar-block">
+            <Route
+              exact
+              path={[
+                AppRoute.MAIN_ID.USER_DESKTOP_ID.ROOM,
+                AppRoute.MAIN_ID.USER_DESKTOP_ID.FRIENDS,
+              ]}
+            >
+              <SideBar>
+                <SideBarBlock>
+                  <SideBarChannelBlock />
+                </SideBarBlock>
 
-                  <div className="channels-header">
-                    <p className="channels-header__text">channels</p>
-                    <span className="channels-header__count">5</span>
-                  </div>
+                <SideBarBlock>
+                  <SideBarFriendsBlock />
+                </SideBarBlock>
+              </SideBar>
 
-                  <ul className="channels__list">
-                    <li className="channels__item">
-                      <a className="channels__link">
-                      </a>
-                    </li>
-                    <li className="channels__item">
-                      <a className="channels__link">
-                        #channels1
-                      </a>
-                    </li>
-                    <li className="channels__item">
-                      <a className="channels__link">
-                        #channels2
-                      </a>
-                    </li>
-                  </ul>
+              <section className="user-desktop">BLOCK DESKTOP</section>
 
-                </div>
+              <section className="user-info">BLOCK USER INFO</section>
+            </Route>
+          </>
+        </Switch>
 
-                <div className="side-bar-block">
+        <NewChannelForm />
 
-                  <SideBarFriendsList/>
-
-                </div>
-
-              </section>
-
-              <section className="user-desktop">
-              </section>
-
-              <section className="user-info">
-              </section>
-
-            </div>
-          </main>
-
-        </Route>
-
-      </React.Fragment>
-
-    </Switch>
-
-  )
+      </div>
+    </main>
+  );
 };
