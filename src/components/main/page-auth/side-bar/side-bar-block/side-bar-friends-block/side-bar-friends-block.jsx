@@ -4,19 +4,25 @@ import { useDispatch, useSelector } from "react-redux";
 import { SideBarFriendsItem } from "../side-bar-friends-item/side-bar-friends-item.jsx";
 import { SideBarNameBlock } from "../side-bar-name-block/side-bar-name-block.jsx";
 
-import { OperationData } from "../../../../../redux/data/dataReducer.js";
-import { getSortUsers } from "../../../../../redux/data/dataSelector.js";
-import { getTogglePreloadUsers } from "../../../../../redux/app/appSelector.js";
-import { TypeSideBarNameBlock } from "../../../../../constant.js";
+import { OperationData } from "../../../../../../redux/data/dataReducer.js";
+import {
+  getSelectRoom,
+  getSortUsers,
+} from "../../../../../../redux/data/dataSelector.js";
+import { getTogglePreloadUsers } from "../../../../../../redux/app/appSelector.js";
+import { TypeSideBarNameBlock } from "../../../../../../constant.js";
 
 export const SideBarFriendsBlock = () => {
+  const selectRoom = useSelector((state) => getSelectRoom(state));
   const usersRoom = useSelector((state) => getSortUsers(state));
   const isPreloadUsers = useSelector((state) => getTogglePreloadUsers(state));
   const dispatch = useDispatch();
 
   const initGetUsers = useCallback(() => {
-    dispatch(OperationData.loadUsers());
-  }, [dispatch]);
+    if (selectRoom) {
+      dispatch(OperationData.loadUsers(selectRoom, true));
+    }
+  }, [dispatch, selectRoom]);
 
   useEffect(() => {
     initGetUsers();

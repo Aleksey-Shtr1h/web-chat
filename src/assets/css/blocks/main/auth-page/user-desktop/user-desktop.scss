@@ -1,0 +1,11 @@
+.user-desktop {
+  position: relative;
+
+  display: flex;
+  flex-direction: column;
+  
+  flex: 0 1 100%;
+}
+
+@import "./header-user-desktop/header-user-desktop.scss";
+@import "./chat-user-desktop/chat-user-desktop.scss";

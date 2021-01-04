@@ -4,64 +4,72 @@ import { nanoid } from 'nanoid';
 import { ActionCreatorData, ActionTypeData } from './dataAction.js';
 import { ActionCreatorApp } from '../app/appAction.js';
 
+import { addRoomFirebaseUsers, deleteUserRoom } from '../../utils/firebase/firebase-utils.js';
+
 export const initialState = {
-  usersRoom: [],
+  usersRoom: null,
+  selectRoom: null,
+  messagesList: null,
 };
 
 export const OperationData = {
 
-  loadUsers: (usersId = []) => (dispatch) => {
+  loadUsers: ({ usersRoom = [], idRoom = `` }, isLoadUser) => (dispatch) => {
+    dispatch(ActionCreatorApp.toglleUsersPreload(true));
     const dataBase = firebase.database().ref(`users`);
 
     dataBase.on(`value`, async (snapshot) => {
+      const users = [];
       const usersBase = Object.values(snapshot.val());
 
-      const users = usersId.map((userId) => {
-        return usersBase.find((userBase) => {
-          return userId === userBase.id
-        })
+      usersRoom.forEach((userId) => {
+        const resultFinsUser = usersBase.find((userBase) => {
+          return userId === userBase.userId
+        });
+
+        if (resultFinsUser) {
+          users.push(resultFinsUser);
+        } else {
+          deleteUserRoom(firebase, idRoom, userId);
+        };
       })
 
+      if (isLoadUser) {
+        await dispatch(OperationData.loadComment(idRoom, true));
+      }
       await dispatch(ActionCreatorData.getUsers(users));
-      dispatch(ActionCreatorApp.toglleUsersPreload(false));
+      await dispatch(ActionCreatorApp.toglleUsersPreload(false));
     });
   },
 
-  loadChannel: () => (dispatch) => {
-  },
+  loadChannel: (idRoom) => (dispatch) => {
+    dispatch(ActionCreatorData.getDataSelectRoom(null));
+    dispatch(ActionCreatorData.getUsers(null));
+    dispatch(ActionCreatorApp.toglleUsersPreload(true));
+    dispatch(ActionCreatorApp.toglleMessangesPreload(true));
 
-  test: (usersRoom, idRoom, nameRoom) => (dispatch) => {
-    const dataBase = firebase.database().ref(`users`);
-    let usersAuthId = [];
+    const dataBase = firebase.firestore();
+    dataBase
+      .collection(`rooms`)
+      .where("idRoom", "==", idRoom)
+      .onSnapshot(async (snapshot) => {
+        const dataRoom = snapshot.docs.map((userCommet) => ({
+          ...userCommet.data(),
+        }));
 
-    dataBase.on(`value`, async (snapshot) => {
-      const usersBase = Object.entries(snapshot.val());
-
-      usersAuthId = usersRoom.map((userId) => {
-        return usersBase.find((userBase) => {
-          return userId === userBase[1].id
-        })[0];
+        await dispatch(ActionCreatorData.getDataSelectRoom(dataRoom[0]));
       })
-    });
-
-    if (usersAuthId.length > 0) {
-      usersAuthId.forEach((userAuthId) => {
-        const dataBaseInfo = firebase.database().ref(`users/${userAuthId}/channelsUser`).push();
-
-        dataBaseInfo.set({ idRoom, nameRoom });
-      })
-    }
 
   },
-
 
   createChannel: (nameRoom, adminRoom, usersRoom) => async (dispatch) => {
-    const dataBase = firebase.firestore()
-    const refComments = dataBase.collection(`rooms`);
     const idRoom = nanoid();
 
-    refComments.add({
-      id: idRoom,
+    const fireStore = firebase.firestore()
+    const refRooms = fireStore.collection(`rooms`).doc(idRoom);
+
+    refRooms.set({
+      idRoom,
       info: {
         nameRoom,
         adminRoom,
@@ -70,12 +78,46 @@ export const OperationData = {
     });
 
     await dispatch(ActionCreatorApp.toglleModalAddChannel(false));
-    dispatch(OperationData.test(usersRoom, idRoom, nameRoom));
+    addRoomFirebaseUsers(firebase, usersRoom, idRoom, nameRoom);
   },
 
-  deleteChannel: () => (dispatch) => {
+  ///////////////////////////////////////////
+  deleteChannel: () => (dispatch) => { },
+  ///////////////////////////////////////////
+
+  loadComment: (idRoom, toglleMessangesPreload) => (dispatch) => {
+    const fireStore = firebase.firestore()
+    const refRoom = fireStore.collection(`rooms`).doc(idRoom).collection(`messages`).orderBy('timestamp');
+
+    refRoom
+      .onSnapshot(async (snapshot) => {
+        const messages = snapshot.docs.map((message) => ({
+          ...message.data(),
+        }));
+        await dispatch(ActionCreatorData.getMessagesList(messages));
+
+        if (toglleMessangesPreload) {
+          await dispatch(ActionCreatorApp.toglleMessangesPreload(false));
+        }
+      });
   },
 
+  createComment: (idRoom, message, nameUser, userId) => (dispatch) => {
+    const idMessage = nanoid();
+
+    const fireStore = firebase.firestore()
+    const refRoom = fireStore.collection(`rooms`).doc(idRoom).collection(`messages`).doc(idMessage);
+
+    refRoom.set({
+      idMessage,
+      message,
+      nameUser,
+      userId,
+      timestamp: firebase.firestore.FieldValue.serverTimestamp(),
+    });
+  },
+
+  deleteComment: () => (dispatch) => { },
 };
 
 export const dataReducer = (state = initialState, action) => {
@@ -85,6 +127,18 @@ export const dataReducer = (state = initialState, action) => {
       return {
         ...state,
         usersRoom: action.payload,
+      };
+
+    case ActionTypeData.GET_DATA_SELECT_ROOM:
+      return {
+        ...state,
+        selectRoom: action.payload,
+      };
+
+    case ActionTypeData.GET_MESSAGES_LIST:
+      return {
+        ...state,
+        messagesList: action.payload,
       };
 
     default:

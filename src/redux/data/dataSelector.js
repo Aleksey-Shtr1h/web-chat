@@ -4,7 +4,7 @@ export const getSortUsers = (state) => {
 
   const users = state.DATA.usersRoom;
 
-  if (users.length === 0) {
+  if (!users) {
     return users;
   };
 
@@ -27,3 +27,12 @@ export const getSortUsers = (state) => {
   return [...usersOnline, ...usersOffline];
 
 };
+
+export const getSelectRoom = (state) => {
+  return state.DATA.selectRoom;
+};
+
+export const getMessangesList = (state) => {
+  return state.DATA.messagesList;
+};
+

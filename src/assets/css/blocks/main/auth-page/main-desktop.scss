@@ -2,8 +2,7 @@
   display: flex;
   flex-direction: row;
 
-  width: 100%;
-  height: 88%;
+  flex: 0 1 100%;
 
   background-color: #fff;
 }
@@ -11,16 +10,8 @@
 .container-content {
   display: flex;
   flex-direction: row;
-  justify-content: space-between;
+  justify-content: flex-start;
+
   width: 100%;
 }
 
-.user-desktop {
-  width: 33%;
-  border: 1px solid #000;
-}
-
-.user-info {
-  width: 33%;
-  border: 1px solid red;
-}

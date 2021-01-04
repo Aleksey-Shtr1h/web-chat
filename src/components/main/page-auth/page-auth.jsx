@@ -1,13 +1,19 @@
 import React from "react";
 import { Switch, Route, Redirect } from "react-router-dom";
 
-import { SideBar } from "./side-bar/side-bar.jsx";
-import { SideBarBlock } from "./side-bar-block/side-bar-block.jsx";
-import { SideBarFriendsBlock } from "./side-bar-block/side-bar-friends-block/side-bar-friends-block.jsx";
-import { SideBarChannelBlock } from "./side-bar-block/side-bar-channel-block/side-bar-channel-block.jsx";
-import { NewChannelForm } from "./new-channel-form/new-channel-form.jsx";
+import { SideBar } from "./side-bar/side-bar";
+import { SideBarBlock } from "./side-bar/side-bar-block/side-bar-block";
+import { SideBarSearchBlock } from "./side-bar/side-bar-block/side-bar-search-block/side-bar-search-block";
+import { SideBarChannelBlock } from "./side-bar/side-bar-block/side-bar-channel-block/side-bar-channel-block";
+import { SideBarFriendsBlock } from "./side-bar/side-bar-block/side-bar-friends-block/side-bar-friends-block";
+import { NewChannelForm } from "./new-channel-form/new-channel-form";
+import { UserDesktop } from "./user-desktop/user-desktop";
+import { HeaderDesktop } from "./user-desktop/header-desktop/header-desktop";
+import { ChatDesktop } from "./user-desktop/chat-desktop/chat-desktop";
 
 import { AppRoute } from "../../../constant.js";
+
+// import { BeatLoader, FadeLoader, PulseLoader } from "react-spinners";
 
 export const PageAuth = () => {
   return (
@@ -19,13 +25,25 @@ export const PageAuth = () => {
             <Route exact path={[AppRoute.MAIN_ID.USER_DESKTOP_ID.START_TABLE]}>
               <SideBar>
                 <SideBarBlock>
+                  <SideBarSearchBlock />
+                </SideBarBlock>
+
+                <SideBarBlock>
                   <SideBarChannelBlock />
                 </SideBarBlock>
               </SideBar>
 
-              <section className="user-desktop">BLOCK DESKTOP</section>
+              {/* <UserDesktop>
+                <HeaderDesktop />
+              </UserDesktop> */}
 
-              <section className="user-info">BLOCK USER INFO</section>
+              {/* <section className="user-desktop">
+                <BeatLoader loading />
+                <FadeLoader loading />
+                <PulseLoader loading /> 
+              </section>*/}
+
+              <section className="user-info"></section>
             </Route>
 
             <Route
@@ -37,6 +55,10 @@ export const PageAuth = () => {
             >
               <SideBar>
                 <SideBarBlock>
+                  <SideBarSearchBlock />
+                </SideBarBlock>
+
+                <SideBarBlock>
                   <SideBarChannelBlock />
                 </SideBarBlock>
 
@@ -45,15 +67,17 @@ export const PageAuth = () => {
                 </SideBarBlock>
               </SideBar>
 
-              <section className="user-desktop">BLOCK DESKTOP</section>
+              <UserDesktop>
+                <HeaderDesktop />
+                <ChatDesktop />
+              </UserDesktop>
 
-              <section className="user-info">BLOCK USER INFO</section>
+              {/* <section className="user-info"></section> */}
             </Route>
           </>
         </Switch>
 
         <NewChannelForm />
-
       </div>
     </main>
   );

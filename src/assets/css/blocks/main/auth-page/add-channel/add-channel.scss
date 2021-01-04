@@ -1,4 +1,12 @@
 .add-channel {
+  display: block;
+  position: absolute;
+
+  width: 100%;
+  height: 88%;
+
+  background: #00000021;
+
   z-index: 100;
 }
 
@@ -19,15 +27,7 @@
 }
   
 .modal-show {
-  display: block;
-  position: absolute;
-
-  width: 100%;
-  height: 88%;
-
-  background: #00000021;
-
-  animation: bounce 0.7s;
+  animation: bounce-keyframes 0.2s;
 }
 
 .modal-hide {
@@ -39,22 +39,12 @@
 }
 
 .form-channel-btn {
-  margin-right: 2%;
-  margin-left: 2%;
+  margin: 0 2% 5% 2%;
+
   padding: 2% 5%;
 
   font-size: 18px;
   line-height: 18px;
-}
-
-@keyframes bounce {
-  0% {
-    opacity: 0;
-  }
-
-  100% {
-    opacity: 1;
-  }
 }
 
 

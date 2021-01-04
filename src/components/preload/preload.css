@@ -1,9 +1,0 @@
-.loading-network {
-  display: flex;
-  justify-content: center;
-  align-content: center;
-}
-
-.loading-network__title {
-  color: black;
-}

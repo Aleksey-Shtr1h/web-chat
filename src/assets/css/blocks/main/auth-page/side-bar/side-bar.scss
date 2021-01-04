@@ -87,8 +87,13 @@
   }
 }
 
-// .friends__visible-block {
-//   width: 2px;
-//   height: inherit;
-//   background-color: #fff;
-// }
+///////////////////////////
+
+.search-list-conteiner-test {
+  display: none;
+}
+
+.search-room-input:focus + .search-list-conteiner-test,
+.search-list-conteiner-test:hover {
+  display: block;
+}

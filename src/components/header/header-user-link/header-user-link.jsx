@@ -5,9 +5,10 @@ import { useRouteMatch } from "react-router-dom";
 
 import { ActionCreatorApp } from "../../../redux/app/appAction.js";
 import { OperationUser } from "../../../redux/user/userReducer.js";
+import { getUserAuthId } from "../../../redux/user/usersSelector.js";
 
 export const HeaderUserLink = ({ dispatch, isOnline, signMenu }) => {
-  const { userAuthId } = useSelector((state) => state.USER);
+  const userAuthId = useSelector((state) => getUserAuthId(state));
   let match = useRouteMatch();
 
   return (

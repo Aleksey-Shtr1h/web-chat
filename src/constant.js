@@ -1,3 +1,23 @@
+export const MONTH_NAMES = [
+  `January`,
+  `February`,
+  `March`,
+  `April`,
+  `May`,
+  `June`,
+  `July`,
+  `August`,
+  `September`,
+  `October`,
+  `November`,
+  `December`,
+];
+
+export const ScrollToChatList = {
+  MIN: 0,
+  MAX: 999999999,
+}
+
 export const sliderOptions = [
 
   {
@@ -54,7 +74,7 @@ export const SignMenu = {
 
 export const TypeSideBarNameBlock = {
   FRIENDS: {
-    nameText: `friends`,
+    nameText: `users`,
     blockClass: `friends-header`,
     textClass: `friends-header__text`,
     spanClass: `friends-header__count`,
@@ -79,8 +99,26 @@ export const AppRoute = {
       START_TABLE: '/main/user-desktop/start-table',
       FRIENDS: '/main/user-desktop/friends/:id',
       ROOM: '/main/user-desktop/room/:id',
+      ROOM_ID: '/main/user-desktop/room/',
+      FRIEND_ID: '/main/user-desktop/friends/',
     }
   },
 
   LOGIN: `/login/:id`,
 };
+
+export const PreloadSettings = {
+  MAIN: {
+    CLASS_PRELOAD: `preload`,
+    CLASS_TITLE: `preload-start-page-title`,
+    CLASS_TEXT: 'loading',
+    STYLE_POSITION: { position: "absolute" },
+  },
+
+  MESSAGES_ITEM: {
+    CLASS_PRELOAD: `preload`,
+    CLASS_TITLE: `preload-start-page-title`,
+    CLASS_TEXT: '',
+    STYLE_POSITION: { position: "relative" },
+  },
+}

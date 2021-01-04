@@ -1,3 +1,5 @@
+import { firebase } from "../../utils/firebase.js";
+
 import { ActionTypeTest } from "./tetsAction";
 import { userProfile } from "../../mock/userProfile";
 
@@ -6,7 +8,14 @@ export const initialState = {
 };
 
 export const OperationTest = {
+  testAddUserToChannel: (idUser, idRoom = `BlK8Vczh7mmKkB8Hdwln5`) => (dispatch) => {
 
+    firebase.firestore().collection(`rooms`)
+      .doc(idRoom)
+      .update({
+        usersRoom: firebase.firestore.FieldValue.arrayUnion(idUser),
+      });
+  },
 };
 
 export const testReducer = (state = initialState, action) => {

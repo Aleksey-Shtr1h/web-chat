@@ -4,13 +4,22 @@ import { useDispatch, useSelector } from "react-redux";
 import { HeaderUserLink } from "../header-user-link/header-user-link.jsx";
 
 import { ActionCreatorApp } from "../../../redux/app/appAction.js";
+import { getStateUserOnline } from "../../../redux/user/usersSelector.js";
+
 import { SignMenu } from "../../../constant.js";
+import {
+  getStateModalAddChannel,
+  getStateBurgerBtn,
+} from "./../../../redux/app/appSelector";
 
 export const HeaderUserProfile = () => {
   const dispatch = useDispatch();
-  const isModalAddChannel = useSelector((state) => state.APP.isModalChannelAdd);
-  const { isBurgerBtn } = useSelector((state) => state.APP);
-  const { isOnline } = useSelector((state) => state.USER);
+
+  const isModalAddChannel = useSelector((state) =>
+    getStateModalAddChannel(state)
+  );
+  const isBurgerBtn = useSelector((state) => getStateBurgerBtn(state));
+  const isOnline = useSelector((state) => getStateUserOnline(state));
 
   return (
     <section className="user-profile">

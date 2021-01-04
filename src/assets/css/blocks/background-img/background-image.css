@@ -6,3 +6,7 @@
 .slick-next::before {
   background-image: url('../../../image/caret-right.svg');
 }
+
+.info-room__count-users::before {
+  background-image: url("../../../image/user-icon.svg");
+}

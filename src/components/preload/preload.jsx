@@ -1,13 +1,18 @@
 import React from "react";
+import { PulseLoader } from "react-spinners";
 
-import "./preload.css";
+export const Preload = ({ preloadSettings, preload }) => {
+  const {
+    CLASS_PRELOAD,
+    CLASS_TITLE,
+    CLASS_TEXT,
+    STYLE_POSITION,
+  } = preloadSettings;
 
-export const Preload = () => {
   return (
-    <>
-      <div className="loading-network">
-        <h1 className="loading-network__title">Загрузка...</h1>
-      </div>
-    </>
+    <div className={CLASS_PRELOAD} style={STYLE_POSITION}>
+      <h2 className={CLASS_TITLE}>{CLASS_TEXT}</h2>
+      {preload}
+    </div>
   );
 };

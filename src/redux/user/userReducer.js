@@ -30,7 +30,7 @@ export const OperationUser = {
         const db = firebase.database().ref("/users/" + userAuthId);
 
         db.set({
-          id: nanoid(),
+          userId: nanoid(),
 
           info: {
             name,
@@ -41,10 +41,6 @@ export const OperationUser = {
             state: 'online',
             lastChange: new Date(),
           },
-
-          channelsUser: [1, 2, 3],
-
-          friends: [1, 2, 3,],
         });
       })
       .catch((error) => {
@@ -73,12 +69,12 @@ export const OperationUser = {
   },
 
   userAuthCheck: () => (dispatch) => {
-    firebase.auth().onAuthStateChanged(async (user) => {
+    firebase.auth().onAuthStateChanged((user) => {
       checkOnlineFirebase();
       if (user) {
-        await dispatch(ActionCreatorUser.getUserAuthId(user.uid));
-        await dispatch(OperationUser.getUserProfile(user.uid));
-        await dispatch(ActionCreatorUser.getStateOnlineUser(true));
+        dispatch(ActionCreatorUser.getUserAuthId(user.uid));
+        dispatch(OperationUser.getUserProfile(user.uid));
+        dispatch(ActionCreatorUser.getStateOnlineUser(true));
         return;
       }
       dispatch(ActionCreatorUser.getStateOnlineUser(false));
@@ -91,13 +87,13 @@ export const OperationUser = {
       .auth()
       .signOut()
       .then(() => {
-        exitOnlineFirebase(userAuthId);
         dispatch(ActionCreatorUser.getStateOnlineUser(false));
       })
       .catch(function (error) {
         dispatch(ActionCreatorUser.getStateOnlineUser(true));
         console.log(error.message);
       });
+    exitOnlineFirebase(userAuthId);
   },
 
   getUserProfile: (userAuthId) => (dispatch) => {

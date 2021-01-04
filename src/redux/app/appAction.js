@@ -4,6 +4,7 @@ export const ActionTypeApp = {
   FRIENDS_ACTIVE_NAME: `FRIENDS_ACTIVE_NAME`,
   PRELOAD_USERS: `PRELOAD_USERS`,
   PRELOAD_CHANNEL: `PRELOAD_CHANNEL`,
+  PRELOAD_MESSANGES: `PRELOAD_MESSANGES`,
   CHANNEL_ID_MOUSE_ENTER: `CHANNEL_ID_MOUSE_ENTER`,
 };
 
@@ -25,6 +26,11 @@ export const ActionCreatorApp = {
 
   toglleChannelsPreload: (isTogglePreload) => ({
     type: ActionTypeApp.PRELOAD_CHANNEL,
+    payload: isTogglePreload,
+  }),
+
+  toglleMessangesPreload: (isTogglePreload) => ({
+    type: ActionTypeApp.PRELOAD_MESSANGES,
     payload: isTogglePreload,
   }),
 

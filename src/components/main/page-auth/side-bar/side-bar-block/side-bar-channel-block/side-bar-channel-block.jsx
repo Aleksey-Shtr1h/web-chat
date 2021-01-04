@@ -4,9 +4,9 @@ import { useSelector } from "react-redux";
 import { SideBarNameBlock } from "../side-bar-name-block/side-bar-name-block";
 import { SideBarChannelList } from "../side-bar-channel-list/side-bar-channel-list";
 
-import { getTogglePreloadChannels } from "../../../../../redux/app/appSelector";
-import { getUserProfile } from "../../../../../redux/user/usersSelector";
-import { TypeSideBarNameBlock } from "../../../../../constant";
+import { getTogglePreloadChannels } from "../../../../../../redux/app/appSelector";
+import { getUserProfile } from "../../../../../../redux/user/usersSelector";
+import { TypeSideBarNameBlock } from "../../../../../../constant";
 
 export const SideBarChannelBlock = () => {
   const isPreloadChannels = useSelector((state) =>
@@ -26,7 +26,7 @@ export const SideBarChannelBlock = () => {
 
   return (
     <>
-      {`channelsUser` in userProfile ? (
+      {userProfile && `channelsUser` in userProfile ? (
         <>
           <SideBarNameBlock
             typeChannels={TypeSideBarNameBlock.CHANNELS}

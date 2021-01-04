@@ -1,15 +1,18 @@
-import React from "react";
+import React, { useMemo } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { ActionCreatorApp } from "../../../../redux/app/appAction";
 
 import { OperationData } from "../../../../redux/data/dataReducer";
 import { getUserProfile } from "./../../../../redux/user/usersSelector";
+import { getStateModalAddChannel } from "./../../../../redux/app/appSelector";
 
 export const NewChannelForm = () => {
   const dispatch = useDispatch();
 
   const userProfile = useSelector((state) => getUserProfile(state));
-  const isModalAddChannel = useSelector((state) => state.APP.isModalChannelAdd);
+  const isModalAddChannel = useSelector((state) =>
+    getStateModalAddChannel(state)
+  );
 
   const [nameRoom, setNameRoom] = React.useState(``);
   const [toggleButtonSubmit, setToggleButtonSubmit] = React.useState(false);
@@ -32,21 +35,20 @@ export const NewChannelForm = () => {
   }, [escFunction]);
 
   React.useEffect(() => {
-    if (!isModalAddChannel) {
-      setNameRoom(``);
-    }
-
     if (userProfile !== null) {
       setToggleButtonSubmit(true);
     }
-  }, [isModalAddChannel, nameRoom, userProfile, toggleButtonSubmit]);
+  }, [userProfile, toggleButtonSubmit]);
+
+  const testMemo = useMemo(() => {
+    if (!isModalAddChannel) {
+      setNameRoom(``);
+    }
+    return isModalAddChannel ? "modal-show" : "modal-hide";
+  }, [isModalAddChannel]);
 
   return (
-    <section
-      className={`add-channel ${
-        isModalAddChannel ? "modal-show" : "modal-hide"
-      }`}
-    >
+    <section className={`add-channel ${testMemo}`}>
       <div className="add-channel-cantainer">
         <form
           className="form-main"
@@ -58,8 +60,8 @@ export const NewChannelForm = () => {
               dispatch(
                 OperationData.createChannel(
                   nameRoom,
-                  [userProfile.id],
-                  [userProfile.id]
+                  [userProfile.userId],
+                  [userProfile.userId]
                 )
               );
             }
