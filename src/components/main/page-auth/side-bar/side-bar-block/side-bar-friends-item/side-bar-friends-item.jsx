@@ -5,13 +5,15 @@ import { Link } from "react-router-dom";
 import { ActionCreatorApp } from "../../../../../../redux/app/appAction.js";
 import { getFriendsActiveName } from "../../../../../../redux/app/appSelector.js";
 
-import { AppRoute } from "./../../../../../../constant";
+import { AppRoute, USER_UNKNOWN_PHOTO_URL } from "./../../../../../../constant";
 
-export const SideBarFriendsItem = ({ user, index }) => {
+export const SideBarFriendsItem = ({ user }) => {
   const friendsActiveName = useSelector((state) => getFriendsActiveName(state));
   const dispatch = useDispatch();
 
   const { info, status } = user;
+
+  const userPhoto = "photoUrl" in user ? user.photoUrl : USER_UNKNOWN_PHOTO_URL;
 
   return (
     <li className="friends__item">
@@ -21,6 +23,13 @@ export const SideBarFriendsItem = ({ user, index }) => {
         to={AppRoute.MAIN_ID.USER_DESKTOP_ID.FRIEND_ID + `${info.name}`}
         onClick={() => dispatch(ActionCreatorApp.changeFriendsName(info.name))}
       >
+        <img
+          className="friends__user-img"
+          src={userPhoto}
+          alt="user-avatar"
+          width="34"
+          height="34"
+        />
         {info.name}
       </Link>
     </li>

@@ -1,6 +1,4 @@
 .preload {
-  // position: absolute;
-  
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -10,6 +8,17 @@
   height: 100%;
 
   background: #f1f1f1;
+
+  opacity: 1;
+}
+
+.preload-info {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  height: 100%;
 
   opacity: 1;
 }

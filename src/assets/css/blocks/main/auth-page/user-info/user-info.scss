@@ -1,0 +1,163 @@
+.info-preload {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  flex: 0 1 20%;
+  border: 1px solid #000;
+}
+
+.section-user-info {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+
+  flex: 0 1 20%;
+
+  border-left: 2px solid #000;
+
+  background: linear-gradient(#ffffff, #eae6e6);
+}
+
+.host-info-container {
+  position: relative;
+
+  display: flex;
+  flex-direction: column;
+
+  width: 100%;
+  height: 100%;
+}
+
+.host-info__img-block {
+  align-self: center;
+}
+
+.host-info__img {
+  width: 100%;
+  height: 100%;
+}
+
+.host-info__data-block {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+
+  padding: 5%;
+}
+
+.host-info__name-text {
+  font-weight: 700;
+  font-size: 18px;
+  line-height: 18px;
+  text-transform: capitalize;
+
+  padding-bottom: 4%;
+
+  color: #000;
+}
+
+.host-info__status-text {
+  max-width: 100%;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 14px;
+  overflow-wrap: break-word;
+  word-wrap: break-word;
+
+  padding-bottom: 10%;
+
+  color: #5F6164;
+}
+
+.host-info__social-network-list {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+
+  padding-bottom: 10%;
+}
+
+.host-info__social-network-item {
+  margin-right: 4%;
+}
+
+.host-info__social-network-link {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  width: 25px;
+  height: 25px;
+
+  background: #000000;
+
+  border-radius: 50%;
+
+  &:hover {
+    background: red;
+  }
+}
+
+.host-info__social-network-icon {
+  fill: #ffffff;
+}
+
+.host-info__contacts {
+  display: flex;
+  flex-direction: column;
+}
+
+.host-info__contacts-block {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+.host-info__email-text {
+  font-weight: 400;
+  font-size: 18px;
+  line-height: 18px;
+  text-transform: capitalize;
+
+  padding-right: 5%;
+
+  color: #5F6164;
+}
+
+.host-info__email-link {
+  font-weight: 700;
+  font-size: 18px;
+  line-height: 18px;
+
+  align-self: center;
+
+  color: #000000;
+}
+
+.host-info__arrow-block {
+  position: absolute;
+
+  bottom: 1%;
+  left: 5%;
+}
+
+.host-info__edit-block {
+  position: absolute;
+
+  bottom: 1%;
+  right: 5%;
+}
+
+.host-info__edit-btn {
+  text-transform: capitalize;
+  color: #03a9f4;
+  background: #eae6e6;
+
+  border: none;
+}

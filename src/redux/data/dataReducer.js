@@ -4,7 +4,7 @@ import { nanoid } from 'nanoid';
 import { ActionCreatorData, ActionTypeData } from './dataAction.js';
 import { ActionCreatorApp } from '../app/appAction.js';
 
-import { addRoomFirebaseUsers, deleteUserRoom } from '../../utils/firebase/firebase-utils.js';
+import { addRoomFirebaseUsers, deleteUserRoom, checkDoubleDate } from '../../utils/firebase/firebase-utils.js';
 
 export const initialState = {
   usersRoom: null,
@@ -32,6 +32,10 @@ export const OperationData = {
         } else {
           deleteUserRoom(firebase, idRoom, userId);
         };
+
+        if (usersRoom.length > 0) {
+          checkDoubleDate(firebase, idRoom, usersRoom);
+        }
       })
 
       if (isLoadUser) {
@@ -48,13 +52,12 @@ export const OperationData = {
     dispatch(ActionCreatorApp.toglleUsersPreload(true));
     dispatch(ActionCreatorApp.toglleMessangesPreload(true));
 
-    const dataBase = firebase.firestore();
+    const dataBase = firebase.firestore().collection(`rooms`);
     dataBase
-      .collection(`rooms`)
       .where("idRoom", "==", idRoom)
       .onSnapshot(async (snapshot) => {
-        const dataRoom = snapshot.docs.map((userCommet) => ({
-          ...userCommet.data(),
+        const dataRoom = snapshot.docs.map((room) => ({
+          ...room.data(),
         }));
 
         await dispatch(ActionCreatorData.getDataSelectRoom(dataRoom[0]));
@@ -84,6 +87,20 @@ export const OperationData = {
   ///////////////////////////////////////////
   deleteChannel: () => (dispatch) => { },
   ///////////////////////////////////////////
+
+  addUserToChannel: (userId, idRoom, usersRoom, nameRoom) => async (dispatch) => {
+    const usersRoomNew = [userId];
+
+    firebase.firestore().collection(`rooms`)
+      .doc(idRoom)
+      .update({
+        usersRoom: firebase.firestore.FieldValue.arrayUnion(userId),
+      });
+
+    addRoomFirebaseUsers(firebase, usersRoomNew, idRoom, nameRoom);
+
+    await dispatch(OperationData.loadUsers({ usersRoom, idRoom }, false))
+  },
 
   loadComment: (idRoom, toglleMessangesPreload) => (dispatch) => {
     const fireStore = firebase.firestore()
@@ -117,7 +134,24 @@ export const OperationData = {
     });
   },
 
+  ///////////////////////////////////////////
   deleteComment: () => (dispatch) => { },
+  ///////////////////////////////////////////
+
+  changeUserDateInfo: (userAuthId, postEditInfo) => async (dispatch) => {
+    if (typeof (postEditInfo.photoUrl) === 'object') {
+      const storageRef = firebase.storage().ref();
+      const fileRef = storageRef.child(
+        `images/${userAuthId}/logo-${userAuthId}.svg`
+      );
+      await fileRef.put(postEditInfo.photoUrl);
+      let filePhotoUrl = await fileRef.getDownloadURL();
+      postEditInfo.photoUrl = filePhotoUrl;
+    }
+
+    const db = firebase.database().ref(`/users/${userAuthId}`);
+    await db.update(postEditInfo);
+  },
 };
 
 export const dataReducer = (state = initialState, action) => {

@@ -16,11 +16,28 @@ export const searchMonth = (typeDate, searchArray) => {
 };
 
 const getDayFormat = (date) => {
-  const year = date.getFullYear();
-  const month = searchMonth(date.getMonth(), MONTH_NAMES);
-  const dateResult = getDateFormat(date.getDate());
+  const dateNow = new Date().getDate();
+  const monthNow = new Date().getMonth();
+  const yearNow = new Date().getFullYear();
 
-  return `${dateResult} ${month} ${year}`;
+  const dateComment = date.getDate()
+  const monthComment = date.getMonth();
+  const yearComment = date.getFullYear()
+
+  const yearResult = yearComment;
+  const monthResult = searchMonth(monthComment, MONTH_NAMES);
+  const dateResult = getDateFormat(dateComment);
+
+  // console.log(monthNow + yearNow);
+  // console.log(monthNow + yearNow);
+
+  if (monthNow + yearNow === monthComment + yearComment && dateNow === dateComment) {
+    return `today`;
+  } else if (monthNow + yearNow === monthComment + yearComment && dateNow === dateComment + 1) {
+    return `yesterday`;
+  }
+
+  return `${dateResult} ${monthResult} ${yearResult}`;
 };
 
 export const getDays = (messanges) => {

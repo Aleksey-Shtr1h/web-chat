@@ -1,4 +1,4 @@
-import { ActionTypeApp } from './appAction.js';
+import { ActionCreatorApp, ActionTypeApp } from './appAction.js';
 
 export const initialState = {
   isPreloadUsers: true,
@@ -6,12 +6,17 @@ export const initialState = {
   isPreloadMessanges: true,
   isBurgerBtn: false,
   isModalChannelAdd: false,
+  isSubscribedUser: false,
+  isEditUserData: false,
   friendsActiveName: '',
   idChannel: null,
 };
 
 export const OperationApp = {
-
+  checkSubscribedUser: (usersRoom, userId) => (dispatch) => {
+    const isSubscribedUser = usersRoom.includes(userId);
+    dispatch(ActionCreatorApp.changeSubribedUser(isSubscribedUser));
+  }
 };
 
 export const appReducer = (state = initialState, action) => {
@@ -38,6 +43,11 @@ export const appReducer = (state = initialState, action) => {
     case ActionTypeApp.IS_MODAL_ADD_CHANNEL:
       return { ...state, isModalChannelAdd: action.payload }
 
+    case ActionTypeApp.IS_SUBSCRIBED_USER:
+      return { ...state, isSubscribedUser: action.payload }
+
+    case ActionTypeApp.IS_MODAL_EDIT_USER_DATA:
+      return { ...state, isEditUserData: action.payload }
 
     default:
       break;

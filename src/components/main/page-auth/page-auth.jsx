@@ -6,79 +6,85 @@ import { SideBarBlock } from "./side-bar/side-bar-block/side-bar-block";
 import { SideBarSearchBlock } from "./side-bar/side-bar-block/side-bar-search-block/side-bar-search-block";
 import { SideBarChannelBlock } from "./side-bar/side-bar-block/side-bar-channel-block/side-bar-channel-block";
 import { SideBarFriendsBlock } from "./side-bar/side-bar-block/side-bar-friends-block/side-bar-friends-block";
-import { NewChannelForm } from "./new-channel-form/new-channel-form";
+import { ModalNewChannelForm } from "./modal-new-channel-form/new-channel-form";
 import { UserDesktop } from "./user-desktop/user-desktop";
 import { HeaderDesktop } from "./user-desktop/header-desktop/header-desktop";
 import { ChatDesktop } from "./user-desktop/chat-desktop/chat-desktop";
+import { UserSectionInfo } from "./user-section-info/user-section-info";
 
 import { AppRoute } from "../../../constant.js";
 
 // import { BeatLoader, FadeLoader, PulseLoader } from "react-spinners";
+import { ModalEditUserDateForm } from "./modal-edit-user-date-form/modal-edit-user-date-form";
+import { WaitingUserProfile } from "./../../waiting-from-sever/waiting-user-profile/waiting-user-profile";
 
 export const PageAuth = () => {
   return (
-    <main className="main-content">
-      <div className="container-content">
-        <Switch>
-          <>
-            <Redirect exact to={AppRoute.MAIN_ID.USER_DESKTOP_ID.START_TABLE} />
-            <Route exact path={[AppRoute.MAIN_ID.USER_DESKTOP_ID.START_TABLE]}>
-              <SideBar>
-                <SideBarBlock>
-                  <SideBarSearchBlock />
-                </SideBarBlock>
+    <>
+      <main className="main-content">
+        <div className="container-content">
+          <Switch>
+            <>
+              <Redirect
+                exact
+                to={AppRoute.MAIN_ID.USER_DESKTOP_ID.START_TABLE}
+              />
+              <Route
+                exact
+                path={[AppRoute.MAIN_ID.USER_DESKTOP_ID.START_TABLE]}
+              >
+                <SideBar>
+                  <SideBarBlock>
+                    <SideBarSearchBlock />
+                  </SideBarBlock>
 
-                <SideBarBlock>
-                  <SideBarChannelBlock />
-                </SideBarBlock>
-              </SideBar>
+                  <SideBarBlock>
+                    <SideBarChannelBlock />
+                  </SideBarBlock>
+                </SideBar>
 
-              {/* <UserDesktop>
-                <HeaderDesktop />
-              </UserDesktop> */}
+                <section className="user-desktop"></section>
+              </Route>
 
-              {/* <section className="user-desktop">
-                <BeatLoader loading />
-                <FadeLoader loading />
-                <PulseLoader loading /> 
-              </section>*/}
+              <Route
+                exact
+                path={[
+                  AppRoute.MAIN_ID.USER_DESKTOP_ID.ROOM,
+                  AppRoute.MAIN_ID.USER_DESKTOP_ID.FRIENDS,
+                ]}
+              >
+                <SideBar>
+                  <SideBarBlock>
+                    <SideBarSearchBlock />
+                  </SideBarBlock>
 
-              <section className="user-info"></section>
-            </Route>
+                  <SideBarBlock>
+                    <SideBarChannelBlock />
+                  </SideBarBlock>
 
-            <Route
-              exact
-              path={[
-                AppRoute.MAIN_ID.USER_DESKTOP_ID.ROOM,
-                AppRoute.MAIN_ID.USER_DESKTOP_ID.FRIENDS,
-              ]}
-            >
-              <SideBar>
-                <SideBarBlock>
-                  <SideBarSearchBlock />
-                </SideBarBlock>
+                  <SideBarBlock>
+                    <SideBarFriendsBlock />
+                  </SideBarBlock>
+                </SideBar>
 
-                <SideBarBlock>
-                  <SideBarChannelBlock />
-                </SideBarBlock>
+                <UserDesktop>
+                  <HeaderDesktop />
+                  <ChatDesktop />
+                </UserDesktop>
+              </Route>
+            </>
+          </Switch>
 
-                <SideBarBlock>
-                  <SideBarFriendsBlock />
-                </SideBarBlock>
-              </SideBar>
+          <UserSectionInfo />
+        </div>
+      </main>
 
-              <UserDesktop>
-                <HeaderDesktop />
-                <ChatDesktop />
-              </UserDesktop>
-
-              {/* <section className="user-info"></section> */}
-            </Route>
-          </>
-        </Switch>
-
-        <NewChannelForm />
-      </div>
-    </main>
+      <>
+        <ModalNewChannelForm />
+        <WaitingUserProfile>
+          <ModalEditUserDateForm />
+        </WaitingUserProfile>
+      </>
+    </>
   );
 };

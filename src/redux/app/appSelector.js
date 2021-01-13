@@ -21,3 +21,11 @@ export const getStateBurgerBtn = (state) => {
 export const getFriendsActiveName = (state) => {
   return state.APP.friendsActiveName;
 };
+
+export const getSubscribedUser = (state) => {
+  return state.APP.isSubscribedUser;
+};
+
+export const getStateEditUserDate = (state) => {
+  return state.APP.isEditUserData;
+};

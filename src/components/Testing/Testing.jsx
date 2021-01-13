@@ -1,76 +1,33 @@
 import React from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { OperationTest } from "../../redux/test/testReducer";
-import { getUserProfile } from "./../../redux/user/usersSelector";
-
-import { firebase } from "../../utils/firebase.js";
+import { firebase } from "../../utils/firebase";
+import { useSelector } from "react-redux";
 
 export const Testing = () => {
-  const dispatch = useDispatch();
-  const userProfile = useSelector((state) => getUserProfile(state));
+  const [fileUrl, setFileUrl] = React.useState(null);
+  const userAuthId = useSelector((state) => state.USER.userAuthId);
 
-  ///////////////
-
-  const [roomSearch, setRoomSearch] = React.useState([]);
-  const [loading, setLoading] = React.useState(false);
-  const [search, setSearch] = React.useState("");
-  const [filteredRoom, setFilteredRoom] = React.useState([]);
-
-  React.useEffect(() => {
-    setLoading(true);
-    const unsubscribe = firebase
-      .firestore()
-      .collection(`rooms`)
-      .onSnapshot((snapshot) => {
-        const dataRoom = snapshot.docs.map((doc) => ({
-          ...doc.data(),
-        }));
-        setRoomSearch(dataRoom);
-        setLoading(false);
-      });
-    return () => {
-      unsubscribe();
-    };
-  }, []);
-
-  React.useEffect(() => {
-    setFilteredRoom(
-      roomSearch.filter((room) =>
-        room.info.nameRoom.toLowerCase().includes(search.toLowerCase())
-      )
+  const onChange = async (evt) => {
+    const file = evt.target.files[0];
+    const storageRef = firebase.storage().ref();
+    const fileRef = storageRef.child(
+      `images/${userAuthId}/logo-${userAuthId}.svg`
     );
-  }, [search, roomSearch]);
-  console.log("test");
+    await fileRef.put(file);
+    setFileUrl(await fileRef.getDownloadURL());
+  };
 
-  if (loading) {
-    return <p>Loading room...</p>;
-  }
+  React.useEffect(() => {
+    if (fileUrl) {
+      const db = firebase.database().ref("/users/" + userAuthId);
+      db.update({ photoUrl: fileUrl });
+    }
+  }, [fileUrl, userAuthId]);
 
   return (
     <>
-      <button>Отправить данные</button>
-      <button>Получить данные</button>
-      <button
-        onClick={() => {
-          dispatch(OperationTest.testAddUserToChannel(userProfile.userId));
-        }}
-      >
-        Обновить данные
-      </button>
-      <button>Удалить данные</button>
-
-      {/* /////////////// */}
-
-      <input
-        type="text"
-        placeholder="Search Countries"
-        onChange={(e) => setSearch(e.target.value)}
-      />
-      {filteredRoom.map((country, idx) => (
-        <>
-          <p>{country.info.nameRoom}</p>
-        </>
-      ))}
+      <form>
+        <input type="file" onChange={onChange} />
+      </form>
     </>
   );
 };

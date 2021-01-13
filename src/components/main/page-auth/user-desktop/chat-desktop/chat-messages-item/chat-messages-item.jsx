@@ -8,13 +8,16 @@ import { getUserProfile } from "./../../../../../../redux/user/usersSelector";
 
 import { getTimeFormat } from "../../../../../../utils/utils";
 
-import logo from "../../../../../../assets/image/avatar-max.jpg";
-import { PreloadSettings } from "../../../../../../constant";
+import {
+  PreloadSettings,
+  USER_UNKNOWN_PHOTO_URL,
+} from "../../../../../../constant";
 
 export const ChatMessangesItem = ({ comment }) => {
-  const userProfile = useSelector((state) => getUserProfile(state));
-
   const { message, nameUser, timestamp, userId } = comment;
+  const preload = <BarLoader loading />;
+
+  const userProfile = useSelector((state) => getUserProfile(state));
 
   const isHost = userProfile.userId === userId;
 
@@ -24,7 +27,8 @@ export const ChatMessangesItem = ({ comment }) => {
     INFO_CLASS: isHost ? "host-info" : "user-info",
   };
 
-  const preload = <BarLoader loading />;
+  const userPhoto =
+    "photoUrl" in userProfile ? userProfile.photoUrl : USER_UNKNOWN_PHOTO_URL;
 
   return (
     <li className={`chat-messages__item ${StyleItemMessage.ITEM_CLASS}`}>
@@ -39,7 +43,7 @@ export const ChatMessangesItem = ({ comment }) => {
             <a className="chat-messages__user-avatar-link" href="#">
               <img
                 className="chat-messages__user-img"
-                src={logo}
+                src={userPhoto}
                 alt="user-avatar"
                 width="54"
                 height="54"

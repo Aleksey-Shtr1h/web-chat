@@ -1,11 +1,13 @@
 export const ActionTypeApp = {
-  IS_BURGER_BTN: `IS_BURGER_BTN`,
-  IS_MODAL_ADD_CHANNEL: `IS_MODAL_ADD_CHANNEL`,
-  FRIENDS_ACTIVE_NAME: `FRIENDS_ACTIVE_NAME`,
-  PRELOAD_USERS: `PRELOAD_USERS`,
-  PRELOAD_CHANNEL: `PRELOAD_CHANNEL`,
-  PRELOAD_MESSANGES: `PRELOAD_MESSANGES`,
-  CHANNEL_ID_MOUSE_ENTER: `CHANNEL_ID_MOUSE_ENTER`,
+  IS_BURGER_BTN: `APP/IS_BURGER_BTN`,
+  IS_MODAL_ADD_CHANNEL: `APP/IS_MODAL_ADD_CHANNEL`,
+  IS_SUBSCRIBED_USER: `APP/IS_SUBSCRIBED_USER`,
+  FRIENDS_ACTIVE_NAME: `APP/FRIENDS_ACTIVE_NAME`,
+  PRELOAD_USERS: `APP/PRELOAD_USERS`,
+  PRELOAD_CHANNEL: `APP/PRELOAD_CHANNEL`,
+  PRELOAD_MESSANGES: `APP/PRELOAD_MESSANGES`,
+  CHANNEL_ID_MOUSE_ENTER: `APP/CHANNEL_ID_MOUSE_ENTER`,
+  IS_MODAL_EDIT_USER_DATA: `APP/IS_MODAL_EDIT_USER_DATA`,
 };
 
 export const ActionCreatorApp = {
@@ -42,5 +44,15 @@ export const ActionCreatorApp = {
   changeChannelId: (idChannel) => ({
     type: ActionTypeApp.CHANNEL_ID_MOUSE_ENTER,
     payload: idChannel,
-  })
+  }),
+
+  changeSubribedUser: (isSubscribedUser) => ({
+    type: ActionTypeApp.IS_SUBSCRIBED_USER,
+    payload: isSubscribedUser,
+  }),
+
+  toglleModalEditUserForm: (isToggleShow) => ({
+    type: ActionTypeApp.IS_MODAL_EDIT_USER_DATA,
+    payload: isToggleShow,
+  }),
 };

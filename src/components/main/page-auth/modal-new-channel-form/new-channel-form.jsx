@@ -3,10 +3,10 @@ import { useDispatch, useSelector } from "react-redux";
 import { ActionCreatorApp } from "../../../../redux/app/appAction";
 
 import { OperationData } from "../../../../redux/data/dataReducer";
-import { getUserProfile } from "./../../../../redux/user/usersSelector";
-import { getStateModalAddChannel } from "./../../../../redux/app/appSelector";
+import { getUserProfile } from "../../../../redux/user/usersSelector";
+import { getStateModalAddChannel } from "../../../../redux/app/appSelector";
 
-export const NewChannelForm = () => {
+export const ModalNewChannelForm = () => {
   const dispatch = useDispatch();
 
   const userProfile = useSelector((state) => getUserProfile(state));

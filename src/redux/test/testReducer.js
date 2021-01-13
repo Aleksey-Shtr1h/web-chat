@@ -8,7 +8,7 @@ export const initialState = {
 };
 
 export const OperationTest = {
-  testAddUserToChannel: (idUser, idRoom = `BlK8Vczh7mmKkB8Hdwln5`) => (dispatch) => {
+  testAddUserToChannel: (idUser, idRoom) => (dispatch) => {
 
     firebase.firestore().collection(`rooms`)
       .doc(idRoom)
