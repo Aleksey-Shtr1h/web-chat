@@ -3,9 +3,7 @@
   flex-direction: row;
   justify-content: space-between;
 
-  padding: 1% 1%;
-
-  // flex: 0 1 100%;
+  padding: 1vh 1vw;
 
   border-bottom: 1px solid #0000003d;
 }
@@ -18,17 +16,17 @@
 
   flex: 1 0 80%;
 
-  padding: 0 2%;
+  padding: 0 2vw;
 }
 
 .info-room__title {
   flex: 1 0 40%;
 
   font-weight: 700;
-  font-size: 20px;
-  line-height: 24px;
+  font-size: adaptiveSizePx(16, 20, $_smDesktopWidth, $_maxDesktopWidth);
+  line-height: adaptiveSizePx(20, 24, $_smDesktopWidth, $_maxDesktopWidth);
 
-  padding-right: 10%;
+  padding-right: 10vw;
 
   text-transform: capitalize;
 }
@@ -39,10 +37,10 @@
   flex: 1 0 10%;
 
   font-weight: 400;
-  font-size: 14px;
-  line-height: 17px;
+  font-size: adaptiveSizePx(12, 14, $_smDesktopWidth, $_maxDesktopWidth);
+  line-height: adaptiveSizePx(14, 17, $_smDesktopWidth, $_maxDesktopWidth);
 
-  padding-right: 10%;
+  padding-right: 10vw;
 
   color: #A4A4A4;
 }
@@ -51,20 +49,19 @@
   content: "";
   position: absolute;
 
-  top: 0;
-  left: -30px;
+  top: -5%;
+  left: adaptiveSizePx(-25, -30, $_smDesktopWidth, $_maxDesktopWidth);
 
-  width: 20px;
-  height: 20px;
+  width: adaptiveSizePx(16, 20, $_smDesktopWidth, $_maxDesktopWidth);
+  height: adaptiveSizePx(16, 20, $_smDesktopWidth, $_maxDesktopWidth);
 
   background-repeat: no-repeat;
+  background-size: cover;
 }
 
 .menu-room-form-search {
   position: relative;
   flex: 1 0 50%;
-
-  // width: 50%;
 
   &:hover .menu-room-search__icon {
     fill: red;
@@ -72,13 +69,13 @@
 }
 
 .menu-room-search__input {
-  padding: 2%;
+  padding: 0.8vh 0.8vw;
 
   width: 100%;
 
   font-weight: 400;
-  font-size: 14px;
-  line-height: 17px;
+  font-size: adaptiveSizePx(12, 14, $_smDesktopWidth, $_maxDesktopWidth);
+  line-height: adaptiveSizePx(15, 17, $_smDesktopWidth, $_maxDesktopWidth);
   text-transform: capitalize;
 
   color: #8D8D8D;
@@ -91,7 +88,7 @@
 
 .menu-room-search__btn {
   position: absolute;
-  top: 30%;
+  top: 25%;
   right: 5%;
 
   border: none;
@@ -110,14 +107,14 @@
 
   flex: 1 0 20%;
 
-  padding: 0 0 0 8%;
+  padding: 0 0 0 8vw;
 }
 
 .menu-room-list {
   position: absolute;
 
-  top: 0%;
-  right: 10%;
+  top: 4.5vh;
+  right: 1.3vw;
 
   display: flex;
   flex-direction: column;
@@ -125,13 +122,15 @@
 
   padding: 0 10%;
 
-  width: 70%;
+  width: 15vw;
 
   background: #f1f1f1;
   border: 1px solid #000;
   border-radius: 7px;
 
   animation: bounce-keyframes 0.2s;
+
+  z-index: 10;
 }
 
 .menu-hide {
@@ -139,7 +138,7 @@
 }
 
 .menu-room-item {
-  padding-bottom: 5%;
+  padding-bottom: 1vh;
   color: #000;
 }
 
@@ -157,8 +156,8 @@
 
 .menu-room-icon {
   fill: #000000;
-  width: 15px;
-  height: 25px;
+  width: adaptiveSizePx(12, 14, $_smDesktopWidth, $_maxDesktopWidth);
+  height: adaptiveSizePx(22, 25, $_smDesktopWidth, $_maxDesktopWidth);
 
   opacity: 0.3;
 

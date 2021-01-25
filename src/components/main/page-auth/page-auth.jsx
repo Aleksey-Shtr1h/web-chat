@@ -14,11 +14,19 @@ import { UserSectionInfo } from "./user-section-info/user-section-info";
 
 import { AppRoute } from "../../../constant.js";
 
-// import { BeatLoader, FadeLoader, PulseLoader } from "react-spinners";
 import { ModalEditUserDateForm } from "./modal-edit-user-date-form/modal-edit-user-date-form";
 import { WaitingUserProfile } from "./../../waiting-from-sever/waiting-user-profile/waiting-user-profile";
+// import { useWindowSize } from "./../../../utils/use-hooks/hooks";
+import { DropDownArrowBtn } from "./user-section-info/info-arrow-btn/info-arrow-btn";
+import { ActionCreatorApp } from "../../../redux/app/appAction";
+import { useDispatch } from "react-redux";
 
 export const PageAuth = () => {
+  const dispatch = useDispatch();
+  const onClickUserInfoBtn = () => {
+    dispatch(ActionCreatorApp.toglleUserInfoArrowBtn(true));
+  };
+  // const [widthWindow] = useWindowSize();
   return (
     <>
       <main className="main-content">
@@ -37,13 +45,18 @@ export const PageAuth = () => {
                   <SideBarBlock>
                     <SideBarSearchBlock />
                   </SideBarBlock>
-
                   <SideBarBlock>
                     <SideBarChannelBlock />
                   </SideBarBlock>
                 </SideBar>
 
-                <section className="user-desktop"></section>
+                <section className="user-desktop">
+                  <DropDownArrowBtn
+                    onClickStateBtn={onClickUserInfoBtn}
+                    directionArrow={`host-info__arrow-icon-left`}
+                    positionLeft={{ left: "95%" }}
+                  />
+                </section>
               </Route>
 
               <Route

@@ -29,3 +29,7 @@ export const getSubscribedUser = (state) => {
 export const getStateEditUserDate = (state) => {
   return state.APP.isEditUserData;
 };
+
+export const getStateUserInfoArrowBtn = (state) => {
+  return state.APP.isUserInfoArrowBtn;
+};

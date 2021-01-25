@@ -31,7 +31,7 @@ export const checkOnlineFirebase = () => {
   const userId = firebase.auth().currentUser.uid;
 
   const userStatusDatabaseRef = firebase.database().ref('/users/' + userId + '/status');
-  const userStatusFirestoreRef = firebase.firestore().collection(`users`).doc(`${userId}`);
+  // const userStatusFirestoreRef = firebase.firestore().collection(`users`).doc(`${userId}`);
 
   firebase.database().ref('.info/connected').on('value', function (snapshot) {
     if (snapshot.val() === false) {

@@ -1,5 +1,4 @@
 import React from "react";
-import { PulseLoader } from "react-spinners";
 
 export const Preload = ({ preloadSettings, preload }) => {
   const {

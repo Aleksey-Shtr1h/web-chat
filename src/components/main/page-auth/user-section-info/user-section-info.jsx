@@ -8,11 +8,15 @@ import { getUserProfile } from "./../../../../redux/user/usersSelector";
 
 import { PreloadSettings } from "./../../../../constant";
 import { UserBlockInfo } from "./user-block-info/user-block-info";
+import { getStateUserInfoArrowBtn } from "../../../../redux/app/appSelector";
 
 export const UserSectionInfo = () => {
   const [loadingUserProfile, setLoadingUserProfile] = React.useState(false);
 
   const userProfile = useSelector((state) => getUserProfile(state));
+  const isUserInfoArrowBtn = useSelector((state) =>
+    getStateUserInfoArrowBtn(state)
+  );
 
   const initialUserProfile = React.useCallback(() => {
     if (userProfile) {
@@ -23,6 +27,10 @@ export const UserSectionInfo = () => {
   React.useEffect(() => {
     initialUserProfile();
   }, [initialUserProfile]);
+
+  const showUserInfo = isUserInfoArrowBtn
+    ? `section-user-info-show`
+    : `section-user-info-hide`;
 
   const preload = (
     <RingLoader
@@ -37,9 +45,7 @@ export const UserSectionInfo = () => {
 
   return (
     <section
-      className={`section-user-info ${
-        !loadingUserProfile ? "info-preload" : ""
-      }`}
+      className={`${showUserInfo} ${!loadingUserProfile ? "info-preload" : ""}`}
     >
       {loadingUserProfile ? (
         <UserBlockInfo userProfile={userProfile} />

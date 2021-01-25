@@ -2,12 +2,22 @@
   display: flex;
   flex-direction: column;
 
+  height: 100%;
+
   z-index: 1;
+}
+
+.login {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+  height: 100%;
 }
 
 .form-sign {
   width: adaptiveSizePx(400, 600, $_phoneWidth, $_maxDesktopWidth);
-  margin: 5% auto 0;
 }
 
 .error-valid-item::after {

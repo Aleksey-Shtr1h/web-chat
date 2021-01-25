@@ -1,6 +1,7 @@
 import React from "react";
 import { useSelector } from "react-redux";
 import { BarLoader } from "react-spinners";
+import { Link } from "react-router-dom";
 
 import { Preload } from "../../../../../preload/preload";
 
@@ -9,6 +10,7 @@ import { getUserProfile } from "./../../../../../../redux/user/usersSelector";
 import { getTimeFormat } from "../../../../../../utils/utils";
 
 import {
+  AppRoute,
   PreloadSettings,
   USER_UNKNOWN_PHOTO_URL,
 } from "../../../../../../constant";
@@ -40,7 +42,10 @@ export const ChatMessangesItem = ({ comment }) => {
       ) : (
         <>
           {!isHost && (
-            <a className="chat-messages__user-avatar-link" href="#">
+            <Link
+              className="chat-messages__user-avatar-link"
+              to={AppRoute.MAIN_ID.USER_DESKTOP_ID.FRIEND_ID + `${nameUser}`}
+            >
               <img
                 className="chat-messages__user-img"
                 src={userPhoto}
@@ -48,7 +53,7 @@ export const ChatMessangesItem = ({ comment }) => {
                 width="54"
                 height="54"
               />
-            </a>
+            </Link>
           )}
           <div className="chat-messages__info">
             <div

@@ -9,7 +9,7 @@ import { ReactComponent as IconFacebook } from "../../../../../assets/image/fb-s
 import { ReactComponent as IconLinkendin } from "../../../../../assets/image/in-social-network.svg";
 import { ReactComponent as IconTwitter } from "../../../../../assets/image/tw-social-network.svg";
 import { ReactComponent as IconInstagram } from "../../../../../assets/image/inst-social-network.svg";
-import { ReactComponent as IconArrowShow } from "../../../../../assets/image/caret-right-info-btn.svg";
+import { DropDownArrowBtn } from "../info-arrow-btn/info-arrow-btn";
 
 const IconSosialNerwork = {
   facebook: <IconFacebook />,
@@ -21,6 +21,9 @@ const IconSosialNerwork = {
 export const UserBlockInfo = ({ userProfile }) => {
   const dispatch = useDispatch();
   const isEditUserData = useSelector((state) => getStateEditUserDate(state));
+  const onClickUserInfoBtn = () => {
+    dispatch(ActionCreatorApp.toglleUserInfoArrowBtn(false));
+  };
 
   const {
     photoUrl,
@@ -28,6 +31,7 @@ export const UserBlockInfo = ({ userProfile }) => {
     sosialNetworks = {},
     statusDiscription = "",
   } = userProfile;
+
   const userPhoto = photoUrl ? photoUrl : USER_UNKNOWN_PHOTO_URL;
 
   const userSosialNetworks = Object.entries(sosialNetworks);
@@ -89,11 +93,11 @@ export const UserBlockInfo = ({ userProfile }) => {
           </button>
         </div>
       </div>
-      <div className="host-info__arrow-block">
-        <button className="host-info__arrow-btn">
-          <IconArrowShow />
-        </button>
-      </div>
+      <DropDownArrowBtn
+        onClickStateBtn={onClickUserInfoBtn}
+        directionArrow={`host-info__arrow-icon-right`}
+        positionLeft={{ left: "5%" }}
+      />
     </div>
   );
 };

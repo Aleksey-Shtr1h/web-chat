@@ -7,6 +7,7 @@ import { Preload } from "../../../preload/preload";
 
 import { OperationApp } from "../../../../redux/app/appReducer";
 import {
+  getStateUserInfoArrowBtn,
   getSubscribedUser,
   getTogglePreloadMessanges,
 } from "../../../../redux/app/appSelector";
@@ -14,6 +15,8 @@ import { getUserProfile } from "./../../../../redux/user/usersSelector";
 import { getSelectRoom } from "../../../../redux/data/dataSelector";
 
 import { PreloadSettings } from "../../../../constant";
+import { DropDownArrowBtn } from "../user-section-info/info-arrow-btn/info-arrow-btn";
+import { ActionCreatorApp } from "../../../../redux/app/appAction";
 
 export const UserDesktop = ({ children }) => {
   const dispatch = useDispatch();
@@ -23,6 +26,9 @@ export const UserDesktop = ({ children }) => {
   const selectRoom = useSelector((state) => getSelectRoom(state));
   const userProfile = useSelector((state) => getUserProfile(state));
   const isSubscribedUser = useSelector((state) => getSubscribedUser(state));
+  const isUserInfoArrowBtn = useSelector((state) =>
+    getStateUserInfoArrowBtn(state)
+  );
 
   const initCheckUser = React.useCallback(() => {
     dispatch(
@@ -47,6 +53,10 @@ export const UserDesktop = ({ children }) => {
     />
   );
 
+  const onClickUserInfoBtn = () => {
+    dispatch(ActionCreatorApp.toglleUserInfoArrowBtn(true));
+  };
+
   return (
     <section className="user-desktop">
       {isPreloadMessanges ? (
@@ -54,7 +64,16 @@ export const UserDesktop = ({ children }) => {
       ) : (
         <>
           {isSubscribedUser ? (
-            children
+            <>
+              {!isUserInfoArrowBtn && (
+                <DropDownArrowBtn
+                  onClickStateBtn={onClickUserInfoBtn}
+                  directionArrow={`host-info__arrow-icon-left`}
+                  positionLeft={{ left: "95%" }}
+                />
+              )}
+              {children}
+            </>
           ) : (
             <SubscribeButton
               selectRoom={selectRoom}

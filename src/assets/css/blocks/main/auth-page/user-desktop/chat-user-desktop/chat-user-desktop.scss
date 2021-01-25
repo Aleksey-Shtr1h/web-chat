@@ -1,9 +1,9 @@
 .user-desktop-chat {
   display: flex;
   flex-direction: column;
-  justify-content: space-around;
+  justify-content: space-between;
 
-  padding: 2% 20% 0;
+  padding: 1.5vh 10vw 0;
 
   height: 100%;
 }
@@ -14,9 +14,10 @@
 
   overflow: auto;
 
-  height: adaptiveSizeYPx(350, 550, 568, 850);
+  height: 72vh;
 
-  padding-top: 1%;
+
+  padding-top: 1.5%;
 
   &::-webkit-scrollbar {
     width: 5px;
@@ -51,22 +52,21 @@
   top: -12px;
 
   font-weight: 400;
-  font-size: 20px;
+  font-size: adaptiveSizePx(16, 20, $_smDesktopWidth, $_maxDesktopWidth);
   text-transform: capitalize;
 
   padding: 0 3%;
 
   color: #3577ef;
 
-  background: #e7ebf0;
+  background: #f1f1f1;
 }
 
 .chat-messages-list {
-  // position: relative;
   display: flex;
   flex-direction: column;
 
-  padding: 2% 1%;
+  padding: 1.5vh 1.5vw;
 }
 
 .chat-messages__item {
@@ -74,11 +74,13 @@
   display: flex;
   justify-content: flex-start;
 
-  margin: 2% 0;
+  max-width: 43vw;
+
+  margin: 1vh 0;
 }
 
 .messages__host-item {
-  flex-direction: row-reverse;
+  justify-content: flex-end;
 }
 
 .messages__user-item {
@@ -91,12 +93,12 @@
   justify-content: center;
   align-items: flex-end;
 
-  width: 90px;
-
   border-radius: 5px;
 }
 
 .chat-messages__user-img {
+  width: adaptiveSizePx(45, 55, $_smDesktopWidth, $_maxDesktopWidth);
+  height: adaptiveSizePx(45, 55, $_smDesktopWidth, $_maxDesktopWidth);
   border-radius: 50%;
 }
 
@@ -104,9 +106,9 @@
   display: flex;
   flex-direction: column;
 
-  padding-left: 2%;
+  padding-left: 1.5vw;
 
-  width: 60%;
+  width: 32vw;
 }
 
 .messages-user-info {
@@ -150,6 +152,8 @@
   font-size: 18px;
 
   border-radius: 5px;
+
+  word-wrap: break-word;
 }
 
 .messages__user-text {

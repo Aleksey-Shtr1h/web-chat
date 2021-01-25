@@ -8,6 +8,7 @@ export const ActionTypeApp = {
   PRELOAD_MESSANGES: `APP/PRELOAD_MESSANGES`,
   CHANNEL_ID_MOUSE_ENTER: `APP/CHANNEL_ID_MOUSE_ENTER`,
   IS_MODAL_EDIT_USER_DATA: `APP/IS_MODAL_EDIT_USER_DATA`,
+  IS_USER_INFO_ARROW_BTN: `APP/IS_USER_INFO_ARROW_BTN`,
 };
 
 export const ActionCreatorApp = {
@@ -55,4 +56,9 @@ export const ActionCreatorApp = {
     type: ActionTypeApp.IS_MODAL_EDIT_USER_DATA,
     payload: isToggleShow,
   }),
+
+  toglleUserInfoArrowBtn: (isToggleShow) => ({
+    type: ActionTypeApp.IS_USER_INFO_ARROW_BTN,
+    payload: isToggleShow,
+  })
 };

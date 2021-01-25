@@ -4,10 +4,16 @@
   display: flex;
   flex-direction: column;
   
-  flex: 0 1 100%;
+  flex: 0 1 80%;
 
   background: #f1f1f1;
 }
 
 @import "./header-user-desktop/header-user-desktop.scss";
 @import "./chat-user-desktop/chat-user-desktop.scss";
+
+// @media screen and (max-width: $tableWidth) {
+//   .user-desktop {
+//     display: none;
+//   }
+// }

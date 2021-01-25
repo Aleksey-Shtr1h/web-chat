@@ -10,6 +10,7 @@ export const initialState = {
   isEditUserData: false,
   friendsActiveName: '',
   idChannel: null,
+  isUserInfoArrowBtn: false,
 };
 
 export const OperationApp = {
@@ -48,6 +49,9 @@ export const appReducer = (state = initialState, action) => {
 
     case ActionTypeApp.IS_MODAL_EDIT_USER_DATA:
       return { ...state, isEditUserData: action.payload }
+
+    case ActionTypeApp.IS_USER_INFO_ARROW_BTN:
+      return { ...state, isUserInfoArrowBtn: action.payload }
 
     default:
       break;
