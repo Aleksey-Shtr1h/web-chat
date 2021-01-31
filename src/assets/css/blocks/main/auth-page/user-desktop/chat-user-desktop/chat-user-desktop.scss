@@ -3,7 +3,7 @@
   flex-direction: column;
   justify-content: space-between;
 
-  padding: 1.5vh 10vw 0;
+  padding: 1.5vh 3vw 0 10vw;
 
   height: 100%;
 }
@@ -74,7 +74,7 @@
   display: flex;
   justify-content: flex-start;
 
-  max-width: 43vw;
+  max-width: 50vw;
 
   margin: 1vh 0;
 }
@@ -114,7 +114,7 @@
 .messages-user-info {
   display: flex;
   flex-direction: row;
-  align-items: center;
+  align-items: flex-end;
 
   margin-bottom: 3%;
 }
@@ -129,18 +129,18 @@
 
 .messages__user-name-text {
   font-weight: 700;
-  font-size: 20px;
-  line-height: 20px;
+  font-size: adaptiveSizePx(10, 20, $_smPhoneWidth, $_maxDesktopWidth);
+  line-height: adaptiveSizePx(13, 15, $_smPhoneWidth, $_maxDesktopWidth);
 
   color: #dc9741;
 
-  padding-right: 2%;
+  padding-right: 5%;
 }
 
 .messages__user-time {
   font-weight: 400;
-  font-size: 16px;
-  line-height: 14px;
+  font-size: adaptiveSizePx(10, 16, $_smPhoneWidth, $_maxDesktopWidth);
+  line-height: adaptiveSizePx(13, 15, $_smPhoneWidth, $_maxDesktopWidth);
 
   color: #8d8d8d;
 }
@@ -149,7 +149,7 @@
   padding: 3%;
 
   font-weight: 400;
-  font-size: 18px;
+  font-size: adaptiveSizePx(10, 18, $_smPhoneWidth, $_maxDesktopWidth);
 
   border-radius: 5px;
 
@@ -186,8 +186,8 @@
 
   outline: none;
 
-  font-size: 16px;
-  line-height: 16px;
+  font-size: adaptiveSizePx(10, 16, $_smPhoneWidth, $_maxDesktopWidth);
+  line-height: adaptiveSizePx(10, 16, $_smPhoneWidth, $_maxDesktopWidth);
   font-weight: bold;
 
   &:focus {
@@ -207,6 +207,26 @@
 .form-messages__btn {
   flex: 0 1 20%;
 
-  font-size: 18px;
-  line-height: 18px;
+  font-size: adaptiveSizePx(10, 18, $_smPhoneWidth, $_maxDesktopWidth);
+  line-height: adaptiveSizePx(10, 18, $_smPhoneWidth, $_maxDesktopWidth);
+}
+
+@media screen and (max-width: $smDesktopWidth) {
+  .user-desktop-chat {
+    padding: 1.5vh 6vw 0 6vw;
+  }
+
+  .chat-messages__info {
+    width: 36vw;
+  }
+
+  .chat-messages__item {
+    max-width: 64vw;
+  }
+}
+
+@media screen and (max-width: $phoneWidth) {
+  .chat-messages__item {
+    max-width: 83vw;
+  }
 }

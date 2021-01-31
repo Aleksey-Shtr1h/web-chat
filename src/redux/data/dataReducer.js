@@ -61,8 +61,8 @@ export const OperationData = {
         }));
 
         await dispatch(ActionCreatorData.getDataSelectRoom(dataRoom[0]));
+        await dispatch(ActionCreatorApp.toglleSideBarArrowBtn(false));
       })
-
   },
 
   createChannel: (nameRoom, adminRoom, usersRoom) => async (dispatch) => {

@@ -1,4 +1,5 @@
 .side-bar {
+  position: relative;
   flex: 0 1 20%;
 
   background-color: #25272a;
@@ -35,6 +36,10 @@
     outline: none;
     border: 1px solid red;
     box-shadow: 0 0 0 1pt red;
+  }
+
+  &::placeholder {
+    font-size: adaptiveSizePx(11, 15, $_phoneWidth, $_maxDesktopWidth);
   }
 }
 
@@ -84,8 +89,8 @@
 .search-room__icon {
   fill: #fff;
 
-  width: adaptiveSizePx(12, 14, $_smDesktopWidth, $_maxDesktopWidth);
-  height: adaptiveSizePx(12, 14, $_smDesktopWidth, $_maxDesktopWidth);
+  width: adaptiveSizePx(12, 14, $_phoneWidth, $_maxDesktopWidth);
+  height: adaptiveSizePx(12, 14, $_phoneWidth, $_maxDesktopWidth);
 }
 
 .channels-header,
@@ -197,8 +202,100 @@
   border-radius: 5px;
 }
 
+.side-bar-desktop__arrow-block {
+  display: none;
+}
+
 @media screen and (max-width: $smDesktopWidth) {
   .side-bar {
     flex: 0 1 25%;
+  }
+}
+
+@media screen and (max-width: $smTableWidth) {
+  .side-bar {
+    flex: 0 1 20%;
+  }
+
+  .friends__link {
+    margin-left: 20%;
+
+    font-size: adaptiveSizePx(10, 12, $_smPhoneWidth, $_smTableWidth);
+    line-height: adaptiveSizePx(10, 12, $_smPhoneWidth, $_smTableWidth);
+  }
+
+  .friends__user-img {
+    display: none;
+  }
+}
+
+@media screen and (max-width: $phoneWidth) {
+  .side-bar-desktop__arrow-block {
+    display: block;
+    position: absolute;
+
+    bottom: 1%;
+    left: 95%;
+
+    & .arrow-icon-left {
+      fill: #ffffff;
+    }
+  }
+
+  .side-bar-phone-show {
+    flex: 0 1 100%;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .side-bar-block {
+    padding: 2vh 15vw 2vh 15vw;
+
+  }
+
+  .side-bar-phone-hide {
+    display: none;
+  }
+
+  .friends__user-img {
+    display: block;
+  }
+
+  .search-room__input {
+    &::placeholder {
+      font-size: adaptiveSizePx(11, 14, $_smPhoneWidth, $_phoneWidth);
+    }
+  }
+
+  .channels-header__text,
+  .friends-header__text,
+  .channels-header__count,
+  .friends-header__count {
+    font-size: adaptiveSizePx(11, 12, $_smPhoneWidth, $_phoneWidth);
+    line-height: adaptiveSizePx(11, 12, $_smPhoneWidth, $_phoneWidth);
+  }
+
+  .channels__link {
+    font-size: adaptiveSizePx(13, 15, $_smPhoneWidth, $_phoneWidth);
+    line-height: adaptiveSizePx(13, 15, $_smPhoneWidth, $_phoneWidth);
+  }
+
+  .channels__item {
+    padding: 1.2vh 0;
+  }
+
+  .friends__item {
+    padding: 1.5vh 0;
+  }
+
+  .friends__link {
+    margin-left: 10%;
+
+    font-size: adaptiveSizePx(11, 13, $_smPhoneWidth, $_phoneWidth);
+    line-height: adaptiveSizePx(11, 13, $_smPhoneWidth, $_phoneWidth);
+  }
+
+  .channels__list {
+    padding-left: 0vh;
   }
 }

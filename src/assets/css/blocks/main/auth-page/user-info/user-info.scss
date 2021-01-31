@@ -19,10 +19,6 @@
   border-left: 2px solid #000;
 }
 
-// .section-user-info-hide {
-//   display: none;
-// }
-
 .host-info-container {
   position: relative;
 
@@ -37,12 +33,15 @@
 
 .host-info__img-block {
   align-self: center;
+
+  height: 30%;
+  width: 100%;
 }
 
-.host-info__img {
-  width: 100%;
-  height: 100%;
-}
+// .host-info__img {
+//   width: 100%;
+//   height: 100%;
+// }
 
 .host-info__data-block {
   width: 100%;
@@ -54,8 +53,8 @@
 
 .host-info__name-text {
   font-weight: 700;
-  font-size: 18px;
-  line-height: 18px;
+  font-size: adaptiveSizePx(13, 18, $_tableWidth, $_maxDesktopWidth);
+  line-height: adaptiveSizePx(13, 18, $_tableWidth, $_maxDesktopWidth);
   text-transform: capitalize;
 
   padding-bottom: 4%;
@@ -66,8 +65,8 @@
 .host-info__status-text {
   max-width: 100%;
   font-weight: 400;
-  font-size: 14px;
-  line-height: 14px;
+  font-size: adaptiveSizePx(11, 14, $_tableWidth, $_maxDesktopWidth);
+  line-height: adaptiveSizePx(11, 14, $_tableWidth, $_maxDesktopWidth);
   overflow-wrap: break-word;
   word-wrap: break-word;
 
@@ -95,20 +94,23 @@
   justify-content: center;
   align-items: center;
 
-  width: 25px;
-  height: 25px;
+  width: adaptiveSizePx(22, 25, $_tableWidth, $_maxDesktopWidth);
+  height: adaptiveSizePx(22, 25, $_tableWidth, $_maxDesktopWidth);
 
   background: #000000;
 
   border-radius: 50%;
 
   &:hover {
-    background: red;
+    background: #c34e4e;
   }
 }
 
 .host-info__social-network-icon {
   fill: #ffffff;
+
+  width: adaptiveSizePx(10, 13, $_tableWidth, $_maxDesktopWidth);
+  height: adaptiveSizePx(10, 13, $_tableWidth, $_maxDesktopWidth);
 }
 
 .host-info__contacts {
@@ -126,8 +128,8 @@
 
 .host-info__email-text {
   font-weight: 400;
-  font-size: 18px;
-  line-height: 18px;
+  font-size: adaptiveSizePx(13, 18, $_tableWidth, $_maxDesktopWidth);
+  line-height: adaptiveSizePx(13, 18, $_tableWidth, $_maxDesktopWidth);
   text-transform: capitalize;
 
   padding-right: 5%;
@@ -137,27 +139,38 @@
 
 .host-info__email-link {
   font-weight: 700;
-  font-size: 18px;
-  line-height: 18px;
+  font-size: adaptiveSizePx(13, 18, $_tableWidth, $_maxDesktopWidth);
+  line-height: adaptiveSizePx(13, 18, $_tableWidth, $_maxDesktopWidth);
 
   align-self: center;
 
   color: #000000;
+
+  &:hover {
+    color: #c34e4e;
+  }
 }
 
 .host-info__arrow-block {
   display: none;
-  position: absolute;
+  border: 2px solid #000;
+  border-radius: 5px;
 
-  bottom: 1%;
+  &:hover {
+    opacity: 1;
+    background-color: #000;
+  }
+
+  &:hover .arrow-icon-right {
+    opacity: 1;
+    fill: #fff;
+  }
 }
 
-.host-info__arrow-icon-right {
-  transform: rotate(0deg);
-}
-
-.host-info__arrow-icon-left {
-  transform: rotate(180deg);
+.host-info__arrow-btn {
+  border: none;
+  outline: none;
+  background-color: inherit;
 }
 
 .host-info__edit-block {
@@ -203,27 +216,26 @@
     width: 35%;
 
     z-index: 9;
+
   }
 
   .host-info__arrow-block {
+    opacity: 0.4;
     display: block;
+    position: absolute;
+
+    bottom: 1%;
+    left: 2%;
   }
 
 }
 
 @media screen and (max-width: $tableWidth) {
   .section-user-info-show {
-    position: relative;
-    display: flex;
-    flex-direction: column;
+    position: absolute;
+    justify-content: center;
 
-    // flex: 0 1 100%;
-
-    border-left: 2px solid #000;
-  }
-
-  .section-user-info-hide {
-    display: none;
+    background: linear-gradient(#ffffff, #eae6e6);
   }
 
   .host-info-container {
@@ -231,10 +243,124 @@
 
     display: flex;
     flex-direction: column;
+    align-self: center;
 
+    width: 40%;
+    max-height: 70%;
+
+    // padding: 0 3% 3%;
+
+    background: none;
+    border: 1px solid #000;
+  }
+
+  .host-info__img-block {
+    height: 35%;
+  }
+
+  .host-info__name-text {
+    font-size: adaptiveSizePx(14, 17, $_phoneWidth, $_tableWidth);
+    line-height: adaptiveSizePx(14, 17, $_phoneWidth, $_tableWidth);
+  }
+
+  .host-info__social-network-link {
+    width: adaptiveSizePx(23, 28, $_phoneWidth, $_tableWidth);
+    height: adaptiveSizePx(23, 28, $_phoneWidth, $_tableWidth);
+  }
+
+  .host-info__social-network-icon {
+    width: adaptiveSizePx(10, 12, $_phoneWidth, $_tableWidth);
+    height: adaptiveSizePx(10, 12, $_phoneWidth, $_tableWidth);
+  }
+
+  .host-info__email-text {
+    font-size: adaptiveSizePx(12, 15, $_phoneWidth, $_tableWidth);
+    line-height: adaptiveSizePx(12, 15, $_phoneWidth, $_tableWidth);
+  }
+
+  .host-info__email-link {
+    font-size: adaptiveSizePx(12, 15, $_phoneWidth, $_tableWidth);
+    line-height: adaptiveSizePx(12, 15, $_phoneWidth, $_tableWidth);
+  }
+
+  .host-info__status-text {
+    font-size: adaptiveSizePx(11, 14, $_phoneWidth, $_tableWidth);
+    line-height: adaptiveSizePx(11, 14, $_phoneWidth, $_tableWidth);
+  }
+}
+
+@media screen and (max-width: $smTableWidth) {
+  .section-user-info-show {
+    left: 19.0%;
+    width: 81.0%;
+
+    border: none;
+  }
+
+  .host-info-container {
+    width: 50%;
+  }
+
+  .host-info__img-block {
+    height: 38%;
+  }
+}
+
+@media screen and (max-width: $phoneWidth) {
+  .section-user-info-show {
+    left: 0px;
     width: 100%;
-    height: 100%;
+  }
 
-    background: linear-gradient(#ffffff, #eae6e6);
+  .host-info-container {
+    max-height: 100%;
+    width: 70%;
+
+    padding-top: 8%;
+
+    border: none;
+  }
+
+  .host-info__img-block {
+    height: 40%;
+
+    border-radius: 50%;
+
+    margin-bottom: 20%;
+  }
+
+  .host-info__arrow-block {
+    border: none;
+    border-radius: 0px;
+  }
+
+  .host-info__name-text {
+    font-size: adaptiveSizePx(15, 20, $_smPhoneWidth, $_phoneWidth);
+    line-height: adaptiveSizePx(15, 20, $_phoneWidth, $_phoneWidth);
+  }
+
+  .host-info__social-network-link {
+    width: adaptiveSizePx(23, 40, $_smPhoneWidth, $_phoneWidth);
+    height: adaptiveSizePx(23, 40, $_smPhoneWidth, $_phoneWidth);
+  }
+
+  .host-info__social-network-icon {
+    width: adaptiveSizePx(10, 17, $_smPhoneWidth, $_phoneWidth);
+    height: adaptiveSizePx(10, 17, $_smPhoneWidth, $_phoneWidth);
+  }
+
+  .host-info__email-text {
+    font-size: adaptiveSizePx(13, 17, $_smPhoneWidth, $_phoneWidth);
+    line-height: adaptiveSizePx(13, 17, $_smPhoneWidth, $_phoneWidth);
+  }
+
+  .host-info__email-link {
+    font-size: adaptiveSizePx(13, 17, $_smPhoneWidth, $_phoneWidth);
+    line-height: adaptiveSizePx(13, 17, $_smPhoneWidth, $_phoneWidth);
+  }
+
+  .host-info__status-text {
+    font-size: adaptiveSizePx(14, 17, $_phoneWidth, $_tableWidth);
+    line-height: adaptiveSizePx(14, 17, $_phoneWidth, $_tableWidth);
   }
 }

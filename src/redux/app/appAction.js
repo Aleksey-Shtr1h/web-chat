@@ -9,6 +9,7 @@ export const ActionTypeApp = {
   CHANNEL_ID_MOUSE_ENTER: `APP/CHANNEL_ID_MOUSE_ENTER`,
   IS_MODAL_EDIT_USER_DATA: `APP/IS_MODAL_EDIT_USER_DATA`,
   IS_USER_INFO_ARROW_BTN: `APP/IS_USER_INFO_ARROW_BTN`,
+  IS_SIDE_BAR_ARROW_BTN: `APP/IS_SIDE_BAR_ARROW_BTN`,
 };
 
 export const ActionCreatorApp = {
@@ -59,6 +60,11 @@ export const ActionCreatorApp = {
 
   toglleUserInfoArrowBtn: (isToggleShow) => ({
     type: ActionTypeApp.IS_USER_INFO_ARROW_BTN,
+    payload: isToggleShow,
+  }),
+
+  toglleSideBarArrowBtn: (isToggleShow) => ({
+    type: ActionTypeApp.IS_SIDE_BAR_ARROW_BTN,
     payload: isToggleShow,
   })
 };

@@ -7,6 +7,7 @@ import { Preload } from "../../../preload/preload";
 
 import { OperationApp } from "../../../../redux/app/appReducer";
 import {
+  getStateSideBarArrowBtn,
   getStateUserInfoArrowBtn,
   getSubscribedUser,
   getTogglePreloadMessanges,
@@ -20,6 +21,9 @@ import { ActionCreatorApp } from "../../../../redux/app/appAction";
 
 export const UserDesktop = ({ children }) => {
   const dispatch = useDispatch();
+  const isSideBarArrowBtn = useSelector((state) =>
+    getStateSideBarArrowBtn(state)
+  );
   const isPreloadMessanges = useSelector((state) =>
     getTogglePreloadMessanges(state)
   );
@@ -57,8 +61,16 @@ export const UserDesktop = ({ children }) => {
     dispatch(ActionCreatorApp.toglleUserInfoArrowBtn(true));
   };
 
+  const onClickSideBarBtn = () => {
+    dispatch(ActionCreatorApp.toglleSideBarArrowBtn(!isSideBarArrowBtn));
+  };
+
+  const classPhone = isSideBarArrowBtn
+    ? "user-desktop-phone-hide"
+    : "user-desktop-phone-show";
+
   return (
-    <section className="user-desktop">
+    <section className={`user-desktop ${classPhone}`}>
       {isPreloadMessanges ? (
         <Preload preloadSettings={PreloadSettings.MAIN} preload={preload} />
       ) : (
@@ -68,8 +80,16 @@ export const UserDesktop = ({ children }) => {
               {!isUserInfoArrowBtn && (
                 <DropDownArrowBtn
                   onClickStateBtn={onClickUserInfoBtn}
-                  directionArrow={`host-info__arrow-icon-left`}
-                  positionLeft={{ left: "95%" }}
+                  directionArrow={`arrow-icon-left`}
+                  classBlock={`desktop-user-info__arrow-block`}
+                />
+              )}
+
+              {!isSideBarArrowBtn && (
+                <DropDownArrowBtn
+                  onClickStateBtn={onClickSideBarBtn}
+                  directionArrow={`arrow-icon-rigth`}
+                  classBlock={`desktop-side-bar__arrow-block`}
                 />
               )}
               {children}

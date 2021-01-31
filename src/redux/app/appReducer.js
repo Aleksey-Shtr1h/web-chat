@@ -11,6 +11,7 @@ export const initialState = {
   friendsActiveName: '',
   idChannel: null,
   isUserInfoArrowBtn: false,
+  isSideBarArrowBtn: true,
 };
 
 export const OperationApp = {
@@ -52,6 +53,9 @@ export const appReducer = (state = initialState, action) => {
 
     case ActionTypeApp.IS_USER_INFO_ARROW_BTN:
       return { ...state, isUserInfoArrowBtn: action.payload }
+
+    case ActionTypeApp.IS_SIDE_BAR_ARROW_BTN:
+      return { ...state, isSideBarArrowBtn: action.payload }
 
     default:
       break;

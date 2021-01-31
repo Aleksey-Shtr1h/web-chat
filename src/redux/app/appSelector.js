@@ -33,3 +33,7 @@ export const getStateEditUserDate = (state) => {
 export const getStateUserInfoArrowBtn = (state) => {
   return state.APP.isUserInfoArrowBtn;
 };
+
+export const getStateSideBarArrowBtn = (state) => {
+  return state.APP.isSideBarArrowBtn;
+};

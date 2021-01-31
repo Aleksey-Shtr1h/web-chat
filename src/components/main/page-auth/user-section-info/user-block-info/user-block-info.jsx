@@ -38,14 +38,22 @@ export const UserBlockInfo = ({ userProfile }) => {
 
   return (
     <div className="host-info-container">
-      <div className="host-info__img-block">
-        <img
+      <div
+        className="host-info__img-block"
+        style={{
+          backgroundImage: `url(${userPhoto})`,
+          backgroundPosition: "center",
+          backgroundSize: "cover",
+          backgroundRepeat: "no-repeat",
+        }}
+      >
+        {/* <img
           className="host-info__img"
           src={userPhoto}
           alt="host-avatar"
           width="34"
           height="34"
-        />
+        /> */}
       </div>
       <div className="host-info__data-block">
         <p className="host-info__name-text">{name}</p>
@@ -95,8 +103,8 @@ export const UserBlockInfo = ({ userProfile }) => {
       </div>
       <DropDownArrowBtn
         onClickStateBtn={onClickUserInfoBtn}
-        directionArrow={`host-info__arrow-icon-right`}
-        positionLeft={{ left: "5%" }}
+        directionArrow={`arrow-icon-right`}
+        classBlock={`host-info__arrow-block`}
       />
     </div>
   );

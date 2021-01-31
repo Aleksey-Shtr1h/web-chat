@@ -9,11 +9,70 @@
   background: #f1f1f1;
 }
 
+.desktop-user-info__arrow-block,
+.desktop-side-bar__arrow-block {
+  display: none;
+  border: 2px solid #000;
+  border-radius: 6px;
+  opacity: 0.4;
+
+  &:hover {
+    opacity: 1;
+    background-color: #000;
+  }
+
+  &:hover .arrow-icon-left {
+    opacity: 1;
+    fill: #fff;
+  }
+}
+
 @import "./header-user-desktop/header-user-desktop.scss";
 @import "./chat-user-desktop/chat-user-desktop.scss";
 
-// @media screen and (max-width: $tableWidth) {
-//   .user-desktop {
-//     display: none;
-//   }
-// }
+@media screen and (max-width: $smDesktopWidth) {
+  .desktop-user-info__arrow-block {
+    display: block;
+    position: absolute;
+
+    bottom: 1%;
+    left: 95%;
+  }
+}
+
+@media screen and (max-width: $smTableWidth) {
+  .user-desktop {
+    flex: 0 1 82%;
+  }
+
+  .desktop-user-info__arrow-block,
+  .desktop-side-bar__arrow-block {
+    border: none;
+    border-radius: 0px;
+  }
+}
+
+@media screen and (max-width: $phoneWidth) {
+  .desktop-side-bar__arrow-block {
+    display: block;
+    position: absolute;
+
+    bottom: 1%;
+    left: 1%;
+  }
+
+  .user-desktop .arrow-icon-rigth,
+  .user-desktop .arrow-icon-left {
+    width: 7px;
+    height: 13px;
+  }
+
+  .user-desktop-phone-show {
+    display: flex;
+    flex: 0 1 100%;
+  }
+
+  .user-desktop-phone-hide {
+    display: none;
+  }
+}

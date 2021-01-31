@@ -123,6 +123,7 @@
 
 @media screen and (max-width: $tableWidth) {
   .user-profile {
+    position: relative;
     padding-right: 0;
     flex-direction: row-reverse;
   }
@@ -133,6 +134,8 @@
     justify-content: center;
 
     margin-right: 2vw;
+
+    z-index: 20;
   }
 
   .wrapper-link-menu {
@@ -167,5 +170,26 @@
   .sign-link {
     margin-left: 0;
     margin-bottom: 5%;
+  }
+}
+
+@media screen and (max-width: $phoneWidth) {
+  .wrapper-link-menu {
+    position: absolute;
+    width: 100vw;
+  }
+
+  .wrapper-icon-menu {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+
+    margin-right: 2vw;
+
+    z-index: 20;
+  }
+
+  .response-menu-burger {
+    
   }
 }

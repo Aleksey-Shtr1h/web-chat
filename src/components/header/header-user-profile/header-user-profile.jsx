@@ -38,11 +38,12 @@ export const HeaderUserProfile = () => {
           {isOnline && (
             <button
               className="add-channel-btn"
-              onClick={() =>
+              onClick={() => {
                 dispatch(
                   ActionCreatorApp.toglleModalAddChannel(!isModalAddChannel)
-                )
-              }
+                );
+                dispatch(ActionCreatorApp.changeBurgerBtn(false));
+              }}
             >
               +
             </button>

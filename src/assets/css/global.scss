@@ -82,6 +82,14 @@ body {
   flex-direction: column;
 }
 
+.arrow-icon-right {
+  transform: rotate(0deg);
+}
+
+.arrow-icon-left {
+  transform: rotate(180deg);
+}
+
 input[type='search']::-webkit-search-decoration, 
 input[type='search']::-webkit-search-cancel-button, 
 input[type='search']::-webkit-search-results-button, 

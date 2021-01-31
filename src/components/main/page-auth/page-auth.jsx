@@ -19,14 +19,32 @@ import { WaitingUserProfile } from "./../../waiting-from-sever/waiting-user-prof
 // import { useWindowSize } from "./../../../utils/use-hooks/hooks";
 import { DropDownArrowBtn } from "./user-section-info/info-arrow-btn/info-arrow-btn";
 import { ActionCreatorApp } from "../../../redux/app/appAction";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import {
+  getStateSideBarArrowBtn,
+  getStateUserInfoArrowBtn,
+} from "../../../redux/app/appSelector";
 
 export const PageAuth = () => {
   const dispatch = useDispatch();
+  const isSideBarArrowBtn = useSelector((state) =>
+    getStateSideBarArrowBtn(state)
+  );
+  const isUserInfoArrowBtn = useSelector((state) =>
+    getStateUserInfoArrowBtn(state)
+  );
+
   const onClickUserInfoBtn = () => {
     dispatch(ActionCreatorApp.toglleUserInfoArrowBtn(true));
   };
-  // const [widthWindow] = useWindowSize();
+  const onClickSideBarBtn = () => {
+    dispatch(ActionCreatorApp.toglleSideBarArrowBtn(!isSideBarArrowBtn));
+  };
+
+  const classPhone = isSideBarArrowBtn
+    ? "user-desktop-phone-hide"
+    : "user-desktop-phone-show";
+
   return (
     <>
       <main className="main-content">
@@ -50,12 +68,22 @@ export const PageAuth = () => {
                   </SideBarBlock>
                 </SideBar>
 
-                <section className="user-desktop">
-                  <DropDownArrowBtn
-                    onClickStateBtn={onClickUserInfoBtn}
-                    directionArrow={`host-info__arrow-icon-left`}
-                    positionLeft={{ left: "95%" }}
-                  />
+                <section className={`user-desktop ${classPhone}`}>
+                  {!isUserInfoArrowBtn && (
+                    <DropDownArrowBtn
+                      onClickStateBtn={onClickUserInfoBtn}
+                      directionArrow={`arrow-icon-left`}
+                      classBlock={`desktop-user-info__arrow-block`}
+                    />
+                  )}
+
+                  {!isSideBarArrowBtn && (
+                    <DropDownArrowBtn
+                      onClickStateBtn={onClickSideBarBtn}
+                      directionArrow={`arrow-icon-rigth`}
+                      classBlock={`desktop-side-bar__arrow-block`}
+                    />
+                  )}
                 </section>
               </Route>
 

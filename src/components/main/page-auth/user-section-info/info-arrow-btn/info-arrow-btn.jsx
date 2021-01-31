@@ -1,15 +1,14 @@
 import React from "react";
-// import { useDispatch } from "react-redux";
 import { ReactComponent as IconArrowShow } from "../../../../../assets/image/caret-right-info-btn.svg";
-// import { ActionCreatorApp } from "../../../../../redux/app/appAction";
 
 export const DropDownArrowBtn = ({
   onClickStateBtn,
   directionArrow,
-  positionLeft,
+  classBlock,
+  colorArrow = { fill: "#000000" },
 }) => {
   return (
-    <div className="host-info__arrow-block" style={positionLeft}>
+    <div className={`${classBlock}`}>
       <button className="host-info__arrow-btn" onClick={onClickStateBtn}>
         <IconArrowShow className={directionArrow} />
       </button>
