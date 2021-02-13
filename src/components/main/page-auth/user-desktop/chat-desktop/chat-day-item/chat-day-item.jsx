@@ -13,7 +13,7 @@ export const ChatDayItem = ({ day }) => {
         </div>
       )}
 
-      <ChatMessangesList day={day} />
+      <ChatMessangesList comments={day[1]} />
     </li>
   );
 };

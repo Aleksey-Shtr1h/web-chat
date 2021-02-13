@@ -32,7 +32,7 @@ export const SideBarChannelList = ({ userProfile }) => {
             >
               <Link
                 className="channels__link"
-                to={AppRoute.MAIN_ID.USER_DESKTOP_ID.FRIEND_ID + `${idRoom}`}
+                to={AppRoute.MAIN_ID.USER_DESKTOP_ID.ROOM_ID + `${idRoom}`}
                 onClick={() => {
                   dispatch(OperationData.loadChannel(idRoom));
                 }}

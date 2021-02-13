@@ -36,3 +36,8 @@ export const getMessangesList = (state) => {
   return state.DATA.messagesList;
 };
 
+export const chooseUserCoomment = (state, userId) => {
+  const users = state.DATA.usersRoom;
+  return users.find((user) => user.userId === userId);
+};
+

@@ -2,8 +2,13 @@ import React from "react";
 
 export const MenuRoom = () => {
   const [toglleBtnMenuRoom, setToglleBtnMenu] = React.useState(true);
+  const buttonRef = React.useRef(null);
 
   const isShowBtnMenuRoom = toglleBtnMenuRoom ? "menu-hide" : "";
+
+  const changeStateMenu = () => {
+    console.log(buttonRef);
+  };
 
   return (
     <div className="desktop-menu-room">
@@ -21,8 +26,12 @@ export const MenuRoom = () => {
       </ul>
 
       <button
+        ref={buttonRef}
         className="menu-room-btn"
-        onClick={() => setToglleBtnMenu((prev) => !prev)}
+        onClick={() => {
+          setToglleBtnMenu((prev) => !prev);
+          changeStateMenu();
+        }}
       >
         <svg
           className="menu-room-icon"

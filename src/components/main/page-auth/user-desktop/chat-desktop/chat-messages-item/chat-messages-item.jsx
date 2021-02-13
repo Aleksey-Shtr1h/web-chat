@@ -6,6 +6,7 @@ import { Link } from "react-router-dom";
 import { Preload } from "../../../../../preload/preload";
 
 import { getUserProfile } from "./../../../../../../redux/user/usersSelector";
+import { chooseUserCoomment } from "../../../../../../redux/data/dataSelector";
 
 import { getTimeFormat } from "../../../../../../utils/utils";
 
@@ -20,17 +21,18 @@ export const ChatMessangesItem = ({ comment }) => {
   const preload = <BarLoader loading />;
 
   const userProfile = useSelector((state) => getUserProfile(state));
+  const userComment = useSelector((state) => chooseUserCoomment(state, userId));
 
   const isHost = userProfile.userId === userId;
+
+  const userPhoto =
+    "photoUrl" in userComment ? userComment.photoUrl : USER_UNKNOWN_PHOTO_URL;
 
   const StyleItemMessage = {
     ITEM_CLASS: isHost ? "messages__host-item" : "messages__user-item",
     TEXT_CLASS: isHost ? "messages__host-text" : "messages__user-text",
     INFO_CLASS: isHost ? "host-info" : "user-info",
   };
-
-  const userPhoto =
-    "photoUrl" in userProfile ? userProfile.photoUrl : USER_UNKNOWN_PHOTO_URL;
 
   return (
     <li className={`chat-messages__item ${StyleItemMessage.ITEM_CLASS}`}>

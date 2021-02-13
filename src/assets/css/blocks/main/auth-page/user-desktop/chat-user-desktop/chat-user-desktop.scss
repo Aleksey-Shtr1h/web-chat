@@ -108,7 +108,7 @@
 
   padding-left: 1.5vw;
 
-  width: 32vw;
+  width: 34vw;
 }
 
 .messages-user-info {
@@ -149,7 +149,7 @@
   padding: 3%;
 
   font-weight: 400;
-  font-size: adaptiveSizePx(10, 18, $_smPhoneWidth, $_maxDesktopWidth);
+  font-size: adaptiveSizePx(10, 16, $_smPhoneWidth, $_maxDesktopWidth);
 
   border-radius: 5px;
 
@@ -225,8 +225,30 @@
   }
 }
 
+@media screen and (max-width: $tableWidth) {
+  .chat-messages__info {
+    width: 39vw;
+  }
+}
+
+@media screen and (max-width: $smTableWidth) {
+  .chat-messages__info {
+    width: 42vw;
+  }
+}
+
 @media screen and (max-width: $phoneWidth) {
   .chat-messages__item {
     max-width: 83vw;
+  }
+
+  .chat-messages__info {
+    width: 58vw;
+  }
+}
+
+@media screen and (max-width: $smPhoneWidth) {
+  .chat-messages__info {
+    width: 62vw;
   }
 }
