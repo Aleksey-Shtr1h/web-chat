@@ -10,7 +10,6 @@ export const FormMessages = () => {
   const userProfile = useSelector((state) => getUserProfile(state));
   const [inputValue, setInputValue] = React.useState("");
 
-  // const { idRoom } = selectRoom;
   const {
     info: { name },
     userId,

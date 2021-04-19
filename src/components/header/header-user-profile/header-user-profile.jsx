@@ -30,11 +30,7 @@ export const HeaderUserProfile = () => {
           isBurgerBtn ? "wrapper-link-menu-open" : ""
         }`}
       >
-        <div
-          className={`response-menu ${
-            isBurgerBtn ? "response-menu-burger" : ""
-          }`}
-        >
+        <div className="response-menu response-menu-burger">
           {isOnline && (
             <button
               className="add-channel-btn"
@@ -69,7 +65,11 @@ export const HeaderUserProfile = () => {
         </div>
       </div>
 
-      <div className="wrapper-icon-menu">
+      <div
+        className={`wrapper-icon-menu ${
+          isBurgerBtn ? "wrapper-icon-menu-active" : ""
+        }`}
+      >
         <input
           className="checkbox3 visuallyHidden"
           type="checkbox"

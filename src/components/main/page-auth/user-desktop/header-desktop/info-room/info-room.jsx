@@ -2,12 +2,16 @@ import React from "react";
 import { useSelector } from "react-redux";
 import { getSelectRoom } from "../../../../../../redux/data/dataSelector";
 
+import { getShotTitleRoom } from "../../../../../../utils/utils";
+
 export const InfoRoom = () => {
   const selectRoom = useSelector((state) => getSelectRoom(state));
   const { usersRoom, info } = selectRoom;
   return (
     <div className="info-room">
-      <h2 className="info-room__title">{info.nameRoom}</h2>
+      <h2 className="info-room__title">
+        {getShotTitleRoom(info.nameRoom, 10)}
+      </h2>
       <p className="info-room__count-users">{usersRoom.length}</p>
       <form
         className="menu-room-form-search"

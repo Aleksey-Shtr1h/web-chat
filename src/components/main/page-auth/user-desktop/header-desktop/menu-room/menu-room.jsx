@@ -6,10 +6,6 @@ export const MenuRoom = () => {
 
   const isShowBtnMenuRoom = toglleBtnMenuRoom ? "menu-hide" : "";
 
-  const changeStateMenu = () => {
-    console.log(buttonRef);
-  };
-
   return (
     <div className="desktop-menu-room">
       <ul className={`menu-room-list ${isShowBtnMenuRoom}`}>
@@ -30,7 +26,6 @@ export const MenuRoom = () => {
         className="menu-room-btn"
         onClick={() => {
           setToglleBtnMenu((prev) => !prev);
-          changeStateMenu();
         }}
       >
         <svg

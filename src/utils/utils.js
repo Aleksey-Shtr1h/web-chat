@@ -28,9 +28,6 @@ const getDayFormat = (date) => {
   const monthResult = searchMonth(monthComment, MONTH_NAMES);
   const dateResult = getDateFormat(dateComment);
 
-  // console.log(monthNow + yearNow);
-  // console.log(monthNow + yearNow);
-
   if (monthNow + yearNow === monthComment + yearComment && dateNow === dateComment) {
     return `today`;
   } else if (monthNow + yearNow === monthComment + yearComment && dateNow === dateComment + 1) {
@@ -72,4 +69,13 @@ export const getTimeFormat = (time) => {
   const minutes = time.getMinutes();
 
   return String(`${getDateFormat(hours)}:${getDateFormat(minutes)}`);
+};
+
+export const getShotTitleRoom = (titleText, maxLength) => {
+  if (titleText.length >= maxLength) {
+    const shotTitle = titleText.slice(0, 10) + "...";
+    return shotTitle;
+  }
+
+  return titleText;
 };

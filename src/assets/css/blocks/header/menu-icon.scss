@@ -1,12 +1,12 @@
-// menu Icon
-
-/* GENERAL STYLES */
 .visuallyHidden {
-  position: absolute; 
-  overflow: hidden; 
-  clip: rect(0 0 0 0); 
-  height: 1px; width: 1px; 
-  margin: -1px; padding: 0; border: 0; 
+  position: absolute;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  height: 1px;
+  width: 1px;
+  margin: -1px;
+  padding: 0;
+  border: 0;
 }
 
 .wrapper-icon-menu {
@@ -28,7 +28,7 @@
   display: block;
   border-radius: 4px;
   transition: all 0.4s ease-in-out;
-  position: absolute; 
+  position: absolute;
 }
 
 .bar1 {
@@ -58,25 +58,25 @@
   transform-origin: 5%;
 }
 
-.checkbox3:checked + label > .hamburger3 > .bar1{
+.checkbox3:checked + label > .hamburger3 > .bar1 {
   transform: rotate(45deg);
   height: 2px;
   width: 42px;
 }
 
-.checkbox3:checked + label > .hamburger3 > .bar3{
+.checkbox3:checked + label > .hamburger3 > .bar3 {
   transform: rotate(45deg);
   height: 2px;
   background-color: transparent;
 }
 
-.checkbox3:checked + label > .hamburger3 > .bar2{
+.checkbox3:checked + label > .hamburger3 > .bar2 {
   transform: rotate(-45deg);
   height: 2px;
   background-color: transparent;
 }
 
-.checkbox3:checked + label > .hamburger3 > .bar4{
+.checkbox3:checked + label > .hamburger3 > .bar4 {
   transform: rotate(-45deg);
   height: 2px;
   width: 42px;
@@ -90,18 +90,18 @@
 
   .hamburger .bar {
     width: 25px;
-    height: 2px; 
+    height: 2px;
   }
 
   .bar2,
   .bar3 {
-    top: 12.0px;
+    top: 12px;
   }
 
-  .checkbox3:checked + label > .hamburger3 > .bar1{
+  .checkbox3:checked + label > .hamburger3 > .bar1 {
     width: 36px;
   }
-  .checkbox3:checked + label > .hamburger3 > .bar4{
+  .checkbox3:checked + label > .hamburger3 > .bar4 {
     width: 36px;
   }
 }
@@ -114,7 +114,7 @@
 
   .hamburger .bar {
     width: 22px;
-    height: 1px; 
+    height: 1px;
   }
 
   .bar2,
@@ -122,11 +122,11 @@
     top: 10.5px;
   }
 
-  .checkbox3:checked + label > .hamburger3 > .bar1{
+  .checkbox3:checked + label > .hamburger3 > .bar1 {
     width: 33px;
     height: 1px;
   }
-  .checkbox3:checked + label > .hamburger3 > .bar4{
+  .checkbox3:checked + label > .hamburger3 > .bar4 {
     width: 33px;
     height: 1px;
   }

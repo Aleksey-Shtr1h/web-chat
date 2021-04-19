@@ -1,10 +1,14 @@
-import { firebase } from '../../utils/firebase.js';
-import { nanoid } from 'nanoid';
+import { firebase } from "../../utils/firebase.js";
+import { nanoid } from "nanoid";
 
-import { ActionCreatorData, ActionTypeData } from './dataAction.js';
-import { ActionCreatorApp } from '../app/appAction.js';
+import { ActionCreatorData, ActionTypeData } from "./dataAction.js";
+import { ActionCreatorApp } from "../app/appAction.js";
 
-import { addRoomFirebaseUsers, deleteUserRoom, checkDoubleDate } from '../../utils/firebase/firebase-utils.js';
+import {
+  addRoomFirebaseUsers,
+  deleteUserRoom,
+  checkDoubleDate,
+} from "../../utils/firebase/firebase-utils.js";
 
 export const initialState = {
   usersRoom: null,
@@ -13,7 +17,6 @@ export const initialState = {
 };
 
 export const OperationData = {
-
   loadUsers: ({ usersRoom = [], idRoom = `` }, isLoadUser) => (dispatch) => {
     dispatch(ActionCreatorApp.toglleUsersPreload(true));
     const dataBase = firebase.database().ref(`users`);
@@ -24,19 +27,19 @@ export const OperationData = {
 
       usersRoom.forEach((userId) => {
         const resultFinsUser = usersBase.find((userBase) => {
-          return userId === userBase.userId
+          return userId === userBase.userId;
         });
 
         if (resultFinsUser) {
           users.push(resultFinsUser);
         } else {
           deleteUserRoom(firebase, idRoom, userId);
-        };
+        }
 
         if (usersRoom.length > 0) {
           checkDoubleDate(firebase, idRoom, usersRoom);
         }
-      })
+      });
 
       if (isLoadUser) {
         await dispatch(OperationData.loadComment(idRoom, true));
@@ -53,22 +56,20 @@ export const OperationData = {
     dispatch(ActionCreatorApp.toglleMessangesPreload(true));
 
     const dataBase = firebase.firestore().collection(`rooms`);
-    dataBase
-      .where("idRoom", "==", idRoom)
-      .onSnapshot(async (snapshot) => {
-        const dataRoom = snapshot.docs.map((room) => ({
-          ...room.data(),
-        }));
+    dataBase.where("idRoom", "==", idRoom).onSnapshot(async (snapshot) => {
+      const dataRoom = snapshot.docs.map((room) => ({
+        ...room.data(),
+      }));
 
-        await dispatch(ActionCreatorData.getDataSelectRoom(dataRoom[0]));
-        await dispatch(ActionCreatorApp.toglleSideBarArrowBtn(false));
-      })
+      await dispatch(ActionCreatorData.getDataSelectRoom(dataRoom[0]));
+      await dispatch(ActionCreatorApp.toglleSideBarArrowBtn(false));
+    });
   },
 
   createChannel: (nameRoom, adminRoom, usersRoom) => async (dispatch) => {
     const idRoom = nanoid();
 
-    const fireStore = firebase.firestore()
+    const fireStore = firebase.firestore();
     const refRooms = fireStore.collection(`rooms`).doc(idRoom);
 
     refRooms.set({
@@ -88,10 +89,14 @@ export const OperationData = {
   deleteChannel: () => (dispatch) => { },
   ///////////////////////////////////////////
 
-  addUserToChannel: (userId, idRoom, usersRoom, nameRoom) => async (dispatch) => {
+  addUserToChannel: (userId, idRoom, usersRoom, nameRoom) => async (
+    dispatch
+  ) => {
     const usersRoomNew = [userId];
 
-    firebase.firestore().collection(`rooms`)
+    firebase
+      .firestore()
+      .collection(`rooms`)
       .doc(idRoom)
       .update({
         usersRoom: firebase.firestore.FieldValue.arrayUnion(userId),
@@ -99,31 +104,38 @@ export const OperationData = {
 
     addRoomFirebaseUsers(firebase, usersRoomNew, idRoom, nameRoom);
 
-    await dispatch(OperationData.loadUsers({ usersRoom, idRoom }, false))
+    await dispatch(OperationData.loadUsers({ usersRoom, idRoom }, false));
   },
 
   loadComment: (idRoom, toglleMessangesPreload) => (dispatch) => {
-    const fireStore = firebase.firestore()
-    const refRoom = fireStore.collection(`rooms`).doc(idRoom).collection(`messages`).orderBy('timestamp');
+    const fireStore = firebase.firestore();
+    const refRoom = fireStore
+      .collection(`rooms`)
+      .doc(idRoom)
+      .collection(`messages`)
+      .orderBy("timestamp");
 
-    refRoom
-      .onSnapshot(async (snapshot) => {
-        const messages = snapshot.docs.map((message) => ({
-          ...message.data(),
-        }));
-        await dispatch(ActionCreatorData.getMessagesList(messages));
+    refRoom.onSnapshot(async (snapshot) => {
+      const messages = snapshot.docs.map((message) => ({
+        ...message.data(),
+      }));
+      await dispatch(ActionCreatorData.getMessagesList(messages));
 
-        if (toglleMessangesPreload) {
-          await dispatch(ActionCreatorApp.toglleMessangesPreload(false));
-        }
-      });
+      if (toglleMessangesPreload) {
+        await dispatch(ActionCreatorApp.toglleMessangesPreload(false));
+      }
+    });
   },
 
   createComment: (idRoom, message, nameUser, userId) => (dispatch) => {
     const idMessage = nanoid();
 
-    const fireStore = firebase.firestore()
-    const refRoom = fireStore.collection(`rooms`).doc(idRoom).collection(`messages`).doc(idMessage);
+    const fireStore = firebase.firestore();
+    const refRoom = fireStore
+      .collection(`rooms`)
+      .doc(idRoom)
+      .collection(`messages`)
+      .doc(idMessage);
 
     refRoom.set({
       idMessage,
@@ -139,7 +151,10 @@ export const OperationData = {
   ///////////////////////////////////////////
 
   changeUserDateInfo: (userAuthId, postEditInfo) => async (dispatch) => {
-    if (typeof (postEditInfo.photoUrl) === 'object') {
+    if (
+      typeof postEditInfo.photoUrl === "object" &&
+      postEditInfo.photoUrl !== null
+    ) {
       const storageRef = firebase.storage().ref();
       const fileRef = storageRef.child(
         `images/${userAuthId}/logo-${userAuthId}.svg`
@@ -156,7 +171,6 @@ export const OperationData = {
 
 export const dataReducer = (state = initialState, action) => {
   switch (action.type) {
-
     case ActionTypeData.GET_USERS:
       return {
         ...state,

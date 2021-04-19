@@ -1,28 +1,87 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## Single page aplication
 
-## Available Scripts
+---
 
-In the project directory, you can run:
+<br />
 
-### `npm start`
+## Made with technologies **React, Redux, React Router, FireBase, HTML5, SCSS**
 
-Runs the app in the development mode.<br />
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+---
 
-The page will reload if you make edits.<br />
-You will also see any lint errors in the console.
+<br />
 
-### `npm test`
+## <p align=center>**Start Scripts:**</p>
 
-Launches the test runner in the interactive watch mode.<br />
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+- ### **_npm install_** - install dependencies
+- ### **_npm start_** - start app
+- ### **_npm run build_** - build app
 
-### `npm build`
+---
 
-Builds the app for production to the `build` folder.<br />
-It correctly bundles React in production mode and optimizes the build for the best performance.
+<br />
 
-The build is minified and the filenames include the hashes.<br />
-Your app is ready to be deployed!
+```
+APP/WebChat
+├── src - главная папка приложения
+│ ├── assets - кастомные ресурсы
+│ │ ├── SCSS - стили приложения
+│ │ ├── Fonts - шрифты приложения
+│ │ └── Images - изображения приложения
+│ │
+│ ├── components - компоненты приложения
+│ │ ├── header - компоненты шапки
+│ │ ├── main - главный контент
+│ │ │ ├── page-auth - контент зарегистрированного user
+│ │ │ ├── page-not-auth - слайдер приветствия
+│ │ │ └── registartion - формы регистрации
+│ │ ├── preload - прелолад
+│ │ └── waiting-from-sever - ожидание данных о зарегистрированного user
+│ │
+│ ├── pages - компоненты Route
+│ │ └── App - главная навигация
+│ │
+│ ├── redux - компоненты приложения
+│ │ ├── app - редьюсер взутренного взаимодействия
+│ │ ├── data - редьюсер взаимодействия данными FireBase Database
+│ │ ├── user - редьюсер взаимодействия данными FireBase Authentication
+│ │ ├── rootRaducer.js - главный редьюсер
+│ │ └── nameSpace.js - объект взаимодействия редьюсеров
+│ │
+│ ├── utils - вспомогательные функции приложения
+│ │
+│ ├── constant.js - константы приложения
+│ │
+│ ├── index.js - иницилизация приложения
+│ │
+│ └── index.scss - все стили приложения
+│
+├── .gitignore - файлы/папки игнорируемые Git
+├── package.json - зависимости
+└── README.md - описание проекта
+```
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/dep
+---
+
+<br />
+
+### Данное приложение - это web чат в реальном времени, где пользователь может **создавать** свои комнаты, **менять** свои данные, **находить** через поиск существующие и общаться с **зарегистрированными** юзерами.
+
+### **Backend** приложения хранится в **_FireBase_** и использует его возможности:
+
+- **Authentication** - регистрация пользователя с помощью почты и пароля
+- **Cloud Firestore** - хранение данных о чатах приложения
+- **Realtime Database** - хранение данных о пользователях и фиксации, когда данный **user** находится **online**
+- **Storage** - хранение данных о аватарках пользователей и кастомных ресурсов
+- **Hosting** - хостинг и обновление
+
+<br />
+
+### **Redux** разбит на **три редьюсера**:
+
+- **User** - взаимодействие приложения с данными **Authentication**
+- **Data** - взаимодействие приложения с данными **Cloud Firestore** и **Realtime Database**
+- **App** - внутреннее взаимодействие приложения
+
+<br />
+
+### **Стилизация** выполнена с помощью инструмента SCSS. Все блоки стилей подключены в <a href="https://github.com/Aleksey-Shtr1h/web-chat/blob/master/src/index.scss">**src/index.scss**</a>

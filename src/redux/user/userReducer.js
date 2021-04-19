@@ -36,7 +36,7 @@ export const OperationUser = {
             name,
             email,
           },
-
+          photoUrl: "https://firebasestorage.googleapis.com/v0/b/web-chat-1b38f.appspot.com/o/images%2Fuser-unknown-logo%2Fuser-unknown-logo.svg?alt=media&token=c1ddaf10-5e6c-499a-9d51-43892834d130",
           status: {
             state: 'online',
             lastChange: new Date(),

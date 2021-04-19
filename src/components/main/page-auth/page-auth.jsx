@@ -16,7 +16,6 @@ import { AppRoute } from "../../../constant.js";
 
 import { ModalEditUserDateForm } from "./modal-edit-user-date-form/modal-edit-user-date-form";
 import { WaitingUserProfile } from "./../../waiting-from-sever/waiting-user-profile/waiting-user-profile";
-// import { useWindowSize } from "./../../../utils/use-hooks/hooks";
 import { DropDownArrowBtn } from "./user-section-info/info-arrow-btn/info-arrow-btn";
 import { ActionCreatorApp } from "../../../redux/app/appAction";
 import { useDispatch, useSelector } from "react-redux";

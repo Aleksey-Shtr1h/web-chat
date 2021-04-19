@@ -5,6 +5,7 @@ import { Link } from "react-router-dom";
 import { ActionCreatorApp } from "../../../../../../redux/app/appAction";
 
 import { OperationData } from "../../../../../../redux/data/dataReducer";
+import { getShotTitleRoom } from "../../../../../../utils/utils";
 import { AppRoute } from "./../../../../../../constant";
 
 export const SideBarChannelList = ({ userProfile }) => {
@@ -37,7 +38,7 @@ export const SideBarChannelList = ({ userProfile }) => {
                   dispatch(OperationData.loadChannel(idRoom));
                 }}
               >
-                {nameRoom}
+                {getShotTitleRoom(nameRoom, 10)}
               </Link>
             </li>
           );

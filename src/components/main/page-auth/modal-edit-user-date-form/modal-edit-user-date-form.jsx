@@ -38,7 +38,7 @@ export const ModalEditUserDateForm = () => {
     setSelectFile(evt.target.files[0]);
   };
 
-  const testMemo = React.useMemo(() => {
+  const visibleModal = React.useMemo(() => {
     return isEditUserData ? "modal-user-info-show" : "modal-user-info-hide";
   }, [isEditUserData]);
 
@@ -94,15 +94,15 @@ export const ModalEditUserDateForm = () => {
   };
 
   return (
-    <section className={`add-channel ${testMemo}`}>
+    <section className={`add-channel ${visibleModal}`}>
       <div className="add-channel-cantainer">
-        <ModalEditUserInfoMenu onClickActiveMenu={onClickActiveMenu} />
         <form
-          className="form-main"
+          className="form-main form-edit-info"
           action="#"
           method="post"
           onSubmit={onSubmit}
         >
+          <ModalEditUserInfoMenu onClickActiveMenu={onClickActiveMenu} />
           <div className="wrap-form-main">
             <ul className="form-main-list">
               {menuActive === "general" && (

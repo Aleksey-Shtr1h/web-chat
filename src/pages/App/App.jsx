@@ -14,8 +14,6 @@ import { RegistrationMain } from "../../components/main/registartion/registratio
 
 import { getStateUserOnline } from "../../redux/user/usersSelector";
 
-// import { Testing } from "../../components/Testing/Testing.jsx";
-
 import { PageType, PreloadSettings } from "../../constant.js";
 
 import { AppRoute } from "../../constant.js";

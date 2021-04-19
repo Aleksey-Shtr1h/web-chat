@@ -10,11 +10,7 @@ import { chooseUserCoomment } from "../../../../../../redux/data/dataSelector";
 
 import { getTimeFormat } from "../../../../../../utils/utils";
 
-import {
-  AppRoute,
-  PreloadSettings,
-  USER_UNKNOWN_PHOTO_URL,
-} from "../../../../../../constant";
+import { AppRoute, PreloadSettings } from "../../../../../../constant";
 
 export const ChatMessangesItem = ({ comment }) => {
   const { message, nameUser, timestamp, userId } = comment;
@@ -25,8 +21,7 @@ export const ChatMessangesItem = ({ comment }) => {
 
   const isHost = userProfile.userId === userId;
 
-  const userPhoto =
-    "photoUrl" in userComment ? userComment.photoUrl : USER_UNKNOWN_PHOTO_URL;
+  const userPhoto = userComment.photoUrl;
 
   const StyleItemMessage = {
     ITEM_CLASS: isHost ? "messages__host-item" : "messages__user-item",

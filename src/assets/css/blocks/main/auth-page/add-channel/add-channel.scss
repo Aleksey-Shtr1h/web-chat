@@ -1,5 +1,4 @@
 .add-channel {
-  // display: block;
   position: absolute;
 
   width: 100%;
@@ -8,6 +7,16 @@
   background: #00000021;
 
   z-index: 100;
+
+  transition: all 0.5s;
+
+  &.modal-hide {
+    transform: translateY(-300%);
+  }
+
+  &.modal-show {
+    transform: translateY(0%);
+  }
 }
 
 .add-channel-cantainer {
@@ -18,20 +27,12 @@
   margin-left: -15%;
   margin-top: -10%;
 
-  width: 30%;
+  width: 36%;
 
   border-radius: 10px;
   border: 2px solid #fff;
 
   box-shadow: 0 30px 50px #8a7b7bb3;
-}
-  
-.modal-show {
-  animation: bounce-keyframes 0.2s;
-}
-
-.modal-hide {
-  display: none;
 }
 
 .container-channel-btn {
@@ -43,9 +44,40 @@
 
   padding: 2% 5%;
 
-  font-size: 18px;
-  line-height: 18px;
+  font-size: adaptiveSizePx(10, 18, $_smPhoneWidth, $_maxDesktopWidth);
+  line-height: adaptiveSizePx(10, 18, $_smPhoneWidth, $_maxDesktopWidth);
 }
 
+@media screen and (max-width: $smDesktopWidth) {
+  .add-channel {
+    background: #0000008a;
+  }
 
+  .add-channel-cantainer {
+    left: 55%;
+    box-shadow: 0px 0px 100px 20px #aeadad;
+  }
 
+  .form-channel-btn {
+    margin: 0 2% 5% 2%;
+
+    padding: 3% 4%;
+  }
+}
+
+@media screen and (max-width: $tableWidth) {
+  .add-channel-cantainer {
+    width: 44%;
+  }
+}
+
+@media screen and (max-width: $phoneWidth) {
+  .add-channel {
+    background: #000000ba;
+  }
+
+  .add-channel-cantainer {
+    width: 70%;
+    left: 30%;
+  }
+}
