@@ -1,10 +1,23 @@
-import React, { useMemo } from "react";
+import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { ActionCreatorApp } from "../../../../redux/app/appAction";
 
 import { OperationData } from "../../../../redux/data/dataReducer";
 import { getUserProfile } from "../../../../redux/user/usersSelector";
 import { getStateModalAddChannel } from "../../../../redux/app/appSelector";
+
+import {
+  FormMain,
+  WrapperFormMain,
+  FormMainList,
+  FormMainItem,
+  FormMainLabel,
+  FormMainInput,
+  ModalSection,
+  ModalWrapper,
+  BtnWrapper,
+  BtnForm,
+} from "../../../../globalStyled/form.styled";
 
 export const ModalNewChannelForm = () => {
   const dispatch = useDispatch();
@@ -40,73 +53,60 @@ export const ModalNewChannelForm = () => {
     }
   }, [userProfile, toggleButtonSubmit]);
 
-  const testMemo = useMemo(() => {
-    if (!isModalAddChannel) {
-      setNameRoom(``);
-    }
-    return isModalAddChannel ? "modal-show" : "modal-hide";
-  }, [isModalAddChannel]);
-
   return (
-    <section className={`add-channel ${testMemo}`}>
-      <div className="add-channel-cantainer">
-        <form
-          className="form-main"
+    <ModalSection showModalClick={isModalAddChannel}>
+      <ModalWrapper>
+        <FormMain
           action="#"
           method="post"
           onSubmit={(evt) => {
             evt.preventDefault();
-            if (nameRoom !== ``) {
-              dispatch(
-                OperationData.createChannel(
-                  nameRoom,
-                  [userProfile.userId],
-                  [userProfile.userId]
-                )
-              );
-            }
-            setNameRoom(``);
+
+            dispatch(
+              OperationData.createChannel(
+                nameRoom,
+                [userProfile.userId],
+                [userProfile.userId]
+              )
+            );
           }}
         >
-          <div className="wrap-form-main">
-            <ul className="form-main-list">
-              <li className="form-main-list__item">
-                <label className="form-main-list__text" htmlFor="room-text">
+          <WrapperFormMain>
+            <FormMainList>
+              <FormMainItem>
+                <FormMainLabel htmlFor="room-text">
                   Enter name room
-                </label>
-                <input
-                  className="form-main-list__input"
+                </FormMainLabel>
+                <FormMainInput
                   type="text"
                   id="room-text"
                   placeholder="name room"
                   value={nameRoom}
                   onChange={(evt) => setNameRoom(evt.target.value)}
                 />
-              </li>
-            </ul>
+              </FormMainItem>
+            </FormMainList>
 
-            <div className="container-flex-row container-channel-btn">
-              <button
-                className="form-main-btn-submit form-channel-btn"
+            <BtnWrapper>
+              <BtnForm
                 type="submit"
                 disabled={toggleButtonSubmit ? "" : "disabled"}
               >
                 Add room
-              </button>
+              </BtnForm>
 
-              <button
-                className="form-main-btn-submit form-channel-btn"
+              <BtnForm
                 type="button"
                 onClick={() => {
                   dispatch(ActionCreatorApp.toglleModalAddChannel(false));
                 }}
               >
                 Cancel
-              </button>
-            </div>
-          </div>
-        </form>
-      </div>
-    </section>
+              </BtnForm>
+            </BtnWrapper>
+          </WrapperFormMain>
+        </FormMain>
+      </ModalWrapper>
+    </ModalSection>
   );
 };

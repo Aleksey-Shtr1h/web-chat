@@ -1,20 +1,18 @@
 import React from "react";
-import Slider from "react-slick";
-import { useWindowSize } from "../../../utils/use-hooks/hooks.js";
 import { sliderOptions } from "../../../constant.js";
+import {
+  SliderBox,
+  SliderItem,
+  SliderWrapper,
+  SliderItemWrapper,
+  SliderWrapperContent,
+  SliderIcon,
+  SliderTitle,
+  SliderText,
+  SliderEdit,
+} from "./slider-wellcome.styled.js";
 
 export const SliderWellcome = () => {
-  const [widthWindow] = useWindowSize();
-
-  const nameSliderClass = widthWindow > 900 ? `slider-desktop` : `slider-table`;
-  const nameSliderWrapClass =
-    widthWindow > 900 ? `slider__wpapper-desktop` : `slider__wpapper-table`;
-
-  const nameSliderItemWrapClass =
-    widthWindow > 900
-      ? `slider__item-wrapper-desktop`
-      : `slider__item-wrapper-table`;
-
   const settings = {
     dots: true,
     fade: true,
@@ -27,29 +25,26 @@ export const SliderWellcome = () => {
   };
 
   return (
-    <div className={`slider ${nameSliderClass}`}>
-      <div className={`slider__wpapper ${nameSliderWrapClass}`}>
-        <Slider {...settings}>
+    <SliderBox>
+      <SliderWrapper>
+        <SliderEdit {...settings}>
           {sliderOptions.map((sliderOption, id) => {
             const { title, text, color, icon } = sliderOption;
 
             return (
-              <div className="slider__item" key={sliderOption.title + id}>
-                <div
-                  className={`slider__item-wrapper ${nameSliderItemWrapClass}`}
-                  style={{ backgroundColor: color }}
-                >
-                  <div className="wraper-slider-content">
-                    <i className={`fas ${icon}`}></i>
-                    <h3 className="slider__title">{title}</h3>
-                    <p className="slider__text">{text}</p>
-                  </div>
-                </div>
-              </div>
+              <SliderItem key={sliderOption.title + id}>
+                <SliderItemWrapper color={color}>
+                  <SliderWrapperContent>
+                    <SliderIcon className={icon}></SliderIcon>
+                    <SliderTitle>{title}</SliderTitle>
+                    <SliderText>{text}</SliderText>
+                  </SliderWrapperContent>
+                </SliderItemWrapper>
+              </SliderItem>
             );
           })}
-        </Slider>
-      </div>
-    </div>
+        </SliderEdit>
+      </SliderWrapper>
+    </SliderBox>
   );
 };

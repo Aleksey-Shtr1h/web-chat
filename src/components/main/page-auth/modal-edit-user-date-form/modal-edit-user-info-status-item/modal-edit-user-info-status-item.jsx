@@ -1,19 +1,24 @@
 import React from "react";
 
+import {
+  FormMainItem,
+  FormMainLabel,
+  FormMainTextArea,
+} from "../../../../../globalStyled/form.styled";
+
 export const ModalEditUserInfoStatusItem = ({
   statusDiscription,
   setStatusDiscription,
 }) => {
   return (
     <>
-      <li className="form-main-list__item">
-        <label
-          className="form-messages__text"
+      <FormMainItem>
+        <FormMainLabel
           htmlFor="messages-text"
           area-label="messages-text"
-        ></label>
-        <textarea
-          className="form-main-list__input form-messages__input"
+        ></FormMainLabel>
+        <FormMainTextArea
+          // className="form-main-list__input form-messages__input"
           minLength="1"
           maxLength="1000"
           name="messages-text"
@@ -22,7 +27,7 @@ export const ModalEditUserInfoStatusItem = ({
           value={statusDiscription}
           onChange={(evt) => setStatusDiscription(evt.target.value)}
         />
-      </li>
+      </FormMainItem>
     </>
   );
 };

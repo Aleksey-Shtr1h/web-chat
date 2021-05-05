@@ -5,6 +5,7 @@ import { DropDownArrowBtn } from "./../user-section-info/info-arrow-btn/info-arr
 
 import { ActionCreatorApp } from "../../../../redux/app/appAction";
 import { getStateSideBarArrowBtn } from "../../../../redux/app/appSelector";
+import { SideBarSection } from "./../../../../assets/css/blocks/main/auth-page/side-bar/side-bar.styled";
 
 export const SideBar = ({ children }) => {
   const isSideBarArrowBtn = useSelector((state) =>
@@ -18,12 +19,8 @@ export const SideBar = ({ children }) => {
 
   const classArrow = isSideBarArrowBtn ? "arrow-icon-left" : "arrow-icon-right";
 
-  const showTabletClass = isSideBarArrowBtn
-    ? "side-bar-phone-show"
-    : "side-bar-phone-hide";
-
   return (
-    <section className={`side-bar ${showTabletClass}`}>
+    <SideBarSection showSideBar={isSideBarArrowBtn}>
       {children}
       <DropDownArrowBtn
         onClickStateBtn={onClickSideBarBtn}
@@ -31,6 +28,6 @@ export const SideBar = ({ children }) => {
         classBlock={`side-bar-desktop__arrow-block`}
         colorArrow={{ fill: "#ffffff" }}
       />
-    </section>
+    </SideBarSection>
   );
 };

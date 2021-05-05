@@ -1,11 +1,11 @@
-.slick-prev::before {
+/* .slick-prev::before {
   left: 0;
   background-image: url('../../../image/caret-left.svg');
-}
+} */
 
-.slick-next::before {
-  background-image: url('../../../image/caret-right.svg');
-}
+/* .slick-next::before {
+  background-image: url("../../../image/caret-right.svg");
+} */
 
 .info-room__count-users::before {
   background-image: url("../../../image/user-icon.svg");

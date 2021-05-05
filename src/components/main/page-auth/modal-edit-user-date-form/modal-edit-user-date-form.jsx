@@ -12,6 +12,16 @@ import {
 import { getStateEditUserDate } from "../../../../redux/app/appSelector";
 import { ActionCreatorApp } from "../../../../redux/app/appAction";
 
+import {
+  FormMain,
+  WrapperFormMain,
+  FormMainList,
+  ModalSection,
+  ModalWrapper,
+  BtnWrapper,
+  BtnForm,
+} from "../../../../globalStyled/form.styled";
+
 export const ModalEditUserDateForm = () => {
   const isEditUserData = useSelector((state) => getStateEditUserDate(state));
   const userAuthId = useSelector((state) => getUserAuthId(state));
@@ -38,9 +48,9 @@ export const ModalEditUserDateForm = () => {
     setSelectFile(evt.target.files[0]);
   };
 
-  const visibleModal = React.useMemo(() => {
-    return isEditUserData ? "modal-user-info-show" : "modal-user-info-hide";
-  }, [isEditUserData]);
+  // const visibleModal = React.useMemo(() => {
+  //   return isEditUserData ? "modal-user-info-show" : "modal-user-info-hide";
+  // }, [isEditUserData]);
 
   const onSubmit = (evt) => {
     evt.preventDefault();
@@ -94,17 +104,12 @@ export const ModalEditUserDateForm = () => {
   };
 
   return (
-    <section className={`add-channel ${visibleModal}`}>
-      <div className="add-channel-cantainer">
-        <form
-          className="form-main form-edit-info"
-          action="#"
-          method="post"
-          onSubmit={onSubmit}
-        >
+    <ModalSection showModalClick={isEditUserData}>
+      <ModalWrapper>
+        <FormMain action="#" method="post" onSubmit={onSubmit}>
           <ModalEditUserInfoMenu onClickActiveMenu={onClickActiveMenu} />
-          <div className="wrap-form-main">
-            <ul className="form-main-list">
+          <WrapperFormMain>
+            <FormMainList>
               {menuActive === "general" && (
                 <ModalEditUserInfoGeneralItem
                   newName={newName}
@@ -132,18 +137,12 @@ export const ModalEditUserDateForm = () => {
                   setStatusDiscription={setStatusDiscription}
                 />
               )}
-            </ul>
+            </FormMainList>
 
-            <div className="container-flex-row container-channel-btn">
-              <button
-                className="form-main-btn-submit form-channel-btn"
-                type="submit"
-              >
-                Edit
-              </button>
+            <BtnWrapper>
+              <BtnForm type="submit">Edit</BtnForm>
 
-              <button
-                className="form-main-btn-submit form-channel-btn"
+              <BtnForm
                 type="button"
                 onClick={() => {
                   dispatch(
@@ -152,11 +151,11 @@ export const ModalEditUserDateForm = () => {
                 }}
               >
                 Cancel
-              </button>
-            </div>
-          </div>
-        </form>
-      </div>
-    </section>
+              </BtnForm>
+            </BtnWrapper>
+          </WrapperFormMain>
+        </FormMain>
+      </ModalWrapper>
+    </ModalSection>
   );
 };

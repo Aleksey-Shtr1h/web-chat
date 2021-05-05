@@ -82,7 +82,7 @@
   width: 42px;
 }
 
-@media screen and (max-width: $phoneWidth) {
+@media screen and (max-width: 480px) {
   .hamburger {
     width: 25px;
     height: 25px;
@@ -106,7 +106,7 @@
   }
 }
 
-@media screen and (max-width: $smPhoneWidth) {
+@media screen and (max-width: 320px) {
   .hamburger {
     width: 22px;
     height: 22px;

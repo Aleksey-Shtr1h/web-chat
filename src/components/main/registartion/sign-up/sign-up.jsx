@@ -1,7 +1,20 @@
 import React, { useState } from "react";
 import { useDispatch } from "react-redux";
+import {
+  FormMainList,
+  WrapperFormMain,
+} from "../../../../globalStyled/form.styled.js";
 
 import { OperationUser } from "../../../../redux/user/userReducer.js";
+import {
+  BtnFormReagistration,
+  FormRegistrationInput,
+  FormRegistrationItem,
+  FormRegistrationLabel,
+  FormRegstration,
+  MainRegistartion,
+  RegistartionWrapper,
+} from "../registration-main/registartion-main.styled.js";
 
 export const SignUp = () => {
   const [name, setName] = useState(``);
@@ -16,10 +29,9 @@ export const SignUp = () => {
   const validName = name !== `` ? true : false;
 
   return (
-    <main className="main-login">
-      <div className="container login">
-        <form
-          className="form-main form-sign"
+    <MainRegistartion>
+      <RegistartionWrapper>
+        <FormRegstration
           action="#"
           method="post"
           onSubmit={(evt) => {
@@ -32,65 +44,42 @@ export const SignUp = () => {
             dispatch(OperationUser.userRegistration(name, email, password));
           }}
         >
-          <div className="wrap-form-main">
-            <ul className="form-main-list">
-              <li
-                className={`form-main-list__item ${
-                  validName ? "" : "error-valid-item"
-                }`}
-              >
-                <label
-                  className="form-main-list__text form-login-list__text"
-                  htmlFor="login-name"
-                >
+          <WrapperFormMain>
+            <FormMainList>
+              <FormRegistrationItem valid={validName}>
+                <FormRegistrationLabel htmlFor="login-name">
                   Name
-                </label>
-                <input
-                  className="form-main-list__input form-login-list__input"
+                </FormRegistrationLabel>
+                <FormRegistrationInput
+                  valid={validName}
                   type="text"
                   id="login-name"
                   placeholder="Jhon Anderson"
                   value={name}
                   onChange={(evt) => setName(evt.target.value)}
                 />
-              </li>
+              </FormRegistrationItem>
 
-              <li
-                className={`form-main-list__item ${
-                  validEmail ? "" : "error-valid-item"
-                }`}
-              >
-                <label
-                  className="form-main-list__text form-login-list__text"
-                  htmlFor="email"
-                >
+              <FormRegistrationItem valid={validEmail}>
+                <FormRegistrationLabel htmlFor="email">
                   Email
-                </label>
-                <input
-                  className="form-main-list__input form-login-list__input"
+                </FormRegistrationLabel>
+                <FormRegistrationInput
+                  valid={validEmail}
                   type="email"
                   id="email"
                   placeholder="email@gmail.com"
                   value={email}
                   onChange={(evt) => setEmail(evt.target.value)}
                 />
-              </li>
+              </FormRegistrationItem>
 
-              <li
-                className={`form-main-list__item ${
-                  validPassword ? "" : "error-valid-item"
-                }`}
-              >
-                <label
-                  className="form-main-list__text form-login-list__text"
-                  htmlFor="password"
-                >
+              <FormRegistrationItem valid={validPassword}>
+                <FormRegistrationLabel htmlFor="password">
                   Password
-                </label>
-                <input
-                  className={`form-main-list__input form-login-list__input ${
-                    validPassword ? "" : "error-valid-password"
-                  }`}
+                </FormRegistrationLabel>
+                <FormRegistrationInput
+                  valid={validPassword}
                   type="password"
                   id="password"
                   placeholder="*********"
@@ -98,23 +87,14 @@ export const SignUp = () => {
                   autoComplete="off"
                   onChange={(evt) => setPassword(evt.target.value)}
                 />
-              </li>
+              </FormRegistrationItem>
 
-              <li
-                className={`form-main-list__item ${
-                  validPassword ? "" : "error-valid-item"
-                }`}
-              >
-                <label
-                  className="form-main-list__text form-login-list__text"
-                  htmlFor="confirm_password"
-                >
+              <FormRegistrationItem valid={validPassword}>
+                <FormRegistrationLabel htmlFor="confirm_password">
                   Confirm Password
-                </label>
-                <input
-                  className={`form-main-list__input form-login-list__input ${
-                    validPassword ? "" : "error-valid-password"
-                  }`}
+                </FormRegistrationLabel>
+                <FormRegistrationInput
+                  valid={validPassword}
                   type="password"
                   id="confirm_password"
                   placeholder="*********"
@@ -122,29 +102,13 @@ export const SignUp = () => {
                   autoComplete="off"
                   onChange={(evt) => setConfirmPassword(evt.target.value)}
                 />
-              </li>
-            </ul>
+              </FormRegistrationItem>
+            </FormMainList>
 
-            <div className="sign-in-data__remember">
-              <input
-                className="sign-in-data__remember-checkbox"
-                type="checkbox"
-                id="remember"
-              />
-              <label className="sign-in-data__remember-text" htmlFor="remember">
-                I agree to Terms of Use
-              </label>
-            </div>
-
-            <button
-              className="form-main-btn-submit form-login-btn-submit"
-              type="submit"
-            >
-              Sign Up
-            </button>
-          </div>
-        </form>
-      </div>
-    </main>
+            <BtnFormReagistration type="submit">Sign Up</BtnFormReagistration>
+          </WrapperFormMain>
+        </FormRegstration>
+      </RegistartionWrapper>
+    </MainRegistartion>
   );
 };

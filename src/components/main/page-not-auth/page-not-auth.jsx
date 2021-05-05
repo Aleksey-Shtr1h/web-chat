@@ -1,13 +1,12 @@
 import React from "react";
 
-import {SliderWellcome} from './slider-wellcome.jsx';
+import { SliderWellcome } from "./slider-wellcome.jsx";
+import { MainStart } from "./slider-wellcome.styled.js";
 
 export const PageNotAuth = () => {
-
   return (
-    <main className="main-wellcome">
+    <MainStart>
       <SliderWellcome />
-    </main>
+    </MainStart>
   );
-
 };

@@ -12,6 +12,16 @@ import {
   getStateBurgerBtn,
 } from "./../../../redux/app/appSelector";
 
+import {
+  UserHeaderMenuSection,
+  UserHeaderMenuWrapper,
+  UserHeaderResponseMenuWrapper,
+  BtnAddChanel,
+  IconMenuWrapper,
+} from "./header-user-profile.styled.js";
+
+import "./menu-icon.scss";
+
 export const HeaderUserProfile = () => {
   const dispatch = useDispatch();
 
@@ -22,18 +32,13 @@ export const HeaderUserProfile = () => {
   const isOnline = useSelector((state) => getStateUserOnline(state));
 
   return (
-    <section className="user-profile">
+    <UserHeaderMenuSection>
       <h2 className="visually-hidden">user profile</h2>
 
-      <div
-        className={`wrapper-link-menu ${
-          isBurgerBtn ? "wrapper-link-menu-open" : ""
-        }`}
-      >
-        <div className="response-menu response-menu-burger">
+      <UserHeaderMenuWrapper isActiveMenu={isBurgerBtn}>
+        <UserHeaderResponseMenuWrapper>
           {isOnline && (
-            <button
-              className="add-channel-btn"
+            <BtnAddChanel
               onClick={() => {
                 dispatch(
                   ActionCreatorApp.toglleModalAddChannel(!isModalAddChannel)
@@ -42,7 +47,7 @@ export const HeaderUserProfile = () => {
               }}
             >
               +
-            </button>
+            </BtnAddChanel>
           )}
 
           {isOnline
@@ -62,13 +67,14 @@ export const HeaderUserProfile = () => {
                   key={signMenu.name + id}
                 />
               ))}
-        </div>
-      </div>
+        </UserHeaderResponseMenuWrapper>
+      </UserHeaderMenuWrapper>
 
-      <div
-        className={`wrapper-icon-menu ${
-          isBurgerBtn ? "wrapper-icon-menu-active" : ""
-        }`}
+      <IconMenuWrapper
+        isActiveMenu={isBurgerBtn}
+        // className={`wrapper-icon-menu ${
+        //   isBurgerBtn ? "wrapper-icon-menu-active" : ""
+        // }`}
       >
         <input
           className="checkbox3 visuallyHidden"
@@ -87,7 +93,7 @@ export const HeaderUserProfile = () => {
             <span className="bar bar4"></span>
           </div>
         </label>
-      </div>
-    </section>
+      </IconMenuWrapper>
+    </UserHeaderMenuSection>
   );
 };

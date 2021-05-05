@@ -1,20 +1,20 @@
-.side-bar {
-  position: relative;
-  flex: 0 1 20%;
+// .side-bar {
+//   position: relative;
+//   flex: 0 1 20%;
 
-  background-color: #25272a;
+//   background-color: #25272a;
 
-  overflow: auto;
-}
+//   overflow: auto;
+// }
 
-.side-bar-block {
-  display: flex;
-  flex-direction: column;
+// .side-bar-block {
+//   display: flex;
+//   flex-direction: column;
 
-  padding-top: 2vh;
-  padding-left: 2vw;
-  padding-right: 2vw;
-}
+//   padding-top: 2vh;
+//   padding-left: 2vw;
+//   padding-right: 2vw;
+// }
 
 .search-room {
   position: relative;
@@ -207,15 +207,15 @@
 }
 
 @media screen and (max-width: $smDesktopWidth) {
-  .side-bar {
-    flex: 0 1 25%;
-  }
+  // .side-bar {
+  //   flex: 0 1 25%;
+  // }
 }
 
 @media screen and (max-width: $smTableWidth) {
-  .side-bar {
-    flex: 0 1 20%;
-  }
+  // .side-bar {
+  //   flex: 0 1 20%;
+  // }
 
   .friends__link {
     margin-left: 20%;

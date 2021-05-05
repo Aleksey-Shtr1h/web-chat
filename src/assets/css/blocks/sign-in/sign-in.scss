@@ -1,87 +1,87 @@
-.main-login {
-  display: flex;
-  flex-direction: column;
+// .main-login {
+//   display: flex;
+//   flex-direction: column;
 
-  height: 100%;
+//   height: 100%;
 
-  z-index: 1;
-}
+//   z-index: 1;
+// }
 
-.login {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
+// .login {
+//   display: flex;
+//   flex-direction: column;
+//   align-items: center;
+//   justify-content: center;
 
-  height: 100%;
-}
+//   height: 100%;
+// }
 
-.form-sign {
-  width: adaptiveSizePx(400, 600, $_phoneWidth, $_maxDesktopWidth);
-}
+// .form-sign {
+//   width: adaptiveSizePx(400, 600, $_phoneWidth, $_maxDesktopWidth);
+// }
 
-.error-valid-item::after {
-  content: "x";
+// .error-valid-item::after {
+//   content: "x";
 
-  position: absolute;
-  top: 0;
-  right: 0;
-  width: 20px;
-  height: 20px;
+//   position: absolute;
+//   top: 0;
+//   right: 0;
+//   width: 20px;
+//   height: 20px;
 
-  text-align: center;
-  color: red;
+//   text-align: center;
+//   color: red;
 
-  cursor: pointer;
-}
+//   cursor: pointer;
+// }
 
-.form-login-list__text {
-  font-size: adaptiveSizePx(12, 20, $_smPhoneWidth, $_maxDesktopWidth);
-  line-height: 25px;
-}
+// .form-login-list__text {
+//   font-size: adaptiveSizePx(12, 20, $_smPhoneWidth, $_maxDesktopWidth);
+//   line-height: 25px;
+// }
 
-.form-login-list__input {
-  font-size: 20px;
+// .form-login-list__input {
+//   font-size: 20px;
 
-  &::placeholder {
-    font-size: adaptiveSizePx(12, 18, $_smPhoneWidth, $_maxDesktopWidth);
-  }
-}
+//   &::placeholder {
+//     font-size: adaptiveSizePx(12, 18, $_smPhoneWidth, $_maxDesktopWidth);
+//   }
+// }
 
-.sign-in-data__remember {
-  padding-bottom: 8%;
-}
+// .sign-in-data__remember {
+//   padding-bottom: 8%;
+// }
 
-.sign-in-data__remember-text {
-  padding-left: 3%;
-  font-size: adaptiveSizePx(9, 15, $_smPhoneWidth, $_maxDesktopWidth);
+// .sign-in-data__remember-text {
+//   padding-left: 3%;
+//   font-size: adaptiveSizePx(9, 15, $_smPhoneWidth, $_maxDesktopWidth);
 
-  color: #fff;
-}
+//   color: #fff;
+// }
 
-.form-login-btn-submit {
-  font-size: 25px;
-  line-height: 25px;
+// .form-login-btn-submit {
+//   font-size: 25px;
+//   line-height: 25px;
 
-  padding-top: 3%;
-  padding-bottom: 3%;
+//   padding-top: 3%;
+//   padding-bottom: 3%;
 
-  margin-bottom: 5%
-}
+//   margin-bottom: 5%;
+// }
 
-.error-valid-password {
-  position: relative;
-  border: 3px solid #ff00007d;
-}
+// .error-valid-password {
+//   position: relative;
+//   border: 3px solid #ff00007d;
+// }
 
-@media screen and (max-width: $phoneWidth) {
-  .form-sign-in {
-    width: 100%;
-  }
+// @media screen and (max-width: $phoneWidth) {
+// .form-sign-in {
+//   width: 100%;
+// }
 
-  .form-login-list__input {
-    padding-top: 0.8%;
-    padding-bottom: 0.8%;
-    padding-left: 1%;
-  }
-}
+// .form-login-list__input {
+//   padding-top: 0.8%;
+//   padding-bottom: 0.8%;
+//   padding-left: 1%;
+// }
+// }

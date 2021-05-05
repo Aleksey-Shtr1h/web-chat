@@ -1,17 +1,15 @@
 import React from "react";
+import { ContainerPreload, PreloadTitle } from "./preload.styled";
 
 export const Preload = ({ preloadSettings, preload }) => {
-  const {
-    CLASS_PRELOAD,
-    CLASS_TITLE,
-    CLASS_TEXT,
-    STYLE_POSITION,
-  } = preloadSettings;
+  const { TITLE, POSITION } = preloadSettings;
+
+  const text = TITLE ? "loading" : "";
 
   return (
-    <div className={CLASS_PRELOAD} style={STYLE_POSITION}>
-      <h2 className={CLASS_TITLE}>{CLASS_TEXT}</h2>
+    <ContainerPreload position={POSITION}>
+      <PreloadTitle>{text}</PreloadTitle>
       {preload}
-    </div>
+    </ContainerPreload>
   );
 };

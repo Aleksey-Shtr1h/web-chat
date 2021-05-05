@@ -1,8 +1,8 @@
-import { MONTH_NAMES } from '../constant.js';
+import { MONTH_NAMES } from "../constant.js";
 
 const getDateFormat = (date) => {
-  return date < 10 ? '0' + date : date;
-}
+  return date < 10 ? "0" + date : date;
+};
 
 export const searchMonth = (typeDate, searchArray) => {
   let result = null;
@@ -20,17 +20,23 @@ const getDayFormat = (date) => {
   const monthNow = new Date().getMonth();
   const yearNow = new Date().getFullYear();
 
-  const dateComment = date.getDate()
+  const dateComment = date.getDate();
   const monthComment = date.getMonth();
-  const yearComment = date.getFullYear()
+  const yearComment = date.getFullYear();
 
   const yearResult = yearComment;
   const monthResult = searchMonth(monthComment, MONTH_NAMES);
   const dateResult = getDateFormat(dateComment);
 
-  if (monthNow + yearNow === monthComment + yearComment && dateNow === dateComment) {
+  if (
+    monthNow + yearNow === monthComment + yearComment &&
+    dateNow === dateComment
+  ) {
     return `today`;
-  } else if (monthNow + yearNow === monthComment + yearComment && dateNow === dateComment + 1) {
+  } else if (
+    monthNow + yearNow === monthComment + yearComment &&
+    dateNow === dateComment + 1
+  ) {
     return `yesterday`;
   }
 
@@ -50,21 +56,17 @@ export const getDays = (messanges) => {
 
       messangesRoom[date].push(messange);
     } else {
-
-      if (!messangesRoom['Loading']) {
-        messangesRoom['Loading'] = [];
+      if (!messangesRoom["Loading"]) {
+        messangesRoom["Loading"] = [];
       }
-      messangesRoom['Loading'].push(messange);
-
-    };
-
+      messangesRoom["Loading"].push(messange);
+    }
   });
 
   return messangesRoom;
 };
 
 export const getTimeFormat = (time) => {
-
   const hours = time.getHours();
   const minutes = time.getMinutes();
 

@@ -23,6 +23,10 @@ import {
   getStateSideBarArrowBtn,
   getStateUserInfoArrowBtn,
 } from "../../../redux/app/appSelector";
+import {
+  AuthUserContentMain,
+  AuthUserContentWrapper,
+} from "./page-auth.styled";
 
 export const PageAuth = () => {
   const dispatch = useDispatch();
@@ -46,8 +50,8 @@ export const PageAuth = () => {
 
   return (
     <>
-      <main className="main-content">
-        <div className="container-content">
+      <AuthUserContentMain>
+        <AuthUserContentWrapper>
           <Switch>
             <>
               <Redirect
@@ -116,8 +120,8 @@ export const PageAuth = () => {
           </Switch>
 
           <UserSectionInfo />
-        </div>
-      </main>
+        </AuthUserContentWrapper>
+      </AuthUserContentMain>
 
       <>
         <ModalNewChannelForm />
