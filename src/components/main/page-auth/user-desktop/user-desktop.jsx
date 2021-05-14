@@ -1,23 +1,23 @@
-import React from "react";
-import { PulseLoader } from "react-spinners";
-import { useDispatch, useSelector } from "react-redux";
+import React from 'react';
+import { PulseLoader } from 'react-spinners';
+import { useDispatch, useSelector } from 'react-redux';
 
-import { SubscribeButton } from "./subscribe-button/subscribe-button";
-import { Preload } from "../../../preload/preload";
+import { SubscribeButton } from './subscribe-button/subscribe-button';
+import { Preload } from '../../../preload/preload';
 
-import { OperationApp } from "../../../../redux/app/appReducer";
+import { OperationApp } from '../../../../redux/app/appReducer';
 import {
   getStateSideBarArrowBtn,
   getStateUserInfoArrowBtn,
   getSubscribedUser,
   getTogglePreloadMessanges,
-} from "../../../../redux/app/appSelector";
-import { getUserProfile } from "./../../../../redux/user/usersSelector";
-import { getSelectRoom } from "../../../../redux/data/dataSelector";
+} from '../../../../redux/app/appSelector';
+import { getUserProfile } from './../../../../redux/user/usersSelector';
+import { getSelectRoom } from '../../../../redux/data/dataSelector';
 
-import { PreloadSettings } from "../../../../constant";
-import { DropDownArrowBtn } from "../user-section-info/info-arrow-btn/info-arrow-btn";
-import { ActionCreatorApp } from "../../../../redux/app/appAction";
+import { PreloadSettings } from '../../../../constant';
+import { DropDownArrowBtn } from '../user-section-info/info-arrow-btn/info-arrow-btn';
+import { ActionCreatorApp } from '../../../../redux/app/appAction';
 
 export const UserDesktop = ({ children }) => {
   const dispatch = useDispatch();
@@ -52,7 +52,7 @@ export const UserDesktop = ({ children }) => {
       width={8}
       radius={20}
       margin={20}
-      color={"#000"}
+      color={'#000'}
       loading
     />
   );
@@ -66,8 +66,8 @@ export const UserDesktop = ({ children }) => {
   };
 
   const classPhone = isSideBarArrowBtn
-    ? "user-desktop-phone-hide"
-    : "user-desktop-phone-show";
+    ? 'user-desktop-phone-hide'
+    : 'user-desktop-phone-show';
 
   return (
     <section className={`user-desktop ${classPhone}`}>

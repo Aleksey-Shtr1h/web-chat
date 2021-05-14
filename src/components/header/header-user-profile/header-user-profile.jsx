@@ -1,16 +1,16 @@
-import React from "react";
-import { useDispatch, useSelector } from "react-redux";
+import React from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 
-import { HeaderUserLink } from "../header-user-link/header-user-link.jsx";
+import { HeaderUserLink } from '../header-user-link/header-user-link';
 
-import { ActionCreatorApp } from "../../../redux/app/appAction.js";
-import { getStateUserOnline } from "../../../redux/user/usersSelector.js";
+import { ActionCreatorApp } from '../../../redux/app/appAction';
+import { getStateUserOnline } from '../../../redux/user/usersSelector';
 
-import { SignMenu } from "../../../constant.js";
+import { SignMenu } from '../../../constant';
 import {
   getStateModalAddChannel,
   getStateBurgerBtn,
-} from "./../../../redux/app/appSelector";
+} from './../../../redux/app/appSelector';
 
 import {
   UserHeaderMenuSection,
@@ -18,9 +18,9 @@ import {
   UserHeaderResponseMenuWrapper,
   BtnAddChanel,
   IconMenuWrapper,
-} from "./header-user-profile.styled.js";
+} from './header-user-profile.styled';
 
-import "./menu-icon.scss";
+import './menu-icon.scss';
 
 export const HeaderUserProfile = () => {
   const dispatch = useDispatch();
@@ -83,7 +83,7 @@ export const HeaderUserProfile = () => {
           onChange={() => {
             dispatch(ActionCreatorApp.changeBurgerBtn(!isBurgerBtn));
           }}
-          checked={isBurgerBtn ? "checked" : ""}
+          checked={isBurgerBtn ? 'checked' : ''}
         />
         <label htmlFor="checkbox3">
           <div className="hamburger hamburger3">

@@ -1,10 +1,10 @@
-import React from "react";
-import { Switch, Route, Redirect } from "react-router-dom";
+import React from 'react';
+import { Switch, Route, Redirect } from 'react-router-dom';
 
-import { PageNotAuth } from "./page-not-auth/page-not-auth.jsx";
-import { PageAuth } from "./page-auth/page-auth.jsx";
+import { PageNotAuth } from './page-not-auth/page-not-auth';
+import { PageAuth } from './page-auth/page-auth';
 
-import { AppRoute } from "../../constant.js";
+import { AppRoute } from '../../constant';
 
 export const MainPage = ({ isOnline }) => {
   return (

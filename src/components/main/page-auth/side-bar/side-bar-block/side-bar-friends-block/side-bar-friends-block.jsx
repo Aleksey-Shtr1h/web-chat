@@ -1,16 +1,16 @@
-import React, { useEffect, useCallback } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import React, { useEffect, useCallback } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 
-import { SideBarFriendsItem } from "../side-bar-friends-item/side-bar-friends-item.jsx";
-import { SideBarNameBlock } from "../side-bar-name-block/side-bar-name-block.jsx";
+import { SideBarFriendsItem } from '../side-bar-friends-item/side-bar-friends-item';
+import { SideBarNameBlock } from '../side-bar-name-block/side-bar-name-block';
 
-import { OperationData } from "../../../../../../redux/data/dataReducer.js";
+import { OperationData } from '../../../../../../redux/data/dataReducer';
 import {
   getSelectRoom,
   getSortUsers,
-} from "../../../../../../redux/data/dataSelector.js";
-import { getTogglePreloadUsers } from "../../../../../../redux/app/appSelector.js";
-import { TypeSideBarNameBlock } from "../../../../../../constant.js";
+} from '../../../../../../redux/data/dataSelector';
+import { getTogglePreloadUsers } from '../../../../../../redux/app/appSelector';
+import { TypeSideBarNameBlock } from '../../../../../../constant';
 
 export const SideBarFriendsBlock = () => {
   const selectRoom = useSelector((state) => getSelectRoom(state));
@@ -32,7 +32,7 @@ export const SideBarFriendsBlock = () => {
     return (
       <SideBarNameBlock
         typeChannels={TypeSideBarNameBlock.FRIENDS}
-        styleColor={{ color: "#ffffff" }}
+        styleColor={{ color: '#ffffff' }}
         nameSpan={`Loading...`}
       />
     );

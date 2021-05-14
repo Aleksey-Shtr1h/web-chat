@@ -1,14 +1,14 @@
-import React from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { ScrollToChatList } from "../../../../../../constant";
-import { OperationData } from "../../../../../../redux/data/dataReducer";
+import React from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { ScrollToChatList } from '../../../../../../constant';
+import { OperationData } from '../../../../../../redux/data/dataReducer';
 import {
   getMessangesList,
   getSelectRoom,
-} from "../../../../../../redux/data/dataSelector";
-import { getDays } from "../../../../../../utils/utils";
+} from '../../../../../../redux/data/dataSelector';
+import { getDays } from '../../../../../../utils/utils';
 
-import { ChatDayItem } from "../chat-day-item/chat-day-item";
+import { ChatDayItem } from '../chat-day-item/chat-day-item';
 
 export const ChatDayList = () => {
   const dispatch = useDispatch();

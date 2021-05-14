@@ -1,11 +1,11 @@
-import React, { useState } from "react";
-import { useDispatch } from "react-redux";
+import React, { useState } from 'react';
+import { useDispatch } from 'react-redux';
 import {
   FormMainList,
   WrapperFormMain,
-} from "../../../../globalStyled/form.styled.js";
+} from '../../../../globalStyled/form.styled';
 
-import { OperationUser } from "../../../../redux/user/userReducer.js";
+import { OperationUser } from '../../../../redux/user/userReducer';
 import {
   BtnFormReagistration,
   FormRegistrationInput,
@@ -14,7 +14,7 @@ import {
   FormRegstration,
   MainRegistartion,
   RegistartionWrapper,
-} from "../registration-main/registartion-main.styled.js";
+} from '../registration-main/registartion-main.styled';
 
 export const SignUp = () => {
   const [name, setName] = useState(``);

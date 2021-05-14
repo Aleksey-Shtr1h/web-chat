@@ -1,11 +1,11 @@
-import React from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { Link } from "react-router-dom";
+import React from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { Link } from 'react-router-dom';
 
-import { ActionCreatorApp } from "../../../../../../redux/app/appAction.js";
-import { getFriendsActiveName } from "../../../../../../redux/app/appSelector.js";
+import { ActionCreatorApp } from '../../../../../../redux/app/appAction';
+import { getFriendsActiveName } from '../../../../../../redux/app/appSelector';
 
-import { AppRoute, USER_UNKNOWN_PHOTO_URL } from "./../../../../../../constant";
+import { AppRoute, USER_UNKNOWN_PHOTO_URL } from './../../../../../../constant';
 
 export const SideBarFriendsItem = ({ user }) => {
   const friendsActiveName = useSelector((state) => getFriendsActiveName(state));
@@ -13,7 +13,7 @@ export const SideBarFriendsItem = ({ user }) => {
 
   const { info, status } = user;
 
-  const userPhoto = "photoUrl" in user ? user.photoUrl : USER_UNKNOWN_PHOTO_URL;
+  const userPhoto = 'photoUrl' in user ? user.photoUrl : USER_UNKNOWN_PHOTO_URL;
 
   return (
     <li className="friends__item">

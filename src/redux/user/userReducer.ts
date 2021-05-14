@@ -1,22 +1,25 @@
-import { firebase } from "../../utils/firebase.js";
-import { nanoid } from "nanoid";
+import { firebase } from '../../utils/firebase';
+import { nanoid } from 'nanoid';
 
-import { ActionTypeUser, ActionCreatorUser } from "./userAction.js";
-import { ActionCreatorApp } from "../app/appAction.js";
+import { ActionCreatorUser } from './userAction';
+import { ActionCreatorApp } from '../app/appAction';
 
 import {
   checkOnlineFirebase,
   exitOnlineFirebase,
-} from "../../utils/firebase/check-online.js";
+} from '../../utils/firebase/check-online';
 
-export const initialState = {
+import { ActionTypeUser, UserActionInterface, UserState } from './typesUser';
+import { Dispatch } from 'react';
+
+export const initialState: UserState = {
   userProfile: null,
   userAuthId: null,
   isOnline: null,
 };
 
-export const OperationUser = {
-  userRegistration: (name, email, password) => (dispatch) => {
+export const OperationUser: any = {
+  userRegistration: (name: string, email: string, password: string) => (dispatch: Dispatch<any>) => {
     dispatch(ActionCreatorUser.getStateOnlineUser(null));
     firebase
       .auth()
@@ -24,10 +27,10 @@ export const OperationUser = {
       .then(() => {
         checkOnlineFirebase();
         dispatch(ActionCreatorUser.getStateOnlineUser(true));
-        return firebase.auth().currentUser.uid;
+        return firebase.auth().currentUser?.uid;
       })
-      .then((userAuthId) => {
-        const db = firebase.database().ref("/users/" + userAuthId);
+      .then((userAuthId: any) => {
+        const db = firebase.database().ref('/users/' + userAuthId);
 
         db.set({
           userId: nanoid(),
@@ -36,7 +39,8 @@ export const OperationUser = {
             name,
             email,
           },
-          photoUrl: "https://firebasestorage.googleapis.com/v0/b/web-chat-1b38f.appspot.com/o/images%2Fuser-unknown-logo%2Fuser-unknown-logo.svg?alt=media&token=c1ddaf10-5e6c-499a-9d51-43892834d130",
+          photoUrl:
+            'https://firebasestorage.googleapis.com/v0/b/web-chat-1b38f.appspot.com/o/images%2Fuser-unknown-logo%2Fuser-unknown-logo.svg?alt=media&token=c1ddaf10-5e6c-499a-9d51-43892834d130',
           status: {
             state: 'online',
             lastChange: new Date(),
@@ -50,7 +54,7 @@ export const OperationUser = {
       });
   },
 
-  userAuth: (email, password) => (dispatch) => {
+  userAuth: (email: string, password: string) => (dispatch: any) => {
     dispatch(ActionCreatorUser.getStateOnlineUser(null));
     firebase
       .auth()
@@ -68,7 +72,7 @@ export const OperationUser = {
       });
   },
 
-  userAuthCheck: () => (dispatch) => {
+  userAuthCheck: () => (dispatch: Dispatch<any>) => {
     firebase.auth().onAuthStateChanged((user) => {
       checkOnlineFirebase();
       if (user) {
@@ -81,7 +85,7 @@ export const OperationUser = {
     });
   },
 
-  userExit: (userAuthId) => (dispatch) => {
+  userExit: (userAuthId: string) => (dispatch: any) => {
     dispatch(ActionCreatorUser.getStateOnlineUser(null));
     firebase
       .auth()
@@ -96,11 +100,11 @@ export const OperationUser = {
     exitOnlineFirebase(userAuthId);
   },
 
-  getUserProfile: (userAuthId) => (dispatch) => {
+  getUserProfile: (userAuthId: string) => (dispatch: any) => {
     const dataBase = firebase.database().ref(`users`);
 
     dataBase.on(`value`, async (snapshot) => {
-      let userProfile = null;
+      let userProfile: null | object = null;
 
       snapshot.forEach((user) => {
         if (userAuthId === user.key) {
@@ -114,7 +118,7 @@ export const OperationUser = {
   },
 };
 
-export const userReducer = (state = initialState, action) => {
+export const userReducer = (state = initialState, action: UserActionInterface): UserState => {
   switch (action.type) {
     case ActionTypeUser.USER_AUTH_ID:
       return { ...state, userAuthId: action.payload };

@@ -1,7 +1,7 @@
-import React from "react";
+import React from 'react';
 
-import { SliderWellcome } from "./slider-wellcome.jsx";
-import { MainStart } from "./slider-wellcome.styled.js";
+import { SliderWellcome } from './slider-wellcome';
+import { MainStart } from './slider-wellcome.styled';
 
 export const PageNotAuth = () => {
   return (

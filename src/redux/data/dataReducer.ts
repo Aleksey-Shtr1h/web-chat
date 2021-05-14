@@ -1,32 +1,37 @@
-import { firebase } from "../../utils/firebase.js";
-import { nanoid } from "nanoid";
+import { firebase } from '../../utils/firebase';
+import { nanoid } from 'nanoid';
 
-import { ActionCreatorData, ActionTypeData } from "./dataAction.js";
-import { ActionCreatorApp } from "../app/appAction.js";
+import { ActionCreatorData } from './dataAction';
+import { ActionCreatorApp } from '../app/appAction';
 
 import {
   addRoomFirebaseUsers,
   deleteUserRoom,
   checkDoubleDate,
-} from "../../utils/firebase/firebase-utils.js";
+} from '../../utils/firebase/firebase-utils';
+import { ActionTypeData, DataActionInterface, DataState } from './typesData';
 
-export const initialState = {
+export const initialState: DataState = {
   usersRoom: null,
   selectRoom: null,
   messagesList: null,
 };
 
 export const OperationData = {
-  loadUsers: ({ usersRoom = [], idRoom = `` }, isLoadUser) => (dispatch) => {
+  loadUsers: ({ usersRoom = [], idRoom = `` }, isLoadUser: boolean) => (dispatch: any): void => {
     dispatch(ActionCreatorApp.toglleUsersPreload(true));
     const dataBase = firebase.database().ref(`users`);
 
     dataBase.on(`value`, async (snapshot) => {
-      const users = [];
-      const usersBase = Object.values(snapshot.val());
+      const users: any[] = [];
+      const usersBase: any[] = Object.values(snapshot.val());
 
-      usersRoom.forEach((userId) => {
-        const resultFinsUser = usersBase.find((userBase) => {
+      interface UserBase {
+        userId: string | object;
+      }
+
+      usersRoom.forEach((userId: object) => {
+        const resultFinsUser = usersBase.find((userBase: UserBase) => {
           return userId === userBase.userId;
         });
 
@@ -49,14 +54,14 @@ export const OperationData = {
     });
   },
 
-  loadChannel: (idRoom) => (dispatch) => {
+  loadChannel: (idRoom: string) => (dispatch: any): void => {
     dispatch(ActionCreatorData.getDataSelectRoom(null));
     dispatch(ActionCreatorData.getUsers(null));
     dispatch(ActionCreatorApp.toglleUsersPreload(true));
     dispatch(ActionCreatorApp.toglleMessangesPreload(true));
 
     const dataBase = firebase.firestore().collection(`rooms`);
-    dataBase.where("idRoom", "==", idRoom).onSnapshot(async (snapshot) => {
+    dataBase.where('idRoom', '==', idRoom).onSnapshot(async (snapshot) => {
       const dataRoom = snapshot.docs.map((room) => ({
         ...room.data(),
       }));
@@ -66,7 +71,7 @@ export const OperationData = {
     });
   },
 
-  createChannel: (nameRoom, adminRoom, usersRoom) => async (dispatch) => {
+  createChannel: (nameRoom: string, adminRoom: string, usersRoom: any[]) => async (dispatch: any) => {
     const idRoom = nanoid();
 
     const fireStore = firebase.firestore();
@@ -86,11 +91,11 @@ export const OperationData = {
   },
 
   ///////////////////////////////////////////
-  deleteChannel: () => (dispatch) => { },
+  deleteChannel: () => (dispatch: any) => { },
   ///////////////////////////////////////////
 
-  addUserToChannel: (userId, idRoom, usersRoom, nameRoom) => async (
-    dispatch
+  addUserToChannel: (userId: string, idRoom: string, usersRoom: any, nameRoom: string) => async (
+    dispatch: any
   ) => {
     const usersRoomNew = [userId];
 
@@ -107,13 +112,13 @@ export const OperationData = {
     await dispatch(OperationData.loadUsers({ usersRoom, idRoom }, false));
   },
 
-  loadComment: (idRoom, toglleMessangesPreload) => (dispatch) => {
+  loadComment: (idRoom: string, toglleMessangesPreload: boolean) => (dispatch: any): void => {
     const fireStore = firebase.firestore();
     const refRoom = fireStore
       .collection(`rooms`)
       .doc(idRoom)
       .collection(`messages`)
-      .orderBy("timestamp");
+      .orderBy('timestamp');
 
     refRoom.onSnapshot(async (snapshot) => {
       const messages = snapshot.docs.map((message) => ({
@@ -127,7 +132,7 @@ export const OperationData = {
     });
   },
 
-  createComment: (idRoom, message, nameUser, userId) => (dispatch) => {
+  createComment: (idRoom: string, message: string, nameUser: string, userId: string) => (dispatch: any): void => {
     const idMessage = nanoid();
 
     const fireStore = firebase.firestore();
@@ -147,12 +152,12 @@ export const OperationData = {
   },
 
   ///////////////////////////////////////////
-  deleteComment: () => (dispatch) => { },
+  deleteComment: () => (dispatch: any) => { },
   ///////////////////////////////////////////
 
-  changeUserDateInfo: (userAuthId, postEditInfo) => async (dispatch) => {
+  changeUserDateInfo: (userAuthId: string, postEditInfo: any) => async (dispatch: any) => {
     if (
-      typeof postEditInfo.photoUrl === "object" &&
+      typeof postEditInfo.photoUrl === 'object' &&
       postEditInfo.photoUrl !== null
     ) {
       const storageRef = firebase.storage().ref();
@@ -169,7 +174,7 @@ export const OperationData = {
   },
 };
 
-export const dataReducer = (state = initialState, action) => {
+export const dataReducer = (state = initialState, action: DataActionInterface): DataState => {
   switch (action.type) {
     case ActionTypeData.GET_USERS:
       return {

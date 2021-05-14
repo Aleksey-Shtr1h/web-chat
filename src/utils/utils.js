@@ -1,7 +1,7 @@
-import { MONTH_NAMES } from "../constant.js";
+import { MONTH_NAMES } from '../constant';
 
 const getDateFormat = (date) => {
-  return date < 10 ? "0" + date : date;
+  return date < 10 ? '0' + date : date;
 };
 
 export const searchMonth = (typeDate, searchArray) => {
@@ -56,10 +56,10 @@ export const getDays = (messanges) => {
 
       messangesRoom[date].push(messange);
     } else {
-      if (!messangesRoom["Loading"]) {
-        messangesRoom["Loading"] = [];
+      if (!messangesRoom['Loading']) {
+        messangesRoom['Loading'] = [];
       }
-      messangesRoom["Loading"].push(messange);
+      messangesRoom['Loading'].push(messange);
     }
   });
 
@@ -75,7 +75,7 @@ export const getTimeFormat = (time) => {
 
 export const getShotTitleRoom = (titleText, maxLength) => {
   if (titleText.length >= maxLength) {
-    const shotTitle = titleText.slice(0, 10) + "...";
+    const shotTitle = titleText.slice(0, 10) + '...';
     return shotTitle;
   }
 

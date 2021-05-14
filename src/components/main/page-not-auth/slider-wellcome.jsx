@@ -1,5 +1,5 @@
-import React from "react";
-import { sliderOptions } from "../../../constant.js";
+import React from 'react';
+import { sliderOptions } from '../../../constant';
 import {
   SliderBox,
   SliderItem,
@@ -10,7 +10,7 @@ import {
   SliderTitle,
   SliderText,
   SliderEdit,
-} from "./slider-wellcome.styled.js";
+} from './slider-wellcome.styled';
 
 export const SliderWellcome = () => {
   const settings = {

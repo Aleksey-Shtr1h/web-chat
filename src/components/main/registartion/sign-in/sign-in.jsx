@@ -1,12 +1,12 @@
-import React, { useState } from "react";
-import { useDispatch } from "react-redux";
+import React, { useState } from 'react';
+import { useDispatch } from 'react-redux';
 
 import {
   WrapperFormMain,
   FormMainList,
-} from "../../../../globalStyled/form.styled.js";
+} from '../../../../globalStyled/form.styled';
 
-import { OperationUser } from "../../../../redux/user/userReducer.js";
+import { OperationUser } from '../../../../redux/user/userReducer';
 
 import {
   BtnFormReagistration,
@@ -16,7 +16,7 @@ import {
   FormRegstration,
   MainRegistartion,
   RegistartionWrapper,
-} from "../registration-main/registartion-main.styled.js";
+} from '../registration-main/registartion-main.styled';
 
 export const SignIn = () => {
   const [email, setEmail] = useState(``);

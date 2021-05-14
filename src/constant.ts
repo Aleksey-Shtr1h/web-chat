@@ -46,7 +46,12 @@ export const sliderOptions = [
   },
 ];
 
-export const PageType = {
+interface PageTypeinterface {
+  MAIN: string;
+  LOGIN: string;
+}
+
+export const PageType: PageTypeinterface = {
   MAIN: `home-type`,
   LOGIN: `login-type`,
 };
