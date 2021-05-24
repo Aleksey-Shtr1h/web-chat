@@ -1,4 +1,4 @@
-export const MONTH_NAMES = [
+export const MONTH_NAMES: string[] = [
   `January`,
   `February`,
   `March`,
@@ -15,12 +15,20 @@ export const MONTH_NAMES = [
 
 export const USER_UNKNOWN_PHOTO_URL = `https://firebasestorage.googleapis.com/v0/b/web-chat-1b38f.appspot.com/o/images%2Fuser-unknown-logo%2Fuser-unknown-logo.svg?alt=media&token=c1ddaf10-5e6c-499a-9d51-43892834d130`;
 
-export const ScrollToChatList = {
+export const ScrollToChatList: { MIN: number; MAX: number } = {
   MIN: 0,
   MAX: 999999999,
 };
 
-export const sliderOptions = [
+interface SliderOptionsInterface {
+  title: string;
+  text: string;
+  color: string;
+  colorText: string;
+  icon: string;
+}
+
+export const sliderOptions: SliderOptionsInterface[] = [
   {
     title: `заводи друзей`,
     text: `Lorem ipsum dolor sit amet consectetur adipisicing elit. Delectus, rem quis iusto quas eum aliquam fugiat sint, cumque neque veniam, aut amet`,
@@ -56,7 +64,18 @@ export const PageType: PageTypeinterface = {
   LOGIN: `login-type`,
 };
 
-export const SignMenu = {
+interface SignMenuBtnInterface {
+  name: string;
+  link: string;
+}
+
+interface SignMenuInterface {
+  notAuth: SignMenuBtnInterface[];
+  auth: SignMenuBtnInterface[];
+}
+
+
+export const SignMenu: SignMenuInterface = {
   notAuth: [
     {
       name: `Sign In`,
@@ -77,7 +96,17 @@ export const SignMenu = {
   ],
 };
 
-export const TypeSideBarNameBlock = {
+interface SideBarNameBlockInterface {
+  nameText: string; blockClass: string; textClass: string; spanClass: string;
+}
+
+interface TypeSideBarNameBlockInterface {
+  FRIENDS: SideBarNameBlockInterface;
+  CHANNELS: SideBarNameBlockInterface;
+}
+
+
+export const TypeSideBarNameBlock: TypeSideBarNameBlockInterface = {
   FRIENDS: {
     nameText: `users`,
     blockClass: `friends-header`,

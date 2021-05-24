@@ -1,19 +1,21 @@
-import React from "react";
-import { ContainerPreload, PreloadTitle } from "./preload.styled";
+import React from 'react';
+import { ContainerPreload, PreloadTitle } from './preload.styled';
 
-interface PreloadType {
-  height: number;
-  width: number;
-  radius: number;
-  margin: number;
-  color: string;
-  loading: boolean;
+interface PreloadSettingsType {
+  TITLE: boolean;
+  POSITION: string;
 }
 
-export const Preload: React.FC<any> = ({ preloadSettings, preload }) => {
+interface Props {
+  preloadSettings: PreloadSettingsType;
+  preload: any;
+}
+
+export const Preload: React.FC<Props> = (props: Props) => {
+  const { preloadSettings, preload } = props;
   const { TITLE, POSITION } = preloadSettings;
 
-  const text = TITLE ? "loading" : "";
+  const text = TITLE ? 'loading' : '';
 
   return (
     <ContainerPreload position={POSITION}>

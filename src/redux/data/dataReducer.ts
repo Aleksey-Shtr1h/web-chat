@@ -1,3 +1,4 @@
+import { Dispatch } from "react";
 import { firebase } from '../../utils/firebase';
 import { nanoid } from 'nanoid';
 
@@ -9,7 +10,9 @@ import {
   deleteUserRoom,
   checkDoubleDate,
 } from '../../utils/firebase/firebase-utils';
-import { ActionTypeData, DataActionInterface, DataState } from './typesData';
+import { ActionTypeData, DataActionInterface, DataState, LoadMessagesListInterface } from "./typesData";
+import { GlobalActionInterface } from '../typeState';
+import { UserProfileInterface } from "../user/typesUser";
 
 export const initialState: DataState = {
   usersRoom: null,
@@ -17,21 +20,21 @@ export const initialState: DataState = {
   messagesList: null,
 };
 
-export const OperationData = {
-  loadUsers: ({ usersRoom = [], idRoom = `` }, isLoadUser: boolean) => (dispatch: any): void => {
+export const OperationData: any = {
+  loadUsers: (selectRoom: { usersRoom: string[]; idRoom: string }, isLoadUser: boolean) => (dispatch: Dispatch<GlobalActionInterface>) => {
+    const { usersRoom = [], idRoom = `` } = selectRoom;
+
     dispatch(ActionCreatorApp.toglleUsersPreload(true));
     const dataBase = firebase.database().ref(`users`);
 
     dataBase.on(`value`, async (snapshot) => {
-      const users: any[] = [];
-      const usersBase: any[] = Object.values(snapshot.val());
+      const users: UserProfileInterface[] | any[] = [];
+      const usersBase: UserProfileInterface[] = Object.values(snapshot.val());
+      console.log(usersBase);
 
-      interface UserBase {
-        userId: string | object;
-      }
 
-      usersRoom.forEach((userId: object) => {
-        const resultFinsUser = usersBase.find((userBase: UserBase) => {
+      usersRoom.forEach((userId) => {
+        const resultFinsUser: UserProfileInterface | undefined = usersBase.find((userBase: UserProfileInterface): boolean => {
           return userId === userBase.userId;
         });
 
@@ -47,14 +50,14 @@ export const OperationData = {
       });
 
       if (isLoadUser) {
-        await dispatch(OperationData.loadComment(idRoom, true));
+        dispatch(OperationData.loadComment(idRoom, true));
       }
-      await dispatch(ActionCreatorData.getUsers(users));
-      await dispatch(ActionCreatorApp.toglleUsersPreload(false));
+      dispatch(ActionCreatorData.getUsers(users));
+      dispatch(ActionCreatorApp.toglleUsersPreload(false));
     });
   },
 
-  loadChannel: (idRoom: string) => (dispatch: any): void => {
+  loadChannel: (idRoom: string) => (dispatch: Dispatch<GlobalActionInterface>) => {
     dispatch(ActionCreatorData.getDataSelectRoom(null));
     dispatch(ActionCreatorData.getUsers(null));
     dispatch(ActionCreatorApp.toglleUsersPreload(true));
@@ -62,16 +65,16 @@ export const OperationData = {
 
     const dataBase = firebase.firestore().collection(`rooms`);
     dataBase.where('idRoom', '==', idRoom).onSnapshot(async (snapshot) => {
-      const dataRoom = snapshot.docs.map((room) => ({
+      const dataRoom: { [x: number]: any; } = snapshot.docs.map((room) => ({
         ...room.data(),
       }));
 
-      await dispatch(ActionCreatorData.getDataSelectRoom(dataRoom[0]));
-      await dispatch(ActionCreatorApp.toglleSideBarArrowBtn(false));
+      dispatch(ActionCreatorData.getDataSelectRoom(dataRoom[0]));
+      dispatch(ActionCreatorApp.toglleSideBarArrowBtn(false));
     });
   },
 
-  createChannel: (nameRoom: string, adminRoom: string, usersRoom: any[]) => async (dispatch: any) => {
+  createChannel: (nameRoom: string, adminRoom: string, usersRoom: any[]) => async (dispatch: Dispatch<GlobalActionInterface>) => {
     const idRoom = nanoid();
 
     const fireStore = firebase.firestore();
@@ -86,16 +89,16 @@ export const OperationData = {
       usersRoom,
     });
 
-    await dispatch(ActionCreatorApp.toglleModalAddChannel(false));
+    dispatch(ActionCreatorApp.toglleModalAddChannel(false));
     addRoomFirebaseUsers(firebase, usersRoom, idRoom, nameRoom);
   },
 
   ///////////////////////////////////////////
-  deleteChannel: () => (dispatch: any) => { },
+  // deleteChannel: () => (dispatch: Dispatch<GlobalActionInterface>) => { },
   ///////////////////////////////////////////
 
   addUserToChannel: (userId: string, idRoom: string, usersRoom: any, nameRoom: string) => async (
-    dispatch: any
+    dispatch: Dispatch<GlobalActionInterface>
   ) => {
     const usersRoomNew = [userId];
 
@@ -109,10 +112,10 @@ export const OperationData = {
 
     addRoomFirebaseUsers(firebase, usersRoomNew, idRoom, nameRoom);
 
-    await dispatch(OperationData.loadUsers({ usersRoom, idRoom }, false));
+    dispatch(OperationData.loadUsers({ usersRoom, idRoom }, false));
   },
 
-  loadComment: (idRoom: string, toglleMessangesPreload: boolean) => (dispatch: any): void => {
+  loadComment: (idRoom: string, toglleMessangesPreload: boolean) => (dispatch: Dispatch<GlobalActionInterface>): void => {
     const fireStore = firebase.firestore();
     const refRoom = fireStore
       .collection(`rooms`)
@@ -121,13 +124,14 @@ export const OperationData = {
       .orderBy('timestamp');
 
     refRoom.onSnapshot(async (snapshot) => {
-      const messages = snapshot.docs.map((message) => ({
+      const messages: LoadMessagesListInterface[] | any[] = snapshot.docs.map((message) => ({
         ...message.data(),
       }));
-      await dispatch(ActionCreatorData.getMessagesList(messages));
+
+      dispatch(ActionCreatorData.getMessagesList(messages));
 
       if (toglleMessangesPreload) {
-        await dispatch(ActionCreatorApp.toglleMessangesPreload(false));
+        dispatch(ActionCreatorApp.toglleMessangesPreload(false));
       }
     });
   },
@@ -152,7 +156,7 @@ export const OperationData = {
   },
 
   ///////////////////////////////////////////
-  deleteComment: () => (dispatch: any) => { },
+  // deleteComment: () => (dispatch: any) => { },
   ///////////////////////////////////////////
 
   changeUserDateInfo: (userAuthId: string, postEditInfo: any) => async (dispatch: any) => {
@@ -165,7 +169,7 @@ export const OperationData = {
         `images/${userAuthId}/logo-${userAuthId}.svg`
       );
       await fileRef.put(postEditInfo.photoUrl);
-      let filePhotoUrl = await fileRef.getDownloadURL();
+      const filePhotoUrl = await fileRef.getDownloadURL();
       postEditInfo.photoUrl = filePhotoUrl;
     }
 

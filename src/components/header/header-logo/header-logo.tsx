@@ -8,7 +8,7 @@ import { AppRoute } from '../../../constant';
 import { LogoSection, LogoLink, LogoText, LogoH1 } from './header-logo.styled';
 import { GlobalState } from '../../../redux/typeState';
 
-export const HeaderLogo = () => {
+export const HeaderLogo: React.FC = () => {
   const isOnline = useSelector((state: GlobalState) =>
     getStateUserOnline(state)
   );

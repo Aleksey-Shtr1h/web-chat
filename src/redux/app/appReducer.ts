@@ -1,3 +1,5 @@
+import { Dispatch } from "react";
+import { GlobalActionInterface } from "../typeState";
 import { ActionCreatorApp } from './appAction';
 import { ActionTypeApp, AppActionInterface, AppState } from './typesApp';
 
@@ -15,8 +17,8 @@ export const initialState: AppState = {
   isSideBarArrowBtn: true,
 };
 
-export const OperationApp = {
-  checkSubscribedUser: (usersRoom: [string], userId: string) => (dispatch: any) => {
+export const OperationApp: any = {
+  checkSubscribedUser: (usersRoom: [string], userId: string) => (dispatch: Dispatch<GlobalActionInterface>) => {
 
     const isSubscribedUser = usersRoom.includes(userId);
     dispatch(ActionCreatorApp.changeSubribedUser(isSubscribedUser));

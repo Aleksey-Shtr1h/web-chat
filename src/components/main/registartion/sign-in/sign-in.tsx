@@ -18,7 +18,7 @@ import {
   RegistartionWrapper,
 } from '../registration-main/registartion-main.styled';
 
-export const SignIn = () => {
+export const SignIn: React.FC = () => {
   const [email, setEmail] = useState(``);
   const [password, setPassword] = useState(``);
   const dispatch = useDispatch();
@@ -32,7 +32,7 @@ export const SignIn = () => {
         <FormRegstration
           action="#"
           method="post"
-          onSubmit={(evt) => {
+          onSubmit={(evt: React.SyntheticEvent) => {
             if (!validPassword || !validEmail) {
               return;
             }
@@ -53,7 +53,9 @@ export const SignIn = () => {
                   id="email"
                   placeholder="email@gmail.com"
                   value={email}
-                  onChange={(evt) => setEmail(evt.target.value)}
+                  onChange={(evt: React.ChangeEvent<HTMLInputElement>) =>
+                    setEmail(evt.target.value)
+                  }
                 />
               </FormRegistrationItem>
 
@@ -68,7 +70,9 @@ export const SignIn = () => {
                   placeholder="*********"
                   autoComplete="on"
                   value={password}
-                  onChange={(evt) => setPassword(evt.target.value)}
+                  onChange={(evt: React.ChangeEvent<HTMLInputElement>) =>
+                    setPassword(evt.target.value)
+                  }
                 />
               </FormRegistrationItem>
             </FormMainList>

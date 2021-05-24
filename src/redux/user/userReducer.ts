@@ -9,8 +9,9 @@ import {
   exitOnlineFirebase,
 } from '../../utils/firebase/check-online';
 
-import { ActionTypeUser, UserActionInterface, UserState } from './typesUser';
+import { ActionTypeUser, UserActionInterface, UserProfileInterface, UserState } from './typesUser';
 import { Dispatch } from 'react';
+import { GlobalActionInterface } from '../typeState';
 
 export const initialState: UserState = {
   userProfile: null,
@@ -19,17 +20,17 @@ export const initialState: UserState = {
 };
 
 export const OperationUser: any = {
-  userRegistration: (name: string, email: string, password: string) => (dispatch: Dispatch<any>) => {
+  userRegistration: (name: string, email: string, password: string) => (dispatch: Dispatch<GlobalActionInterface>) => {
     dispatch(ActionCreatorUser.getStateOnlineUser(null));
     firebase
       .auth()
       .createUserWithEmailAndPassword(email, password)
-      .then(() => {
+      .then((): string | undefined => {
         checkOnlineFirebase();
         dispatch(ActionCreatorUser.getStateOnlineUser(true));
         return firebase.auth().currentUser?.uid;
       })
-      .then((userAuthId: any) => {
+      .then((userAuthId: string | undefined) => {
         const db = firebase.database().ref('/users/' + userAuthId);
 
         db.set({
@@ -54,7 +55,7 @@ export const OperationUser: any = {
       });
   },
 
-  userAuth: (email: string, password: string) => (dispatch: any) => {
+  userAuth: (email: string, password: string) => (dispatch: Dispatch<GlobalActionInterface>) => {
     dispatch(ActionCreatorUser.getStateOnlineUser(null));
     firebase
       .auth()
@@ -72,20 +73,20 @@ export const OperationUser: any = {
       });
   },
 
-  userAuthCheck: () => (dispatch: Dispatch<any>) => {
+  userAuthCheck: () => (dispatch: Dispatch<GlobalActionInterface>) => {
     firebase.auth().onAuthStateChanged((user) => {
       checkOnlineFirebase();
       if (user) {
         dispatch(ActionCreatorUser.getUserAuthId(user.uid));
         dispatch(OperationUser.getUserProfile(user.uid));
         dispatch(ActionCreatorUser.getStateOnlineUser(true));
-        return;
+        return null;
       }
       dispatch(ActionCreatorUser.getStateOnlineUser(false));
     });
   },
 
-  userExit: (userAuthId: string) => (dispatch: any) => {
+  userExit: (userAuthId: string) => (dispatch: Dispatch<GlobalActionInterface>) => {
     dispatch(ActionCreatorUser.getStateOnlineUser(null));
     firebase
       .auth()
@@ -100,11 +101,11 @@ export const OperationUser: any = {
     exitOnlineFirebase(userAuthId);
   },
 
-  getUserProfile: (userAuthId: string) => (dispatch: any) => {
+  getUserProfile: (userAuthId: string) => (dispatch: Dispatch<GlobalActionInterface>) => {
     const dataBase = firebase.database().ref(`users`);
 
     dataBase.on(`value`, async (snapshot) => {
-      let userProfile: null | object = null;
+      let userProfile: null | UserProfileInterface = null;
 
       snapshot.forEach((user) => {
         if (userAuthId === user.key) {

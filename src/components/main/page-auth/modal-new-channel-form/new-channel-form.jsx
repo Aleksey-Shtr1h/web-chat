@@ -1,10 +1,10 @@
-import React from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { ActionCreatorApp } from "../../../../redux/app/appAction";
+import React from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { ActionCreatorApp } from '../../../../redux/app/appAction';
 
-import { OperationData } from "../../../../redux/data/dataReducer";
-import { getUserProfile } from "../../../../redux/user/usersSelector";
-import { getStateModalAddChannel } from "../../../../redux/app/appSelector";
+import { OperationData } from '../../../../redux/data/dataReducer';
+import { getUserProfile } from '../../../../redux/user/usersSelector';
+import { getStateModalAddChannel } from '../../../../redux/app/appSelector';
 
 import {
   FormMain,
@@ -17,7 +17,7 @@ import {
   ModalWrapper,
   BtnWrapper,
   BtnForm,
-} from "../../../../globalStyled/form.styled";
+} from '../../../../globalStyled/form.styled';
 
 export const ModalNewChannelForm = () => {
   const dispatch = useDispatch();
@@ -40,10 +40,10 @@ export const ModalNewChannelForm = () => {
   );
 
   React.useEffect(() => {
-    document.addEventListener("keydown", escFunction, false);
+    document.addEventListener('keydown', escFunction, false);
 
     return () => {
-      document.removeEventListener("keydown", escFunction, false);
+      document.removeEventListener('keydown', escFunction, false);
     };
   }, [escFunction]);
 
@@ -90,7 +90,7 @@ export const ModalNewChannelForm = () => {
             <BtnWrapper>
               <BtnForm
                 type="submit"
-                disabled={toggleButtonSubmit ? "" : "disabled"}
+                disabled={toggleButtonSubmit ? '' : 'disabled'}
               >
                 Add room
               </BtnForm>
