@@ -16,17 +16,17 @@ import {
   RegistartionWrapper,
 } from '../registration-main/registartion-main.styled';
 
-export const SignUp = () => {
+export const SignUp: React.FC = () => {
   const [name, setName] = useState(``);
   const [email, setEmail] = useState(``);
   const [password, setPassword] = useState(``);
   const [confirmPassword, setConfirmPassword] = useState(``);
   const dispatch = useDispatch();
 
-  const validPassword =
+  const validPassword: boolean =
     password !== `` ? (password === confirmPassword ? true : false) : false;
-  const validEmail = email !== `` ? true : false;
-  const validName = name !== `` ? true : false;
+  const validEmail: boolean = email !== `` ? true : false;
+  const validName: boolean = name !== `` ? true : false;
 
   return (
     <MainRegistartion>
@@ -34,7 +34,7 @@ export const SignUp = () => {
         <FormRegstration
           action="#"
           method="post"
-          onSubmit={(evt) => {
+          onSubmit={(evt: React.SyntheticEvent) => {
             evt.preventDefault();
 
             if (!validPassword || !validName || !validEmail) {
@@ -46,61 +46,69 @@ export const SignUp = () => {
         >
           <WrapperFormMain>
             <FormMainList>
-              <FormRegistrationItem valid={validName}>
+              <FormRegistrationItem isValid={validName}>
                 <FormRegistrationLabel htmlFor="login-name">
                   Name
                 </FormRegistrationLabel>
                 <FormRegistrationInput
-                  valid={validName}
+                  isValid={validName}
                   type="text"
                   id="login-name"
                   placeholder="Jhon Anderson"
                   value={name}
-                  onChange={(evt) => setName(evt.target.value)}
+                  onChange={(evt: React.ChangeEvent<HTMLInputElement>) =>
+                    setName(evt.target.value)
+                  }
                 />
               </FormRegistrationItem>
 
-              <FormRegistrationItem valid={validEmail}>
+              <FormRegistrationItem isValid={validEmail}>
                 <FormRegistrationLabel htmlFor="email">
                   Email
                 </FormRegistrationLabel>
                 <FormRegistrationInput
-                  valid={validEmail}
+                  isValid={validEmail}
                   type="email"
                   id="email"
                   placeholder="email@gmail.com"
                   value={email}
-                  onChange={(evt) => setEmail(evt.target.value)}
+                  onChange={(evt: React.ChangeEvent<HTMLInputElement>) =>
+                    setEmail(evt.target.value)
+                  }
                 />
               </FormRegistrationItem>
 
-              <FormRegistrationItem valid={validPassword}>
+              <FormRegistrationItem isValid={validPassword}>
                 <FormRegistrationLabel htmlFor="password">
                   Password
                 </FormRegistrationLabel>
                 <FormRegistrationInput
-                  valid={validPassword}
+                  isValid={validPassword}
                   type="password"
                   id="password"
                   placeholder="*********"
                   value={password}
                   autoComplete="off"
-                  onChange={(evt) => setPassword(evt.target.value)}
+                  onChange={(evt: React.ChangeEvent<HTMLInputElement>) =>
+                    setPassword(evt.target.value)
+                  }
                 />
               </FormRegistrationItem>
 
-              <FormRegistrationItem valid={validPassword}>
+              <FormRegistrationItem isValid={validPassword}>
                 <FormRegistrationLabel htmlFor="confirm_password">
                   Confirm Password
                 </FormRegistrationLabel>
                 <FormRegistrationInput
-                  valid={validPassword}
+                  isValid={validPassword}
                   type="password"
                   id="confirm_password"
                   placeholder="*********"
                   value={confirmPassword}
                   autoComplete="off"
-                  onChange={(evt) => setConfirmPassword(evt.target.value)}
+                  onChange={(evt: React.ChangeEvent<HTMLInputElement>) =>
+                    setConfirmPassword(evt.target.value)
+                  }
                 />
               </FormRegistrationItem>
             </FormMainList>

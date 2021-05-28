@@ -1,6 +1,10 @@
-import styled from "styled-components";
-import { getAdaptiveSizePx } from "./mixins";
-import { MediaSizePixselWidth, SizeNumberWidth } from "./variables";
+import styled from 'styled-components';
+import { getAdaptiveSizePx } from './mixins';
+import { MediaSizePixselWidth, SizeNumberWidth } from './variables';
+
+interface BooleanElementProps {
+  isModalClick: boolean;
+}
 
 export const FormMain = styled.form`
   display: flex;
@@ -88,7 +92,7 @@ export const BtnMainForm = styled.button`
   }
 `;
 
-export const ModalSection = styled.section`
+export const ModalSection = styled.section<BooleanElementProps>`
   position: absolute;
 
   width: 100%;
@@ -100,8 +104,8 @@ export const ModalSection = styled.section`
 
   transition: all 0.5s;
 
-  transform: ${({ showModalClick }) =>
-    showModalClick ? "translateY(0%)" : "translateY(-300%)"};
+  transform: ${({ isModalClick }) =>
+    isModalClick ? 'translateY(0%)' : 'translateY(-300%)'};
 
   ${MediaSizePixselWidth.smDesktopWidth} {
     background: #0000008a;
@@ -126,17 +130,17 @@ export const FormMainTextArea = styled.textarea`
   outline: none;
 
   font-size: ${getAdaptiveSizePx(
-    10,
-    16,
-    SizeNumberWidth.smPhoneWidth,
-    SizeNumberWidth.maxDesktopWidth
-  )};
+  10,
+  16,
+  SizeNumberWidth.smPhoneWidth,
+  SizeNumberWidth.maxDesktopWidth
+)};
   line-height: ${getAdaptiveSizePx(
-    10,
-    16,
-    SizeNumberWidth.smPhoneWidth,
-    SizeNumberWidth.maxDesktopWidth
-  )};
+  10,
+  16,
+  SizeNumberWidth.smPhoneWidth,
+  SizeNumberWidth.maxDesktopWidth
+)};
 
   font-weight: bold;
 
@@ -196,17 +200,17 @@ export const BtnForm = styled(BtnMainForm)`
   padding: 2% 5%;
 
   font-size: ${getAdaptiveSizePx(
-    10,
-    18,
-    SizeNumberWidth.smPhoneWidth,
-    SizeNumberWidth.maxDesktopWidth
-  )};
+  10,
+  18,
+  SizeNumberWidth.smPhoneWidth,
+  SizeNumberWidth.maxDesktopWidth
+)};
   line-height: ${getAdaptiveSizePx(
-    10,
-    18,
-    SizeNumberWidth.smPhoneWidth,
-    SizeNumberWidth.maxDesktopWidth
-  )};
+  10,
+  18,
+  SizeNumberWidth.smPhoneWidth,
+  SizeNumberWidth.maxDesktopWidth
+)};
 
   ${MediaSizePixselWidth.smDesktopWidth} {
     margin: 0 2% 5% 2%;

@@ -18,12 +18,15 @@ import {
   BtnWrapper,
   BtnForm,
 } from '../../../../globalStyled/form.styled';
+import { GlobalState } from '../../../../redux/typeState';
 
-export const ModalNewChannelForm = () => {
+export const ModalNewChannelForm: React.FC = () => {
   const dispatch = useDispatch();
 
-  const userProfile = useSelector((state) => getUserProfile(state));
-  const isModalAddChannel = useSelector((state) =>
+  const userProfile: any = useSelector((state: GlobalState) =>
+    getUserProfile(state)
+  );
+  const isModalAddChannel = useSelector((state: GlobalState) =>
     getStateModalAddChannel(state)
   );
 
@@ -54,12 +57,12 @@ export const ModalNewChannelForm = () => {
   }, [userProfile, toggleButtonSubmit]);
 
   return (
-    <ModalSection showModalClick={isModalAddChannel}>
+    <ModalSection isModalClick={isModalAddChannel}>
       <ModalWrapper>
         <FormMain
           action="#"
           method="post"
-          onSubmit={(evt) => {
+          onSubmit={(evt: React.SyntheticEvent) => {
             evt.preventDefault();
 
             dispatch(
@@ -82,16 +85,15 @@ export const ModalNewChannelForm = () => {
                   id="room-text"
                   placeholder="name room"
                   value={nameRoom}
-                  onChange={(evt) => setNameRoom(evt.target.value)}
+                  onChange={(evt: React.ChangeEvent<HTMLInputElement>) =>
+                    setNameRoom(evt.target.value)
+                  }
                 />
               </FormMainItem>
             </FormMainList>
 
             <BtnWrapper>
-              <BtnForm
-                type="submit"
-                disabled={toggleButtonSubmit ? '' : 'disabled'}
-              >
+              <BtnForm type="submit" disabled={toggleButtonSubmit}>
                 Add room
               </BtnForm>
 

@@ -15,7 +15,7 @@ import { UserSectionInfo } from './user-section-info/user-section-info';
 import { AppRoute } from '../../../constant';
 
 import { ModalEditUserDateForm } from './modal-edit-user-date-form/modal-edit-user-date-form';
-import { WaitingUserProfile } from './../../waiting-from-sever/waiting-user-profile/waiting-user-profile';
+import { WaitingUserProfile } from '../../waiting-from-sever/waiting-user-profile/waiting-user-profile';
 import { DropDownArrowBtn } from './user-section-info/info-arrow-btn/info-arrow-btn';
 import { ActionCreatorApp } from '../../../redux/app/appAction';
 import { useDispatch, useSelector } from 'react-redux';
@@ -27,24 +27,25 @@ import {
   AuthUserContentMain,
   AuthUserContentWrapper,
 } from './page-auth.styled';
+import { GlobalState } from '../../../redux/typeState';
 
-export const PageAuth = () => {
+export const PageAuth: React.FC = () => {
   const dispatch = useDispatch();
-  const isSideBarArrowBtn = useSelector((state) =>
+  const isSideBarArrowBtn = useSelector((state: GlobalState) =>
     getStateSideBarArrowBtn(state)
   );
-  const isUserInfoArrowBtn = useSelector((state) =>
+  const isUserInfoArrowBtn = useSelector((state: GlobalState) =>
     getStateUserInfoArrowBtn(state)
   );
 
-  const onClickUserInfoBtn = () => {
+  const onClickUserInfoBtn = (): void => {
     dispatch(ActionCreatorApp.toglleUserInfoArrowBtn(true));
   };
-  const onClickSideBarBtn = () => {
+  const onClickSideBarBtn = (): void => {
     dispatch(ActionCreatorApp.toglleSideBarArrowBtn(!isSideBarArrowBtn));
   };
 
-  const classPhone = isSideBarArrowBtn
+  const classPhone: string = isSideBarArrowBtn
     ? 'user-desktop-phone-hide'
     : 'user-desktop-phone-show';
 

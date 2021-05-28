@@ -23,8 +23,8 @@ export const SignIn: React.FC = () => {
   const [password, setPassword] = useState(``);
   const dispatch = useDispatch();
 
-  const validEmail = email !== `` ? true : false;
-  const validPassword = password !== `` ? true : false;
+  const validEmail: boolean = email !== `` ? true : false;
+  const validPassword: boolean = password !== `` ? true : false;
 
   return (
     <MainRegistartion>
@@ -43,12 +43,12 @@ export const SignIn: React.FC = () => {
         >
           <WrapperFormMain>
             <FormMainList>
-              <FormRegistrationItem valid={validEmail}>
+              <FormRegistrationItem isValid={validEmail}>
                 <FormRegistrationLabel htmlFor="email">
                   Email
                 </FormRegistrationLabel>
                 <FormRegistrationInput
-                  valid={validEmail}
+                  isValid={validEmail}
                   type="email"
                   id="email"
                   placeholder="email@gmail.com"
@@ -59,12 +59,12 @@ export const SignIn: React.FC = () => {
                 />
               </FormRegistrationItem>
 
-              <FormRegistrationItem valid={validPassword}>
+              <FormRegistrationItem isValid={validPassword}>
                 <FormRegistrationLabel htmlFor="password">
                   Password
                 </FormRegistrationLabel>
                 <FormRegistrationInput
-                  valid={validPassword}
+                  isValid={validPassword}
                   type="password"
                   id="password"
                   placeholder="*********"

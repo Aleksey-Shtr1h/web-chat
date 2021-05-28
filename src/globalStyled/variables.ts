@@ -1,4 +1,24 @@
-export const SizeNumberWidth = {
+interface SizeNumberWidthInterface {
+  maxDesktopWidth: number;
+  desktopWidth: number;
+  smDesktopWidth: number;
+  tableWidth: number;
+  smTableWidth: number;
+  phoneWidth: number;
+  smPhoneWidth: number;
+}
+
+interface MediaSizePixselWidthInterface {
+  maxDesktopWidth: string;
+  desktopWidth: string;
+  smDesktopWidth: string;
+  tableWidth: string;
+  smTableWidth: string;
+  phoneWidth: string;
+  smPhoneWidth: string;
+}
+
+export const SizeNumberWidth: SizeNumberWidthInterface = {
   maxDesktopWidth: 1440,
   desktopWidth: 1280,
   smDesktopWidth: 1024,
@@ -8,7 +28,7 @@ export const SizeNumberWidth = {
   smPhoneWidth: 320,
 };
 
-export const MediaSizePixselWidth = {
+export const MediaSizePixselWidth: MediaSizePixselWidthInterface = {
   maxDesktopWidth: "@media screen and (max-width: 1440px)",
   desktopWidth: "@media screen and (max-width: 1280px)",
   smDesktopWidth: "@media screen and (max-width: 1024px)",

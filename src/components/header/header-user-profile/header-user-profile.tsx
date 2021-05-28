@@ -10,7 +10,7 @@ import { SignMenu } from '../../../constant';
 import {
   getStateModalAddChannel,
   getStateBurgerBtn,
-} from './../../../redux/app/appSelector';
+} from '../../../redux/app/appSelector';
 
 import {
   UserHeaderMenuSection,
@@ -22,14 +22,20 @@ import {
 
 import './menu-icon.scss';
 
-export const HeaderUserProfile = () => {
+import { GlobalState } from '../../../redux/typeState';
+
+export const HeaderUserProfile: React.FC = () => {
   const dispatch = useDispatch();
 
-  const isModalAddChannel = useSelector((state) =>
+  const isModalAddChannel = useSelector((state: GlobalState) =>
     getStateModalAddChannel(state)
   );
-  const isBurgerBtn = useSelector((state) => getStateBurgerBtn(state));
-  const isOnline = useSelector((state) => getStateUserOnline(state));
+  const isBurgerBtn = useSelector((state: GlobalState) =>
+    getStateBurgerBtn(state)
+  );
+  const isOnline = useSelector((state: GlobalState) =>
+    getStateUserOnline(state)
+  );
 
   return (
     <UserHeaderMenuSection>
@@ -53,7 +59,6 @@ export const HeaderUserProfile = () => {
           {isOnline
             ? SignMenu.auth.map((signMenu, id) => (
                 <HeaderUserLink
-                  dispatch={dispatch}
                   isOnline={isOnline}
                   signMenu={signMenu}
                   key={signMenu.name + id}
@@ -61,7 +66,6 @@ export const HeaderUserProfile = () => {
               ))
             : SignMenu.notAuth.map((signMenu, id) => (
                 <HeaderUserLink
-                  dispatch={dispatch}
                   isOnline={isOnline}
                   signMenu={signMenu}
                   key={signMenu.name + id}
@@ -83,7 +87,7 @@ export const HeaderUserProfile = () => {
           onChange={() => {
             dispatch(ActionCreatorApp.changeBurgerBtn(!isBurgerBtn));
           }}
-          checked={isBurgerBtn ? 'checked' : ''}
+          checked={isBurgerBtn}
         />
         <label htmlFor="checkbox3">
           <div className="hamburger hamburger3">

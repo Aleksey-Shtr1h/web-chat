@@ -1,16 +1,22 @@
-import React from "react";
+import React from 'react';
 
 import {
   FormMainItem,
   FormMainLabel,
   FormMainInput,
-} from "../../../../../globalStyled/form.styled";
+} from '../../../../../globalStyled/form.styled';
 
-export const ModalEditUserInfoGeneralItem = ({
+interface Props {
+  newName: string;
+  onChangeNameUser: (evt: React.ChangeEvent<HTMLInputElement>) => void;
+  onChangeFile: (evt: any) => void;
+}
+
+export const ModalEditUserInfoGeneralItem: React.FC<Props> = ({
   newName,
   onChangeNameUser,
   onChangeFile,
-}) => {
+}: Props) => {
   return (
     <>
       <FormMainItem>

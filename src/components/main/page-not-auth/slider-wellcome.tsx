@@ -12,8 +12,19 @@ import {
   SliderEdit,
 } from './slider-wellcome.styled';
 
-export const SliderWellcome = () => {
-  const settings = {
+interface SettingsSlider {
+  dots: boolean;
+  fade: boolean;
+  infinite: boolean;
+  autoplay: boolean;
+  autoplaySpeed: number;
+  speed: number;
+  slidesToShow: number;
+  slidesToScroll: number;
+}
+
+export const SliderWellcome: React.FC = () => {
+  const settings: SettingsSlider = {
     dots: true,
     fade: true,
     infinite: true,

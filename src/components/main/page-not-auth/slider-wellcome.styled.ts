@@ -91,28 +91,28 @@ export const SliderWrapperContent = styled.div`
   display: flex;
 
   margin-top: ${getAdaptiveSizePx(
-    170,
-    200,
-    SizeNumberWidth.tableWidth,
-    SizeNumberWidth.maxDesktopWidth
-  )};
+  170,
+  200,
+  SizeNumberWidth.tableWidth,
+  SizeNumberWidth.maxDesktopWidth
+)};
 
   flex-direction: column;
   font-family: "Open Sans", sans-serif;
 
   margin-left: ${getAdaptiveSizePx(
-    30,
-    150,
-    SizeNumberWidth.smPhoneWidth,
-    SizeNumberWidth.maxDesktopWidth
-  )};
+  30,
+  150,
+  SizeNumberWidth.smPhoneWidth,
+  SizeNumberWidth.maxDesktopWidth
+)};
 
   margin-right: ${getAdaptiveSizePx(
-    30,
-    150,
-    SizeNumberWidth.smPhoneWidth,
-    SizeNumberWidth.maxDesktopWidth
-  )};
+  30,
+  150,
+  SizeNumberWidth.smPhoneWidth,
+  SizeNumberWidth.maxDesktopWidth
+)};
 
   color: #fff;
 
@@ -125,33 +125,33 @@ export const SliderTitle = styled.h3`
   text-align: center;
 
   margin-bottom: ${getAdaptiveSizePx(
-    15,
-    30,
-    SizeNumberWidth.smPhoneWidth,
-    SizeNumberWidth.maxDesktopWidth
-  )};
+  15,
+  30,
+  SizeNumberWidth.smPhoneWidth,
+  SizeNumberWidth.maxDesktopWidth
+)};
 
   padding-bottom: ${getAdaptiveSizePx(
-    5,
-    13,
-    SizeNumberWidth.smPhoneWidth,
-    SizeNumberWidth.maxDesktopWidth
-  )};
+  5,
+  13,
+  SizeNumberWidth.smPhoneWidth,
+  SizeNumberWidth.maxDesktopWidth
+)};
 
   font-size: ${getAdaptiveSizePx(
-    18,
-    30,
-    SizeNumberWidth.smPhoneWidth,
-    SizeNumberWidth.maxDesktopWidth
-  )};
+  18,
+  30,
+  SizeNumberWidth.smPhoneWidth,
+  SizeNumberWidth.maxDesktopWidth
+)};
 
   font-weight: 800;
   line-height: ${getAdaptiveSizePx(
-    20,
-    32,
-    SizeNumberWidth.smPhoneWidth,
-    SizeNumberWidth.maxDesktopWidth
-  )};
+  20,
+  32,
+  SizeNumberWidth.smPhoneWidth,
+  SizeNumberWidth.maxDesktopWidth
+)};
 
   text-transform: uppercase;
 
@@ -166,11 +166,11 @@ export const SliderText = styled.p`
   text-align: center;
 
   font-size: ${getAdaptiveSizePx(
-    8,
-    12,
-    SizeNumberWidth.smPhoneWidth,
-    SizeNumberWidth.maxDesktopWidth
-  )};
+  8,
+  12,
+  SizeNumberWidth.smPhoneWidth,
+  SizeNumberWidth.maxDesktopWidth
+)};
 
   font-weight: 800;
   line-height: 20px;

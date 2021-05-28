@@ -1,6 +1,10 @@
 import styled from "styled-components";
 
-export const ContainerPreload = styled.div`
+interface ContainerPreloadProps {
+  position: string;
+}
+
+export const ContainerPreload = styled.div<ContainerPreloadProps>`
   position: ${(props) => props.position};
 
   display: flex;

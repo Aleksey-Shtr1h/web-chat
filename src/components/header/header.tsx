@@ -10,8 +10,7 @@ interface Props {
   children: React.ReactNode;
 }
 
-export const Header: React.FC<Props> = (props: Props) => {
-  const { pageType, children } = props;
+export const Header: React.FC<Props> = ({ pageType, children }: Props) => {
   return (
     <div className={`page-main ${pageType}`}>
       <HeaderSection>

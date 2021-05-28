@@ -1,12 +1,23 @@
-import React from "react";
+import React from 'react';
 
 import {
   FormMainItem,
   FormMainLabel,
   FormMainInput,
-} from "../../../../../globalStyled/form.styled";
+} from '../../../../../globalStyled/form.styled';
 
-export const ModalEditUserInfoSideItem = ({
+interface Props {
+  linkFacebook: string;
+  setLinkFacebook: any;
+  linkInstagram: string;
+  setLinkInstagram: any;
+  linkTwitter: string;
+  setLinkTwitter: any;
+  linkLinkendin: string;
+  setLinkLinkendin: any;
+}
+
+export const ModalEditUserInfoSideItem: React.FC<Props> = ({
   linkFacebook,
   setLinkFacebook,
   linkInstagram,
@@ -15,7 +26,7 @@ export const ModalEditUserInfoSideItem = ({
   setLinkTwitter,
   linkLinkendin,
   setLinkLinkendin,
-}) => {
+}: Props) => {
   return (
     <>
       <FormMainItem>
@@ -25,7 +36,9 @@ export const ModalEditUserInfoSideItem = ({
           id="facebook-text"
           placeholder="Facebook"
           value={linkFacebook}
-          onChange={(evt) => setLinkFacebook(evt.target.value)}
+          onChange={(evt: React.ChangeEvent<HTMLInputElement>) =>
+            setLinkFacebook(evt.target.value)
+          }
         />
       </FormMainItem>
       <FormMainItem>
@@ -35,7 +48,9 @@ export const ModalEditUserInfoSideItem = ({
           id="instagram-text"
           placeholder="Istagram"
           value={linkInstagram}
-          onChange={(evt) => setLinkInstagram(evt.target.value)}
+          onChange={(evt: React.ChangeEvent<HTMLInputElement>) =>
+            setLinkInstagram(evt.target.value)
+          }
         />
       </FormMainItem>
       <FormMainItem>
@@ -45,7 +60,9 @@ export const ModalEditUserInfoSideItem = ({
           id="linkendin-text"
           placeholder="Linkendin"
           value={linkTwitter}
-          onChange={(evt) => setLinkTwitter(evt.target.value)}
+          onChange={(evt: React.ChangeEvent<HTMLInputElement>) =>
+            setLinkTwitter(evt.target.value)
+          }
         />
       </FormMainItem>
       <FormMainItem>
@@ -55,7 +72,9 @@ export const ModalEditUserInfoSideItem = ({
           id="twitter-text"
           placeholder="Twitter"
           value={linkLinkendin}
-          onChange={(evt) => setLinkLinkendin(evt.target.value)}
+          onChange={(evt: React.ChangeEvent<HTMLInputElement>) =>
+            setLinkLinkendin(evt.target.value)
+          }
         />
       </FormMainItem>
     </>

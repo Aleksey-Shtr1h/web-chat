@@ -6,7 +6,11 @@ import { PageAuth } from './page-auth/page-auth';
 
 import { AppRoute } from '../../constant';
 
-export const MainPage = ({ isOnline }) => {
+interface Props {
+  isOnline: boolean | null;
+}
+
+export const MainPage: React.FC<Props> = ({ isOnline }: Props) => {
   return (
     <Switch>
       {isOnline ? (

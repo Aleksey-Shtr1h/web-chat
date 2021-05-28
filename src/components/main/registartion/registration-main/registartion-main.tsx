@@ -6,9 +6,13 @@ import { SignUp } from '../sign-up/sign-up';
 
 import { AppRoute } from '../../../../constant';
 
-export const RegistrationMain = ({ isOnline }) => {
+interface Props {
+  isOnline: boolean | null;
+}
+
+export const RegistrationMain: React.FC<Props> = ({ isOnline }: Props) => {
   const history = useHistory();
-  let { id } = useParams();
+  const { id } = useParams<{ id: string }>();
 
   if (isOnline) {
     history.push(AppRoute.MAIN);

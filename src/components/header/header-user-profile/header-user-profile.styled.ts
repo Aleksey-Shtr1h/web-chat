@@ -1,9 +1,13 @@
-import styled from "styled-components";
-import { getAdaptiveSizePx } from "../../../globalStyled/mixins";
+import styled from 'styled-components';
+import { getAdaptiveSizePx } from '../../../globalStyled/mixins';
 import {
   MediaSizePixselWidth,
   SizeNumberWidth,
-} from "../../../globalStyled/variables";
+} from '../../../globalStyled/variables';
+
+interface BooleanElementProps {
+  isActiveMenu: boolean;
+}
 
 export const UserHeaderMenuSection = styled.section`
   display: flex;
@@ -18,7 +22,7 @@ export const UserHeaderMenuSection = styled.section`
   }
 `;
 
-export const UserHeaderMenuWrapper = styled.div`
+export const UserHeaderMenuWrapper = styled.div<BooleanElementProps>`
   position: relative;
 
   display: flex;
@@ -28,10 +32,10 @@ export const UserHeaderMenuWrapper = styled.div`
   ${MediaSizePixselWidth.tableWidth} {
     position: absolute;
     transform: ${({ isActiveMenu }) =>
-      isActiveMenu ? "translateX(0%)" : "translateX(500%)"};
+    isActiveMenu ? 'translateX(0%)' : 'translateX(500%)'};
     transition: all 0.4s;
 
-    width: ${({ isActiveMenu }) => (isActiveMenu ? "30vw" : "none")};
+    width: ${({ isActiveMenu }) => (isActiveMenu ? '30vw' : 'none')};
   }
 
   ${MediaSizePixselWidth.phoneWidth} {
@@ -67,11 +71,11 @@ export const BtnAddChanel = styled.button`
   align-self: center;
 
   width: ${getAdaptiveSizePx(
-    80,
-    100,
-    SizeNumberWidth.tableWidth,
-    SizeNumberWidth.maxDesktopWidth
-  )};
+  80,
+  100,
+  SizeNumberWidth.tableWidth,
+  SizeNumberWidth.maxDesktopWidth
+)};
 
   background-color: #000;
 
@@ -79,18 +83,18 @@ export const BtnAddChanel = styled.button`
   border: 2px solid #ffffff;
 
   font-size: ${getAdaptiveSizePx(
-    15,
-    30,
-    SizeNumberWidth.phoneWidth,
-    SizeNumberWidth.maxDesktopWidth
-  )};
+  15,
+  30,
+  SizeNumberWidth.phoneWidth,
+  SizeNumberWidth.maxDesktopWidth
+)};
 
   font-weight: 600;
 
   color: #fff;
 `;
 
-export const IconMenuWrapper = styled.div`
+export const IconMenuWrapper = styled.div<BooleanElementProps>`
   display: none;
 
   ${MediaSizePixselWidth.tableWidth} {
@@ -103,13 +107,13 @@ export const IconMenuWrapper = styled.div`
     z-index: 20;
     transition: all 0.4s;
 
-    position: ${({ isActiveMenu }) => (isActiveMenu ? "absolute" : 0)};
+    position: ${({ isActiveMenu }) => (isActiveMenu ? 'absolute' : 0)};
     transform: ${({ isActiveMenu }) =>
-      isActiveMenu ? "translateX(-30vw)" : 0};
+    isActiveMenu ? 'translateX(-30vw)' : 0};
     top: 3vh;
   }
 
   ${MediaSizePixselWidth.phoneWidth} {
-    transform: ${({ isActiveMenu }) => (isActiveMenu ? "translateX(0vw)" : 0)};
+    transform: ${({ isActiveMenu }) => (isActiveMenu ? 'translateX(0vw)' : 0)};
   }
 `;
