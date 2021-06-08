@@ -1,16 +1,28 @@
-import React from "react";
-import { useDispatch } from "react-redux";
-import { Link } from "react-router-dom";
+import React from 'react';
+import { useDispatch } from 'react-redux';
+import { Link } from 'react-router-dom';
 
-import { ActionCreatorApp } from "../../../../../../redux/app/appAction";
+import { ActionCreatorApp } from '../../../../../../redux/app/appAction';
 
-import { OperationData } from "../../../../../../redux/data/dataReducer";
-import { getShotTitleRoom } from "../../../../../../utils/utils";
-import { AppRoute } from "./../../../../../../constant";
+import { OperationData } from '../../../../../../redux/data/dataReducer';
+import { getShotTitleRoom } from '../../../../../../utils/utils';
+import { AppRoute } from '../../../../../../constant';
+import { UserProfileInterface } from './../../../../../../redux/user/typesUser';
 
-export const SideBarChannelList = ({ userProfile }) => {
+interface Props {
+  userProfile: UserProfileInterface | any;
+}
+
+interface ChannelsUserInterface {
+  idRoom: string;
+  nameRoom: string;
+}
+
+export const SideBarChannelList: React.FC<Props> = ({ userProfile }: Props) => {
   const dispatch = useDispatch();
-  const channelsUser = Object.values(userProfile.channelsUser);
+  const channelsUser: ChannelsUserInterface[] = Object.values(
+    userProfile.channelsUser
+  );
 
   return (
     <ul className="channels__list">

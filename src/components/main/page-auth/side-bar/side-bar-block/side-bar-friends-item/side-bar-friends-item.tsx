@@ -4,11 +4,19 @@ import { Link } from 'react-router-dom';
 
 import { ActionCreatorApp } from '../../../../../../redux/app/appAction';
 import { getFriendsActiveName } from '../../../../../../redux/app/appSelector';
+import { GlobalState } from '../../../../../../redux/typeState';
+import { UserProfileInterface } from '../../../../../../redux/user/typesUser';
 
 import { AppRoute, USER_UNKNOWN_PHOTO_URL } from './../../../../../../constant';
 
-export const SideBarFriendsItem = ({ user }) => {
-  const friendsActiveName = useSelector((state) => getFriendsActiveName(state));
+interface Props {
+  user: UserProfileInterface;
+}
+
+export const SideBarFriendsItem: React.FC<Props> = ({ user }: Props) => {
+  const friendsActiveName = useSelector((state: GlobalState) =>
+    getFriendsActiveName(state)
+  );
   const dispatch = useDispatch();
 
   const { info, status } = user;

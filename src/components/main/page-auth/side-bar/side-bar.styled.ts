@@ -1,7 +1,11 @@
 import styled from "styled-components";
-import { MediaSizePixselWidth } from "../../../../../../globalStyled/variables";
+import { MediaSizePixselWidth } from "../../../../globalStyled/variables";
 
-export const SideBarSection = styled.section`
+interface BooleanElementProps {
+  isSideBar: boolean;
+}
+
+export const SideBarSection = styled.section<BooleanElementProps>`
   position: relative;
   flex: 0 1 20%;
 
@@ -19,7 +23,7 @@ export const SideBarSection = styled.section`
 
   ${MediaSizePixselWidth.phoneWidth} {
     flex: 0 1 100%;
-    display: ${({ showSideBar }) => (showSideBar ? "flex" : "none")};
+    display: ${({ isSideBar }) => (isSideBar ? "flex" : "none")};
     flex-direction: column;
   }
 `;

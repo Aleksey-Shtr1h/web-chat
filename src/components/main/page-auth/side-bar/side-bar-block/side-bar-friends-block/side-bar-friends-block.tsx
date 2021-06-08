@@ -11,11 +11,18 @@ import {
 } from '../../../../../../redux/data/dataSelector';
 import { getTogglePreloadUsers } from '../../../../../../redux/app/appSelector';
 import { TypeSideBarNameBlock } from '../../../../../../constant';
+import { GlobalState } from '../../../../../../redux/typeState';
+import { UserProfileInterface } from '../../../../../../redux/user/typesUser';
 
-export const SideBarFriendsBlock = () => {
-  const selectRoom = useSelector((state) => getSelectRoom(state));
-  const usersRoom = useSelector((state) => getSortUsers(state));
-  const isPreloadUsers = useSelector((state) => getTogglePreloadUsers(state));
+export const SideBarFriendsBlock: React.FC = () => {
+  const selectRoom = useSelector((state: GlobalState) => getSelectRoom(state));
+  const usersRoom: any = useSelector((state: GlobalState) =>
+    getSortUsers(state)
+  );
+  const isPreloadUsers = useSelector((state: GlobalState) =>
+    getTogglePreloadUsers(state)
+  );
+
   const dispatch = useDispatch();
 
   const initGetUsers = useCallback(() => {
@@ -44,14 +51,13 @@ export const SideBarFriendsBlock = () => {
         <>
           <SideBarNameBlock
             typeChannels={TypeSideBarNameBlock.FRIENDS}
+            styleColor={{ color: '#ffffff' }}
             nameSpan={usersRoom.length}
           />
 
           <ul className="friends__list">
-            {usersRoom.map((user, index) => {
-              return (
-                <SideBarFriendsItem key={index} user={user} index={index} />
-              );
+            {usersRoom.map((user: UserProfileInterface, index: number) => {
+              return <SideBarFriendsItem key={index} user={user} />;
             })}
           </ul>
         </>

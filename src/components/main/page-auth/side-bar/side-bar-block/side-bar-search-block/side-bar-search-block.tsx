@@ -1,18 +1,19 @@
-import React from "react";
-import { ActionCreatorApp } from "../../../../../../redux/app/appAction";
-import { firebase } from "../../../../../../utils/firebase";
-import { Link } from "react-router-dom";
-import { AppRoute } from "./../../../../../../constant";
-import { OperationData } from "../../../../../../redux/data/dataReducer";
-import { useDispatch } from "react-redux";
+import React from 'react';
+import { ActionCreatorApp } from '../../../../../../redux/app/appAction';
+import { firebase } from '../../../../../../utils/firebase';
+import { Link } from 'react-router-dom';
+import { AppRoute } from '../../../../../../constant';
+import { OperationData } from '../../../../../../redux/data/dataReducer';
+import { useDispatch } from 'react-redux';
+import { LoadUsersRoomInterface } from '../../../../../../redux/data/typesData';
 
-export const SideBarSearchBlock = () => {
+export const SideBarSearchBlock: React.FC = () => {
   const [roomSearch, setRoomSearch] = React.useState([]);
   const [loading, setLoading] = React.useState(false);
-  const [search, setSearch] = React.useState("");
+  const [search, setSearch] = React.useState('');
   const [filteredRooms, setFilteredRooms] = React.useState([]);
-  const [valueSearch, setValueSearch] = React.useState("");
-  const inputSearchRef = React.useRef(null);
+  const [valueSearch, setValueSearch] = React.useState('');
+  const inputSearchRef = React.useRef() as React.MutableRefObject<HTMLInputElement>;
   const dispatch = useDispatch();
 
   const focus = () => {
@@ -25,9 +26,11 @@ export const SideBarSearchBlock = () => {
       .firestore()
       .collection(`rooms`)
       .onSnapshot((snapshot) => {
-        const dataRoom = snapshot.docs.map((doc) => ({
+        const dataRoom: any = snapshot.docs.map((doc) => ({
           ...doc.data(),
         }));
+        console.log(dataRoom);
+
         setRoomSearch(dataRoom);
         setLoading(false);
       });
@@ -37,10 +40,10 @@ export const SideBarSearchBlock = () => {
   }, []);
 
   React.useEffect(() => {
-    if (search !== "") {
+    if (search !== '') {
       setSearch(valueSearch);
       setFilteredRooms(
-        roomSearch.filter((room) =>
+        roomSearch.filter((room: LoadUsersRoomInterface) =>
           room.info.nameRoom.toLowerCase().includes(search.toLowerCase())
         )
       );
@@ -64,7 +67,7 @@ export const SideBarSearchBlock = () => {
         onClick={focus}
       />
       <ul className="search-room__list">
-        {loading && <li style={{ color: "white" }}>empty value</li>}
+        {loading && <li style={{ color: 'white' }}>empty value</li>}
         {!loading &&
           filteredRooms.map(({ info: { nameRoom }, idRoom }, idx) => {
             return (

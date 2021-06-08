@@ -12,25 +12,36 @@ import {
   getSubscribedUser,
   getTogglePreloadMessanges,
 } from '../../../../redux/app/appSelector';
-import { getUserProfile } from './../../../../redux/user/usersSelector';
+import { getUserProfile } from '../../../../redux/user/usersSelector';
 import { getSelectRoom } from '../../../../redux/data/dataSelector';
 
 import { PreloadSettings } from '../../../../constant';
 import { DropDownArrowBtn } from '../user-section-info/info-arrow-btn/info-arrow-btn';
 import { ActionCreatorApp } from '../../../../redux/app/appAction';
+import { GlobalState } from '../../../../redux/typeState';
 
-export const UserDesktop = ({ children }) => {
+interface Props {
+  children: React.ReactNode;
+}
+
+export const UserDesktop: React.FC<Props> = ({ children }: Props) => {
   const dispatch = useDispatch();
-  const isSideBarArrowBtn = useSelector((state) =>
+  const isSideBarArrowBtn = useSelector((state: GlobalState) =>
     getStateSideBarArrowBtn(state)
   );
-  const isPreloadMessanges = useSelector((state) =>
+  const isPreloadMessanges = useSelector((state: GlobalState) =>
     getTogglePreloadMessanges(state)
   );
-  const selectRoom = useSelector((state) => getSelectRoom(state));
-  const userProfile = useSelector((state) => getUserProfile(state));
-  const isSubscribedUser = useSelector((state) => getSubscribedUser(state));
-  const isUserInfoArrowBtn = useSelector((state) =>
+  const selectRoom: any = useSelector((state: GlobalState) =>
+    getSelectRoom(state)
+  );
+  const userProfile: any = useSelector((state: GlobalState) =>
+    getUserProfile(state)
+  );
+  const isSubscribedUser = useSelector((state: GlobalState) =>
+    getSubscribedUser(state)
+  );
+  const isUserInfoArrowBtn = useSelector((state: GlobalState) =>
     getStateUserInfoArrowBtn(state)
   );
 
@@ -46,16 +57,7 @@ export const UserDesktop = ({ children }) => {
     }
   }, [isPreloadMessanges, initCheckUser]);
 
-  const preload = (
-    <PulseLoader
-      height={40}
-      width={8}
-      radius={20}
-      margin={20}
-      color={'#000'}
-      loading
-    />
-  );
+  const preload = <PulseLoader margin={20} color={'#000'} loading />;
 
   const onClickUserInfoBtn = () => {
     dispatch(ActionCreatorApp.toglleUserInfoArrowBtn(true));

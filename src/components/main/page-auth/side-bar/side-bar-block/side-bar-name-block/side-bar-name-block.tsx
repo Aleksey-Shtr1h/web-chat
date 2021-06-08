@@ -1,10 +1,21 @@
-import React from "react";
+import React from 'react';
 
-export const SideBarNameBlock = ({
+interface Props {
+  typeChannels: {
+    nameText: string;
+    blockClass: string;
+    textClass: string;
+    spanClass: string;
+  };
+  styleColor: { color: string };
+  nameSpan: string;
+}
+
+export const SideBarNameBlock: React.FC<Props> = ({
   typeChannels,
-  styleColor = {},
+  styleColor,
   nameSpan,
-}) => {
+}: Props) => {
   const { nameText, blockClass, textClass, spanClass } = typeChannels;
 
   return (
