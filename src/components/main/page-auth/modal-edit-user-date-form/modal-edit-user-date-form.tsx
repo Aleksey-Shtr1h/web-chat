@@ -29,8 +29,8 @@ export const ModalEditUserDateForm: React.FC = () => {
     getStateEditUserDate(state)
   );
   const userAuthId = useSelector((state: GlobalState) => getUserAuthId(state));
-  const userProfile: UserProfileInterface | null = useSelector(
-    (state: GlobalState) => getUserProfile(state)
+  const userProfile = useSelector((state: GlobalState) =>
+    getUserProfile(state)
   );
   const dispatch = useDispatch();
   const [menuActive, setMenuActive] = React.useState('general');
@@ -60,7 +60,7 @@ export const ModalEditUserDateForm: React.FC = () => {
 
   const onSubmit = (evt: React.SyntheticEvent) => {
     evt.preventDefault();
-    const { info, sosialNetworks }: any = userProfile;
+    const { info, sosialNetworks } = userProfile;
 
     let facebookLink: null | string = null;
     let instagramLink: null | string = null;

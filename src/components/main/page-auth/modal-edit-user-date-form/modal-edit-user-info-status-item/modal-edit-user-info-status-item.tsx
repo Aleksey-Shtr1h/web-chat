@@ -1,15 +1,20 @@
-import React from "react";
+import React from 'react';
 
 import {
   FormMainItem,
   FormMainLabel,
   FormMainTextArea,
-} from "../../../../../globalStyled/form.styled";
+} from '../../../../../globalStyled/form.styled';
 
-export const ModalEditUserInfoStatusItem = ({
+interface Props {
+  statusDiscription: string;
+  setStatusDiscription: (value: string | ((prevVar: string) => string)) => void;
+}
+
+export const ModalEditUserInfoStatusItem: React.FC<Props> = ({
   statusDiscription,
   setStatusDiscription,
-}) => {
+}: Props) => {
   return (
     <>
       <FormMainItem>
@@ -18,7 +23,6 @@ export const ModalEditUserInfoStatusItem = ({
           area-label="messages-text"
         ></FormMainLabel>
         <FormMainTextArea
-          // className="form-main-list__input form-messages__input"
           minLength="1"
           maxLength="1000"
           name="messages-text"

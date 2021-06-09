@@ -116,7 +116,12 @@ export const ModalSection = styled.section<BooleanElementProps>`
   }
 `;
 
-export const FormMainTextArea = styled.textarea`
+interface TextAreaValid {
+  minLength: any;
+  maxLength: any;
+}
+
+export const FormMainTextArea = styled.textarea<TextAreaValid>`
   flex: 0 1 80%;
 
   padding: 1% 1%;

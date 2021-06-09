@@ -29,7 +29,6 @@ export const SideBarSearchBlock: React.FC = () => {
         const dataRoom: any = snapshot.docs.map((doc) => ({
           ...doc.data(),
         }));
-        console.log(dataRoom);
 
         setRoomSearch(dataRoom);
         setLoading(false);
