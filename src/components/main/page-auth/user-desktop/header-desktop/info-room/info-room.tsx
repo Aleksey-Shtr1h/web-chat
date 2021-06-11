@@ -1,18 +1,19 @@
-import React from "react";
-import { useSelector } from "react-redux";
-import { getSelectRoom } from "../../../../../../redux/data/dataSelector";
+import React from 'react';
+import { useSelector } from 'react-redux';
+import { getSelectRoom } from '../../../../../../redux/data/dataSelector';
+import { GlobalState } from '../../../../../../redux/typeState';
 
-import { getShotTitleRoom } from "../../../../../../utils/utils";
+import { getShotTitleRoom } from '../../../../../../utils/utils';
 
-export const InfoRoom = () => {
-  const selectRoom = useSelector((state) => getSelectRoom(state));
-  const { usersRoom, info } = selectRoom;
+export const InfoRoom: React.FC = () => {
+  const selectRoom = useSelector((state: GlobalState) => getSelectRoom(state));
+
   return (
     <div className="info-room">
       <h2 className="info-room__title">
-        {getShotTitleRoom(info.nameRoom, 10)}
+        {getShotTitleRoom(selectRoom?.info?.nameRoom, 10)}
       </h2>
-      <p className="info-room__count-users">{usersRoom.length}</p>
+      <p className="info-room__count-users">{selectRoom?.usersRoom?.length}</p>
       <form
         className="menu-room-form-search"
         action=""

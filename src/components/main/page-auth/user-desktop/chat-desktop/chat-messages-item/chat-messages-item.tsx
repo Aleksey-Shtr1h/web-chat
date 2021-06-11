@@ -1,32 +1,53 @@
-import React from "react";
-import { useSelector } from "react-redux";
-import { BarLoader } from "react-spinners";
-import { Link } from "react-router-dom";
+import React from 'react';
+import { useSelector } from 'react-redux';
+import { BarLoader } from 'react-spinners';
+import { Link } from 'react-router-dom';
 
-import { Preload } from "../../../../../preload/preload";
+import { Preload } from '../../../../../preload/preload';
 
-import { getUserProfile } from "./../../../../../../redux/user/usersSelector";
-import { chooseUserCoomment } from "../../../../../../redux/data/dataSelector";
+import { getUserProfile } from '../../../../../../redux/user/usersSelector';
+import { chooseUserCoomment } from '../../../../../../redux/data/dataSelector';
 
-import { getTimeFormat } from "../../../../../../utils/utils";
+import { getTimeFormat } from '../../../../../../utils/utils';
 
-import { AppRoute, PreloadSettings } from "../../../../../../constant";
+import { AppRoute, PreloadSettings } from '../../../../../../constant';
+import { GlobalState } from '../../../../../../redux/typeState';
 
-export const ChatMessangesItem = ({ comment }) => {
+interface Message {
+  idMessage: string;
+  message: string;
+  nameUser: string;
+  timestamp: {
+    seconds: number;
+    nanoseconds: number;
+    toDate: () => string;
+  };
+  userId: string;
+}
+
+interface Props {
+  comment: Message;
+}
+
+export const ChatMessangesItem: React.FC<Props> = ({ comment }: Props) => {
   const { message, nameUser, timestamp, userId } = comment;
   const preload = <BarLoader loading />;
 
-  const userProfile = useSelector((state) => getUserProfile(state));
-  const userComment = useSelector((state) => chooseUserCoomment(state, userId));
+  const userProfile = useSelector((state: GlobalState) =>
+    getUserProfile(state)
+  );
+  const userComment = useSelector((state: GlobalState) =>
+    chooseUserCoomment(state, userId)
+  );
 
-  const isHost = userProfile.userId === userId;
+  const isHost = userProfile?.userId === userId;
 
-  const userPhoto = userComment.photoUrl;
+  const userPhoto = userComment?.photoUrl;
 
   const StyleItemMessage = {
-    ITEM_CLASS: isHost ? "messages__host-item" : "messages__user-item",
-    TEXT_CLASS: isHost ? "messages__host-text" : "messages__user-text",
-    INFO_CLASS: isHost ? "host-info" : "user-info",
+    ITEM_CLASS: isHost ? 'messages__host-item' : 'messages__user-item',
+    TEXT_CLASS: isHost ? 'messages__host-text' : 'messages__user-text',
+    INFO_CLASS: isHost ? 'host-info' : 'user-info',
   };
 
   return (

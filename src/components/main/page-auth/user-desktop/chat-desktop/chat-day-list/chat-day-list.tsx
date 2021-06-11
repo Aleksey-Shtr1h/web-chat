@@ -6,15 +6,18 @@ import {
   getMessangesList,
   getSelectRoom,
 } from '../../../../../../redux/data/dataSelector';
+import { GlobalState } from '../../../../../../redux/typeState';
 import { getDays } from '../../../../../../utils/utils';
 
 import { ChatDayItem } from '../chat-day-item/chat-day-item';
 
-export const ChatDayList = () => {
+export const ChatDayList: React.FC = () => {
   const dispatch = useDispatch();
-  const messanges = useSelector((state) => getMessangesList(state));
-  const selectRoom = useSelector((state) => getSelectRoom(state));
-  const chatDayListRef = React.useRef(null);
+  const messanges = useSelector((state: GlobalState) =>
+    getMessangesList(state)
+  );
+  const selectRoom = useSelector((state: GlobalState) => getSelectRoom(state));
+  const chatDayListRef = React.useRef() as React.MutableRefObject<HTMLUListElement>;
 
   const daysMessanges = React.useMemo(() => {
     return getDays(messanges);
@@ -23,7 +26,9 @@ export const ChatDayList = () => {
   const days = Object.entries(daysMessanges);
 
   const initGetUsers = React.useCallback(() => {
-    dispatch(OperationData.loadComment(selectRoom.idRoom, false));
+    if (selectRoom) {
+      dispatch(OperationData.loadComment(selectRoom.idRoom, false));
+    }
   }, [dispatch, selectRoom]);
 
   React.useEffect(() => {
@@ -37,8 +42,8 @@ export const ChatDayList = () => {
 
   return (
     <ul className="chat-day-list" ref={chatDayListRef}>
-      {days.map((day, idx) => {
-        return <ChatDayItem day={day} key={idx + day} />;
+      {days.map((day, idx: number) => {
+        return <ChatDayItem day={day} key={idx} />;
       })}
     </ul>
   );

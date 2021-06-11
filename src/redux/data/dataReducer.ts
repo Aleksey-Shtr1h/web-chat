@@ -30,8 +30,6 @@ export const OperationData: any = {
     dataBase.on(`value`, async (snapshot) => {
       const users: UserProfileInterface[] | any[] = [];
       const usersBase: UserProfileInterface[] = Object.values(snapshot.val());
-      console.log(usersBase);
-
 
       usersRoom.forEach((userId) => {
         const resultFinsUser: UserProfileInterface | undefined = usersBase.find((userBase: UserProfileInterface): boolean => {

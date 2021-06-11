@@ -1,15 +1,15 @@
-import React from "react";
-import { useDispatch, useSelector } from "react-redux";
+import React from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 
-import { USER_UNKNOWN_PHOTO_URL } from "../../../../../constant";
-import { ActionCreatorApp } from "../../../../../redux/app/appAction";
-import { getStateEditUserDate } from "../../../../../redux/app/appSelector";
+import { USER_UNKNOWN_PHOTO_URL } from '../../../../../constant';
+import { ActionCreatorApp } from '../../../../../redux/app/appAction';
+import { getStateEditUserDate } from '../../../../../redux/app/appSelector';
 
-import { ReactComponent as IconFacebook } from "../../../../../assets/image/fb-social-network.svg";
-import { ReactComponent as IconLinkendin } from "../../../../../assets/image/in-social-network.svg";
-import { ReactComponent as IconTwitter } from "../../../../../assets/image/tw-social-network.svg";
-import { ReactComponent as IconInstagram } from "../../../../../assets/image/inst-social-network.svg";
-import { DropDownArrowBtn } from "../info-arrow-btn/info-arrow-btn";
+import { ReactComponent as IconFacebook } from '../../../../../assets/image/fb-social-network.svg';
+import { ReactComponent as IconLinkendin } from '../../../../../assets/image/in-social-network.svg';
+import { ReactComponent as IconTwitter } from '../../../../../assets/image/tw-social-network.svg';
+import { ReactComponent as IconInstagram } from '../../../../../assets/image/inst-social-network.svg';
+import { DropDownArrowBtn } from '../info-arrow-btn/info-arrow-btn';
 
 const IconSosialNerwork = {
   facebook: <IconFacebook />,
@@ -29,7 +29,7 @@ export const UserBlockInfo = ({ userProfile }) => {
     photoUrl,
     info: { name, email },
     sosialNetworks = {},
-    statusDiscription = "",
+    statusDiscription = '',
   } = userProfile;
 
   const userPhoto = photoUrl ? photoUrl : USER_UNKNOWN_PHOTO_URL;
@@ -42,9 +42,9 @@ export const UserBlockInfo = ({ userProfile }) => {
         className="host-info__img-block"
         style={{
           backgroundImage: `url(${userPhoto})`,
-          backgroundPosition: "center",
-          backgroundSize: "cover",
-          backgroundRepeat: "no-repeat",
+          backgroundPosition: 'center',
+          backgroundSize: 'cover',
+          backgroundRepeat: 'no-repeat',
         }}
       >
         {/* <img

@@ -1,10 +1,10 @@
-import React from "react";
+import React from 'react';
 
-export const MenuRoom = () => {
+export const MenuRoom: React.FC = () => {
   const [toglleBtnMenuRoom, setToglleBtnMenu] = React.useState(true);
   const buttonRef = React.useRef(null);
 
-  const isShowBtnMenuRoom = toglleBtnMenuRoom ? "menu-hide" : "";
+  const isShowBtnMenuRoom = toglleBtnMenuRoom ? 'menu-hide' : '';
 
   return (
     <div className="desktop-menu-room">

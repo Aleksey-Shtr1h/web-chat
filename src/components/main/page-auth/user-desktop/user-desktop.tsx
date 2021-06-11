@@ -32,10 +32,8 @@ export const UserDesktop: React.FC<Props> = ({ children }: Props) => {
   const isPreloadMessanges = useSelector((state: GlobalState) =>
     getTogglePreloadMessanges(state)
   );
-  const selectRoom: any = useSelector((state: GlobalState) =>
-    getSelectRoom(state)
-  );
-  const userProfile: any = useSelector((state: GlobalState) =>
+  const selectRoom = useSelector((state: GlobalState) => getSelectRoom(state));
+  const userProfile = useSelector((state: GlobalState) =>
     getUserProfile(state)
   );
   const isSubscribedUser = useSelector((state: GlobalState) =>
@@ -47,7 +45,10 @@ export const UserDesktop: React.FC<Props> = ({ children }: Props) => {
 
   const initCheckUser = React.useCallback(() => {
     dispatch(
-      OperationApp.checkSubscribedUser(selectRoom.usersRoom, userProfile.userId)
+      OperationApp.checkSubscribedUser(
+        selectRoom?.usersRoom,
+        userProfile?.userId
+      )
     );
   }, [dispatch, selectRoom, userProfile]);
 

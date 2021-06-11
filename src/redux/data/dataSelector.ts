@@ -38,7 +38,7 @@ export const getMessangesList = (state: GlobalState) => {
   return state.DATA.messagesList;
 };
 
-export const chooseUserCoomment = (state: GlobalState, userId: string): object | null => {
+export const chooseUserCoomment = (state: GlobalState, userId: string): any | null => {
   const users: any[] | null = state.DATA.usersRoom;
 
   if (users !== null) return users.find((user: any) => user.userId === userId);

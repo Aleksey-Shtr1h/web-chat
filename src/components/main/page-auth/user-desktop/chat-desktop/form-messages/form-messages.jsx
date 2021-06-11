@@ -1,14 +1,14 @@
-import React from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { OperationData } from "../../../../../../redux/data/dataReducer";
-import { getSelectRoom } from "../../../../../../redux/data/dataSelector";
-import { getUserProfile } from "./../../../../../../redux/user/usersSelector";
+import React from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { OperationData } from '../../../../../../redux/data/dataReducer';
+import { getSelectRoom } from '../../../../../../redux/data/dataSelector';
+import { getUserProfile } from './../../../../../../redux/user/usersSelector';
 
 export const FormMessages = () => {
   const dispatch = useDispatch();
   const selectRoom = useSelector((state) => getSelectRoom(state));
   const userProfile = useSelector((state) => getUserProfile(state));
-  const [inputValue, setInputValue] = React.useState("");
+  const [inputValue, setInputValue] = React.useState('');
 
   const {
     info: { name },
@@ -31,7 +31,7 @@ export const FormMessages = () => {
             userId
           )
         );
-        setInputValue("");
+        setInputValue('');
       }}
     >
       <label

@@ -32,7 +32,6 @@ export const SideBar: React.FC<Props> = ({ children }: Props) => {
         onClickStateBtn={onClickSideBarBtn}
         directionArrow={classArrow}
         classBlock={`side-bar-desktop__arrow-block`}
-        colorArrow={{ fill: '#ffffff' }}
       />
     </SideBarSection>
   );

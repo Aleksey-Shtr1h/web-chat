@@ -60,7 +60,8 @@ export const ModalEditUserDateForm: React.FC = () => {
 
   const onSubmit = (evt: React.SyntheticEvent) => {
     evt.preventDefault();
-    const { info, sosialNetworks } = userProfile;
+
+    // const { info, sosialNetworks }: UserProfileInterface  = userProfile;
 
     let facebookLink: null | string = null;
     let instagramLink: null | string = null;
@@ -77,11 +78,17 @@ export const ModalEditUserDateForm: React.FC = () => {
       return null;
     };
 
-    if (sosialNetworks) {
-      facebookLink = checkDataFireBase('facebook', sosialNetworks);
-      instagramLink = checkDataFireBase('instagram', sosialNetworks);
-      twitterLink = checkDataFireBase('twitter', sosialNetworks);
-      linkendinLink = checkDataFireBase('linkendin', sosialNetworks);
+    if (userProfile?.sosialNetworks) {
+      facebookLink = checkDataFireBase('facebook', userProfile?.sosialNetworks);
+      instagramLink = checkDataFireBase(
+        'instagram',
+        userProfile?.sosialNetworks
+      );
+      twitterLink = checkDataFireBase('twitter', userProfile?.sosialNetworks);
+      linkendinLink = checkDataFireBase(
+        'linkendin',
+        userProfile?.sosialNetworks
+      );
     }
 
     statusDiscriptionText = checkDataFireBase('statusDiscription', userProfile);
@@ -90,8 +97,8 @@ export const ModalEditUserDateForm: React.FC = () => {
 
     const postEditInfo = {
       info: {
-        name: newName === '' ? info.name : newName,
-        email: info.email,
+        name: newName === '' ? userProfile?.info?.name : newName,
+        email: userProfile?.info?.email,
       },
       sosialNetworks: {
         facebook: linkFacebook === '' ? facebookLink : linkFacebook,
